@@ -252,8 +252,8 @@ ${w_{A}}_{l} : F_s A \otimes B \to F_s A \otimes A \otimes F_s A$ and ${w_{A}}_{
   \item if $s \in E$, then for all $A \in Ob(\mathcal{C})$, there is an isomorpism, ${e_A} : F_s A \otimes B \cong B \otimes F_s A$;
   \item if $s_1 \in W$, $s_2 \in I$ and $s_1 \preceq s_2$, then there is a morphism ${w_{A}}_{s_2} : F_{s_2} A \to \mathds{1}$ for all $A \in Ob(\mathcal{C})$ and ditto for $E$ and $C$;
   \item Let $\bigotimes_{s \in J, i = 0}^{n} F_{s} A$, where $J \subset I$, and $s^{'} \in I$, s.t. $s \succeq s^{'}$ for all $s \in I'$;
-  Then there exists morphism a morphism $\theta : \bigotimes_{s \in J, i = 0}^{n} F_{s} A \to F_{s^{'}} (\bigotimes_{s \in J, i = 0}^{n} F_{s} A)$, such that
-  $\langle \bigotimes_{s \in J, i = 0}^{n} F_{s} A, \theta \rangle$ is a coalgebra on $F_s$.
+  Then there exists morphism a morphism $\theta_{\bigotimes_{s \in J, i = 1}^{n} {F_{s}}_j A_i} : \bigotimes_{s \in J, i = 0}^{n} F_{s} A \to F_{s^{'}} (\bigotimes_{s \in J, i = 0}^{n} F_{s} A)$, such that
+  $\langle \bigotimes_{s \in J, i = 1}^{n} {F_{s}}_j A_i, \theta_{\bigotimes_{s \in J, i = 1}^{n} {F_{s}}_j A_i} \rangle$ is a coalgebra on $F_s$.
 \end{itemize}
 \end{defin}
 
@@ -268,6 +268,7 @@ ${w_{A}}_{l} : F_s A \otimes B \to F_s A \otimes A \otimes F_s A$ and ${w_{A}}_{
 
 \begin{proof}
   \begin{itemize}
+$ $
 
     \item (1) $\Rightarrow$ (2): cut elimination.
     \item (2) $\Rightarrow$ (3): Soundness:
@@ -335,6 +336,17 @@ ${w_{A}}_{l} : F_s A \otimes B \to F_s A \otimes A \otimes F_s A$ and ${w_{A}}_{
 \begin{prooftree}
   \AxiomC{$f : \Gamma \otimes \Delta \rightarrow A$}
   \UnaryInfC{$f \circ (\rho_{\Gamma} \otimes id_{\Delta}) : (\Gamma \otimes \mathds{1}) \otimes \Delta \rightarrow A$}
+\end{prooftree}
+
+\begin{prooftree}
+  \AxiomC{$f : \Gamma \otimes A \otimes \Delta \rightarrow B$}
+  \UnaryInfC{$f \circ (id_{\Gamma} \otimes \delta_s^{A} \otimes id_{\Delta}) : \Gamma \otimes F_s A \otimes \Delta \rightarrow B$}
+\end{prooftree}
+
+\begin{prooftree}
+  \AxiomC{$f : F_{s_1} A_1 \otimes \dots \otimes F_{s_n} A_n \rightarrow B$}
+  \UnaryInfC{$F_s(f) : F_s(F_{s_1} A_1 \otimes \dots \otimes F_{s_n} A_n) \rightarrow F_s B$}
+  \UnaryInfC{$F_s (f) \circ \theta_{\bigotimes_{s \in J, i = 1}^{n} {F_{s}}_j A_i} : F_{s_1} A_1 \otimes \dots \otimes F_{s_n} A_n \rightarrow F_s B$}
 \end{prooftree}
 
     \item Completeness:
