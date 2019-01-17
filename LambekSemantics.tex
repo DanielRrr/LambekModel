@@ -280,23 +280,61 @@ ${w_{A}}_{l} : F_s A \otimes B \to F_s A \otimes A \otimes F_s A$ and ${w_{A}}_{
 \begin{prooftree}
   \AxiomC{$f : \Gamma \rightarrow A$}
   \AxiomC{$g : \Delta \otimes B \otimes \Theta \rightarrow C$}
-  \BinaryInfC{$g \circ (id_{\Delta} \otimes ({ev_{A,B}}_l \circ (f \otimes id_{A \Rightarrow B})) \otimes id_{\Theta}): \Delta \otimes (\Gamma \otimes A \Rightarrow B) \otimes \Theta  \rightarrow C$}
+  \BinaryInfC{$g \circ (id_{\Delta} \otimes ({ev_{A,B}}_l \circ (f \otimes id_{A \multimap B})) \otimes id_{\Theta}): \Delta \otimes (\Gamma \otimes A \multimap B) \otimes \Theta  \rightarrow C$}
 \end{prooftree}
 
 \begin{prooftree}
   \AxiomC{$f : A \otimes \Pi \rightarrow B$}
-  \UnaryInfC{$\Lambda_l(f) : \Pi \rightarrow A \Rightarrow B$}
+  \UnaryInfC{$\Lambda_l(f) : \Pi \rightarrow A \multimap B$}
 \end{prooftree}
 
 \begin{prooftree}
   \AxiomC{$f : \Gamma \rightarrow A$}
   \AxiomC{$g : \Delta \otimes B \otimes \Theta \rightarrow C$}
-  \BinaryInfC{$g \circ (id_{\Delta} \otimes ({ev_{A,B}}_l \circ (id_{B \Leftarrow A} \otimes f)) \otimes id_{\Theta}) : \Delta \otimes (B \Leftarrow A \otimes \Gamma) \otimes \Theta \rightarrow C$}
+  \BinaryInfC{$g \circ (id_{\Delta} \otimes ({ev_{A,B}}_l \circ (id_{B \multimapinv A} \otimes f)) \otimes id_{\Theta}) : \Delta \otimes (B \multimapinv A \otimes \Gamma) \otimes \Theta \rightarrow C$}
+\end{prooftree}
+
+\begin{prooftree}
+  \AxiomC{$f : \Pi \otimes A \rightarrow B$}
+  \UnaryInfC{$\Lambda_r(f) : \Pi \rightarrow B \multimapinv A$}
 \end{prooftree}
 
 \begin{prooftree}
   \AxiomC{$f : \Gamma \otimes A \otimes B \otimes \Delta \rightarrow C$}
   \UnaryInfC{$f \circ (\alpha_{\Gamma, A, B} \otimes id_{\Delta}) : \Gamma \otimes (A \otimes B) \otimes \Delta \rightarrow C$}
+\end{prooftree}
+
+\begin{prooftree}
+  \AxiomC{$f : \Gamma \rightarrow A$}
+  \AxiomC{$g : \Delta \rightarrow B$}
+  \BinaryInfC{$f \otimes g : \Gamma \otimes \Delta \rightarrow A \otimes B$}
+\end{prooftree}
+
+\begin{prooftree}
+  \AxiomC{$f : \Gamma \otimes A_i \otimes \Delta \rightarrow B$}
+  \UnaryInfC{$f \circ (id_{\Gamma} \otimes \pi_i id_{\Delta}) : \Gamma \otimes (A_1 \times A_2) \otimes \Delta \rightarrow B$}
+\end{prooftree}
+
+\begin{prooftree}
+  \AxiomC{$f : \Gamma \rightarrow A$}
+  \AxiomC{$g : \Gamma \rightarrow B$}
+  \BinaryInfC{$\langle f , g \rangle : \Gamma \rightarrow A \times B$}
+\end{prooftree}
+
+\begin{prooftree}
+  \AxiomC{$f : \Gamma \otimes A \otimes \Delta \rightarrow C$}
+  \AxiomC{$g : \Gamma \otimes B \otimes \Delta  \rightarrow C$}
+  \BinaryInfC{$id_{\Gamma} \otimes [f,g] \otimes id_{\Delta} : \Gamma \otimes (A + B) \otimes \Delta \rightarrow C$}
+\end{prooftree}
+
+\begin{prooftree}
+  \AxiomC{$ $}
+  \UnaryInfC{$id_{\mathds{1}} : \mathds{1} \rightarrow \mathds{1}$}
+\end{prooftree}
+
+\begin{prooftree}
+  \AxiomC{$f : \Gamma \otimes \Delta \rightarrow A$}
+  \UnaryInfC{$f \circ (\rho_{\Gamma} \otimes id_{\Delta}) : (\Gamma \otimes \mathds{1}) \otimes \Delta \rightarrow A$}
 \end{prooftree}
 
     \item Completeness:
