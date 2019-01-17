@@ -1,0 +1,312 @@
+\documentclass[a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{bussproofs}
+\usepackage{mathtools}
+\usepackage{verbatim}
+\usepackage{dsfont}
+\usepackage{mathabx}
+\usepackage[all, 2cell]{xy}
+\usepackage[all]{xy}
+\usepackage{wasysym}
+\usepackage{rotating}
+\usepackage{geometry}
+\usepackage{trfsigns}
+\usepackage{cmll}
+\newtheorem{theorem}{Theorem}
+\newtheorem{prop}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{defin}{Definition}
+\newtheorem{ex}{Example}
+\newtheorem{col}{Corollary}
+\newtheorem{con}{Consequence}
+\usepackage{listings} 		% for source code
+\date{}
+\title{Categorical model of noncommutative linear logic with subexponentials}
+\begin{document}
+
+
+\maketitle
+
+\begin{defin} A subexponential signature is an ordered quintuple:
+
+  $\Sigma = \langle I, \preceq, W, C, E \rangle$,
+\end{defin}
+
+where $I = \{ s_1, \dots, s_n\}$, $\langle I, \preceq \rangle$ is a preorder.
+$W, C, E$ are subsets of $I$ and $W \cup C \subseteq E$.
+
+\begin{defin} Noncommutative linear logic with subexponentials ($SMALC_{\Sigma}$), where $\Sigma$ is a subexponential signature.
+
+\begin{prooftree}
+\AxiomC{$ $}
+\RightLabel{\scriptsize{ax}}
+\UnaryInfC{$A \Rightarrow A$}
+\end{prooftree}
+
+\begin{minipage}{0.5\textwidth}
+  \begin{flushleft}
+    \begin{prooftree}
+      \AxiomC{$\Gamma \Rightarrow A$}
+      \AxiomC{$\Delta, B, \Theta \Rightarrow C$}
+      \RightLabel{$\backslash \rightarrow$}
+      \BinaryInfC{$\Delta, \Gamma, A \backslash B, \Theta \Rightarrow C$}
+    \end{prooftree}
+
+    \begin{prooftree}
+      \AxiomC{$\Gamma \Rightarrow A$}
+      \AxiomC{$\Delta, B, \Theta \Rightarrow C$}
+      \RightLabel{$/ \rightarrow$}
+      \BinaryInfC{$\Delta, B / A, \Gamma, \Theta \Rightarrow C$}
+    \end{prooftree}
+
+    \begin{prooftree}
+      \AxiomC{$\Gamma, A, B, \Delta \Rightarrow C$}
+      \RightLabel{$\bullet \rightarrow$}
+      \UnaryInfC{$\Gamma, A \bullet B, \Delta \Rightarrow C$}
+    \end{prooftree}
+
+    \begin{prooftree}
+      \AxiomC{$\Gamma, A_i, \Delta \Rightarrow B$}
+      \RightLabel{$\&, i = 1,2 \rightarrow$}
+      \UnaryInfC{$\Gamma, A_1 \& A_2, \Delta \Rightarrow B$}
+    \end{prooftree}
+
+    \begin{prooftree}
+      \AxiomC{$\Gamma, A, \Delta \Rightarrow C$}
+      \AxiomC{$\Gamma, B, \Delta \Rightarrow C$}
+      \RightLabel{$\vee \rightarrow$}
+      \BinaryInfC{$\Gamma, A \vee B, \Delta \Rightarrow C$}
+    \end{prooftree}
+
+    \begin{prooftree}
+      \AxiomC{$\Gamma, \Delta \Rightarrow A$}
+      \RightLabel{${\bf 1} \rightarrow$}
+      \UnaryInfC{$\Gamma, {\bf 1}, \Delta \Rightarrow A$}
+    \end{prooftree}
+
+    \begin{prooftree}
+    \AxiomC{$\Gamma, A, \Delta \Rightarrow C$}
+    \RightLabel{$! \rightarrow$}
+    \UnaryInfC{$\Gamma, !^{s} A, \Delta \Rightarrow C$}
+    \end{prooftree}
+  \end{flushleft}
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+  \begin{flushright}
+    \begin{prooftree}
+      \AxiomC{$A, \Pi \Rightarrow B$}
+      \RightLabel{$\rightarrow \backslash$}
+      \UnaryInfC{$\Pi \Rightarrow A \backslash B$}
+    \end{prooftree}
+
+    \begin{prooftree}
+      \AxiomC{$\Pi, A \Rightarrow B$}
+      \RightLabel{$\rightarrow /$}
+      \UnaryInfC{$\Pi \Rightarrow B / A$}
+    \end{prooftree}
+
+    \begin{prooftree}
+      \AxiomC{$\Gamma \Rightarrow A$}
+      \AxiomC{$\Delta \Rightarrow B$}
+      \RightLabel{$\rightarrow \bullet$}
+      \BinaryInfC{$\Gamma, \Delta \Rightarrow A \bullet B$}
+    \end{prooftree}
+
+    \begin{prooftree}
+      \AxiomC{$\Gamma \Rightarrow A$}
+      \AxiomC{$\Gamma \Rightarrow B$}
+      \RightLabel{$\rightarrow \&$}
+      \BinaryInfC{$\Gamma \Rightarrow A \& B$}
+    \end{prooftree}
+
+    \begin{prooftree}
+      \AxiomC{$\Gamma \Rightarrow A_i$}
+      \RightLabel{$\rightarrow \vee, i = 1,2$}
+      \UnaryInfC{$\Gamma \Rightarrow A_1 \vee A_2$}
+    \end{prooftree}
+
+    \begin{prooftree}
+      \AxiomC{$ $}
+      \RightLabel{$\rightarrow {\bf 1}$}
+      \UnaryInfC{$\Rightarrow {\bf 1}$}
+    \end{prooftree}
+
+    \begin{prooftree}
+    \AxiomC{$!^{s_1} A_1, \dots, !^{s_n} A_n \Rightarrow A$}
+    \RightLabel{$\rightarrow !, \forall j, s_j \succeq s$}
+    \UnaryInfC{$!^{s_1} A_1, \dots, !^{s_n} A_n \Rightarrow !^{s} A$}
+    \end{prooftree}
+  \end{flushright}
+\end{minipage}
+
+\begin{prooftree}
+  \AxiomC{$\Gamma, \Delta \Rightarrow B$}
+  \RightLabel{${\bf weak}_!, s \in C$}
+  \UnaryInfC{$\Gamma, !^{s} A, \Delta \Rightarrow B$}
+\end{prooftree}
+
+    \begin{prooftree}
+    \AxiomC{$\Gamma, !^{s} A, \Delta, !^{s} A, \Theta \Rightarrow B$}
+    \RightLabel{${\bf ncontr}_1, s \in C$}
+    \UnaryInfC{$\Gamma, !^{s} A, \Delta, \Theta \Rightarrow B$}
+    \end{prooftree}
+
+    \begin{prooftree}
+      \AxiomC{$\Gamma, !^{s} A, \Delta, !^{s} A, \Theta \Rightarrow B$}
+      \RightLabel{${\bf ncontr}_2, s \in C$}
+      \UnaryInfC{$\Gamma, \Delta, !^{s} A, \Theta \Rightarrow B$}
+    \end{prooftree}
+
+    \begin{prooftree}
+    \AxiomC{$\Gamma, \Delta, !^{s} A, \Theta \Rightarrow B$}
+    \RightLabel{${\bf ex}_1, s \in E$}
+    \UnaryInfC{$\Gamma, !^{s} A, \Delta, \Theta \Rightarrow A$}
+    \end{prooftree}
+
+    \begin{prooftree}
+      \AxiomC{$\Gamma, !^{s} A, \Delta, \Theta \Rightarrow B$}
+      \RightLabel{${\bf ex}_1, s \in E$}
+      \UnaryInfC{$\Gamma, \Delta, !^{s} A, \Theta \Rightarrow A$}
+    \end{prooftree}
+\end{defin}
+
+\begin{defin} Monoidal comonad
+  $ $
+
+  A monoidal comonad on some monoidal category $\mathcal{C}$ is a triple $\langle \mathcal{F}, \epsilon, \delta \rangle$,
+  where $\mathcal{F}$ is a monoidal endofunctor and $\epsilon : \mathcal{F} \Rightarrow Id_{\mathcal{C}}$ (counit) and $\epsilon : \mathcal{F} \Rightarrow \mathcal{F}^2$ (comultiplication),
+  such that the following diagrams commute:
+
+\begin{minipage}{0.45\textwidth}
+\begin{small}
+\xymatrix{
+\mathcal{F}A \otimes \mathcal{F}B \ar[dd]_{\delta_A \otimes \delta_B} \ar[r]^{\phi_{A,B}} & \mathcal{F}(A \otimes B) \ar[dr]^{\delta_{A \otimes B}} \\
+&& \mathcal{F}\mathcal{F}(A \otimes B) \\
+\mathcal{F}\mathcal{F}A \otimes \mathcal{F}\mathcal{F}B \ar[r]_{\phi_{\mathcal{F}A, \mathcal{F}B}} & \mathcal{F}(\mathcal{F}A \otimes \mathcal{F}B) \ar[ur]_{\mathcal{F}(\phi_{A,B})}
+}
+\end{small}
+\end{minipage}%
+\hfill
+\begin{minipage}{0.5\textwidth}
+\begin{tabular}{p{\textwidth}}
+\xymatrix{
+\mathcal{F}A \otimes \mathcal{F}B \ar[rr]^{\phi_{A,B}} \ar[dr]_{\epsilon_A \otimes \epsilon_B} && \mathcal{F}(A \otimes B) \ar[dl]^{\epsilon_{A \otimes B}} \\
+& A \otimes B &
+}
+\end{tabular}
+\end{minipage}%
+
+\xymatrix{
+&&&&&&& \mathds{1} \ar[r]^{\phi} \ar[d]_{\phi} & \mathcal{F}\mathds{1} \ar[d]^{\delta_{\mathds{1}}} \\
+&&&&&&& \mathcal{F}\mathds{1} \ar[r]_{\mathcal{F}(\phi)} & \mathcal{F}\mathcal{F}\mathds{1}
+}
+
+\xymatrix{
+&&&&&&& \mathds{1} \ar[dr]_{\phi} \ar[rr]^{id_{\mathds{1}}} && \mathds{1}\\
+&&&&&&&& \mathcal{F}\mathds{1} \ar[ur]_{\epsilon_{\mathds{1}}} &
+}
+\end{defin}
+
+\begin{defin} Biclosed monoidal category
+
+  Let $\mathcal{C}$ be a monoidal category. Biclosed monoidal category is a monoidal category with the following additional data:
+  \begin{enumerate}
+    \item Bifunctors $\underline{\quad} \multimapinv \underline{\quad}, \underline{\quad} \multimap \underline{\quad} : \mathcal{C}^{op} \times \mathcal{C} \to \mathcal{C}$;
+    \item Natural isomophism ${\bf curry}_{A,B,C} : Hom (A \otimes B, C) \cong (B, A \multimap C)$;
+    \item Natural isomophism ${\bf curry}^{'}_{A,B,C} : Hom (A \otimes B, C) \cong (A, C \multimap B)$;
+    \item For each $A, B \in Ob_{\mathcal{C}}$, there are exist arrows $ev_{A,B} : A \otimes (A \Rightarrow B) \rightarrow B$ and $ev_{A,B}^{'} : (B \Leftarrow A) \otimes A \rightarrow B$,
+    such that for all $f : A \otimes C \rightarrow B$:
+      \begin{enumerate}
+        \item $\Lambda_l \circ (id_A \otimes {\bf curry}(f)) = f$;
+        \item $\Lambda_r \circ ({\bf curry}^{'}(f) \otimes id_A) = f$
+      \end{enumerate}
+  \end{enumerate}
+\end{defin}
+
+\begin{defin}
+  Let $F$ be endofunctor and $A \in Ob\mathcal{C}$, then a coalgebra of $F$ is a tuple $\langle A, \theta \rangle$, where $\theta : A \to F A$.
+\end{defin}
+
+Given coalgebras $\langle A, \theta \rangle$ and $\langle A, \psi \rangle$, a homomorphism is a morphism $f : A \to B$, s.t. the diagram below commutes:
+
+\xymatrix{
+&&&&&& A \ar[dd]_{f} \ar[rr]^{\theta} && F A \ar[dd]^{F f} \\
+\\
+&&&&&& B \ar[rr]_{\psi} && F B
+}
+that is, $F f \circ \theta = \psi \circ f$
+
+\begin{defin} Subexponential model structure
+
+  Let $\Sigma = \langle I, \preceq, W, C, E \rangle$ be a subexponential model structure and $\mathcal{C}$ be a biclosed monoidal category,
+  then a subexponential model structure is $\langle \mathcal{C}, \{ \mathcal{F}_{s} \}_{s \in I} \rangle$ with the following additional data:
+
+\begin{itemize}
+  \item for all $s \in I$, $\mathcal{F}_s$ is a monoidal comonad;
+  \item if $s \in W$, then for all $A \in Ob(\mathcal{C})$, there exists a morphism ${w_{A}}_{s} : F_s A \to \mathds{1}$;
+  \item if $s \in C$, then for all $A \in Ob(\mathcal{C})$, there exists morphisms
+${w_{A}}_{l} : F_s A \otimes B \to F_s A \otimes A \otimes F_s A$ and ${w_{A}}_{r} : B \otimes F_s A \to F_s A \otimes A \otimes F_s A$;
+  \item if $s \in E$, then for all $A \in Ob(\mathcal{C})$, there is an isomorpism, ${e_A} : F_s A \otimes B \cong B \otimes F_s A$;
+  \item if $s_1 \in W$, $s_2 \in I$ and $s_1 \preceq s_2$, then there is a morphism ${w_{A}}_{s_2} : F_{s_2} A \to \mathds{1}$ for all $A \in Ob(\mathcal{C})$ and ditto for $E$ and $C$;
+  \item Let $\bigotimes_{s \in J, i = 0}^{n} F_{s} A$, where $J \subset I$, and $s^{'} \in I$, s.t. $s \succeq s^{'}$ for all $s \in I'$;
+  Then there exists morphism a morphism $\theta : \bigotimes_{s \in J, i = 0}^{n} F_{s} A \to F_{s^{'}} (\bigotimes_{s \in J, i = 0}^{n} F_{s} A)$, such that
+  $\langle \bigotimes_{s \in J, i = 0}^{n} F_{s} A, \theta \rangle$ is a coalgebra on $F_s$.
+\end{itemize}
+\end{defin}
+
+\begin{theorem} The following statements are equivalent:
+
+  \begin{itemize}
+    \item $SMLC_{\Sigma} + (cut) \vdash \Gamma \Rightarrow A$
+    \item $SMLC_{\Sigma} \vdash \Gamma \Rightarrow A$
+    \item $\exists f, f : [\![\Gamma]\!] \rightarrow [\![A]\!]$
+  \end{itemize}
+\end{theorem}
+
+\begin{proof}
+  \begin{itemize}
+
+    \item (1) $\Rightarrow$ (2): cut elimination.
+    \item (2) $\Rightarrow$ (3): Soundness:
+
+\begin{prooftree}
+  \AxiomC{}
+  \UnaryInfC{$id_{A} : A \to A$}
+\end{prooftree}
+
+\begin{prooftree}
+  \AxiomC{$f : \Gamma \rightarrow A$}
+  \AxiomC{$g : \Delta \otimes B \otimes \Theta \rightarrow C$}
+  \BinaryInfC{$g \circ (id_{\Delta} \otimes ({ev_{A,B}}_l \circ (f \otimes id_{A \Rightarrow B})) \otimes id_{\Theta}): \Delta \otimes (\Gamma \otimes A \Rightarrow B) \otimes \Theta  \rightarrow C$}
+\end{prooftree}
+
+\begin{prooftree}
+  \AxiomC{$f : A \otimes \Pi \rightarrow B$}
+  \UnaryInfC{$\Lambda_l(f) : \Pi \rightarrow A \Rightarrow B$}
+\end{prooftree}
+
+\begin{prooftree}
+  \AxiomC{$f : \Gamma \rightarrow A$}
+  \AxiomC{$g : \Delta \otimes B \otimes \Theta \rightarrow C$}
+  \BinaryInfC{$g \circ (id_{\Delta} \otimes ({ev_{A,B}}_l \circ (id_{B \Leftarrow A} \otimes f)) \otimes id_{\Theta}) : \Delta \otimes (B \Leftarrow A \otimes \Gamma) \otimes \Theta \rightarrow C$}
+\end{prooftree}
+
+\begin{prooftree}
+  \AxiomC{$f : \Gamma \otimes A \otimes B \otimes \Delta \rightarrow C$}
+  \UnaryInfC{$f \circ (\alpha_{\Gamma, A, B} \otimes id_{\Delta}) : \Gamma \otimes (A \otimes B) \otimes \Delta \rightarrow C$}
+\end{prooftree}
+
+    \item Completeness:
+  \end{itemize}
+\end{proof}
+
+\section{Concrete model}
+
+\begin{defin} Quantale
+
+\end{defin}
+
+\end{document}
