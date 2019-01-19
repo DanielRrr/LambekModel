@@ -248,7 +248,7 @@ that is, $F f \circ \theta = \psi \circ f$
   \item for all $s \in I$, $\mathcal{F}_s$ is a monoidal comonad;
   \item if $s \in W$, then for all $A \in Ob(\mathcal{C})$, there exists a morphism ${w_{A}}_{s} : F_s A \to \mathds{1}$;
   \item if $s \in C$, then for all $A \in Ob(\mathcal{C})$, there exists morphisms
-${w_{A}}_{l} : F_s A \otimes B \to F_s A \otimes A \otimes F_s A$ and ${w_{A}}_{r} : B \otimes F_s A \to F_s A \otimes A \otimes F_s A$;
+${w_{A}}_{l} : F_s A \otimes A \otimes F_s A \to F_s A \otimes B$ and ${w_{A}}_{r} : F_s A \otimes A \otimes F_s A \to B \otimes F_s A$;
   \item if $s \in E$, then for all $A \in Ob(\mathcal{C})$, there is an isomorpism, ${e_A} : F_s A \otimes B \cong B \otimes F_s A$;
   \item if $s_1 \in W$, $s_2 \in I$ and $s_1 \preceq s_2$, then there is a morphism ${w_{A}}_{s_2} : F_{s_2} A \to \mathds{1}$ for all $A \in Ob(\mathcal{C})$ and ditto for $E$ and $C$;
   \item Let $\bigotimes_{s \in J, i = 0}^{n} F_{s} A$, where $J \subset I$, and $s^{'} \in I$, s.t. $s \succeq s^{'}$ for all $s \in I'$;
@@ -347,6 +347,32 @@ $ $
   \AxiomC{$f : F_{s_1} A_1 \otimes \dots \otimes F_{s_n} A_n \rightarrow B$}
   \UnaryInfC{$F_s(f) : F_s(F_{s_1} A_1 \otimes \dots \otimes F_{s_n} A_n) \rightarrow F_s B$}
   \UnaryInfC{$F_s (f) \circ \theta_{\bigotimes_{s \in J, i = 1}^{n} {F_{s}}_j A_i} : F_{s_1} A_1 \otimes \dots \otimes F_{s_n} A_n \rightarrow F_s B$}
+\end{prooftree}
+
+\begin{prooftree}
+  \AxiomC{$f : \Gamma \otimes \Delta \rightarrow A$}
+  \UnaryInfC{$f \circ (\rho_{\Gamma} \otimes id_{\Delta}) : (\Gamma \otimes \mathds{1}) \otimes \Delta \rightarrow A$}
+  \UnaryInfC{$f \circ (\rho_{\Gamma} \otimes id_{\Delta}) \circ (id_{\Gamma} \otimes {w_{A}}_{s}) \otimes id_{\Delta} : (\Gamma \otimes F_s A) \otimes \Delta \rightarrow A$}
+\end{prooftree}
+
+\begin{prooftree}
+  \AxiomC{$f : \Gamma \otimes (F_s A \otimes B \otimes F_s A) \otimes \Delta \rightarrow C$}
+  \UnaryInfC{$f \circ (id_{\Gamma} \otimes {c_A}_{s}^l \otimes id_{\Delta}) : \Gamma \otimes (F_s A \otimes B) \otimes \Delta \rightarrow C$}
+\end{prooftree}
+
+\begin{prooftree}
+  \AxiomC{$f : \Gamma \otimes (F_s A \otimes B \otimes F_s A) \otimes \Delta \rightarrow C$}
+  \UnaryInfC{$(id_{\Gamma} \otimes {c_A}_{s}^r \otimes id_{\Delta}) \circ f: \Gamma \otimes (B \otimes F_s A) \otimes \Delta \rightarrow C$}
+\end{prooftree}
+
+\begin{prooftree}
+  \AxiomC{$f : \Gamma \otimes (\Delta \otimes F_s A) \otimes \Theta \rightarrow B$}
+  \UnaryInfC{$(id_{\Gamma} \otimes (id_{\Delta} \otimes {e_A}_{s}) \otimes id_{\Theta}) \circ f: \Gamma \otimes (F_s A \otimes \Delta) \otimes \Theta \rightarrow B$}
+\end{prooftree}
+
+\begin{prooftree}
+  \AxiomC{$f : \Gamma \otimes (F_s A \otimes \Delta) \otimes \Theta \rightarrow B$}
+  \UnaryInfC{$(id_{\Gamma} \otimes (id_{\Delta} \otimes {e_A}_{s}^{-1}) \otimes id_{\Theta}) \circ f: \Gamma \otimes (\Delta \otimes F_s A) \otimes \Theta \rightarrow B$}
 \end{prooftree}
 
     \item Completeness:
