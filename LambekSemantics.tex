@@ -241,7 +241,7 @@ that is, $F f \circ \theta = \psi \circ f$
 
 \begin{defin} Subexponential model structure
 
-  Let $\Sigma = \langle I, \preceq, W, C, E \rangle$ be a subexponential model structure and $\mathcal{C}$ be a biclosed monoidal category,
+  Let $\Sigma = \langle I, \preceq, W, C, E \rangle$ be a subexponential signature and $\mathcal{C}$ be a biclosed monoidal category,
   then a subexponential model structure is $\langle \mathcal{C}, \{ \mathcal{F}_{s} \}_{s \in I} \rangle$ with the following additional data:
 
 \begin{itemize}
@@ -255,6 +255,20 @@ ${w_{A}}_{l} : F_s A \otimes A \otimes F_s A \to F_s A \otimes B$ and ${w_{A}}_{
   Then there exists morphism a morphism $\theta_{\bigotimes_{s \in J, i = 1}^{n} {F_{s}}_j A_i} : \bigotimes_{s \in J, i = 0}^{n} F_{s} A \to F_{s^{'}} (\bigotimes_{s \in J, i = 0}^{n} F_{s} A)$, such that
   $\langle \bigotimes_{s \in J, i = 1}^{n} {F_{s}}_j A_i, \theta_{\bigotimes_{s \in J, i = 1}^{n} {F_{s}}_j A_i} \rangle$ is a coalgebra on $F_s$.
 \end{itemize}
+\end{defin}
+
+\begin{defin}
+  Let $\langle \mathcal{C}, \{ \mathcal{F}_{s} \}_{s \in I} \rangle$ be a subexponential model structure
+  for subexponential signature $\Sigma = \langle I, \preceq, W, C, E \rangle$.
+  Let $v : Tp \to Ob(\mathcal{C})$ be a valuation map. Then the interpretation function $[\![.]\!]$ is defined as follows:
+
+$\begin{array}{lll}
+(1) &[\![{\bf 1}]\!] = \mathds{1}& \\
+(2) &[\![A \backslash B]\!] = [\![A]\!] \multimap [\![B]\!]& \\
+(3) &[\![A / B]\!] = [\![A]\!] \multimapinv [\![B]\!]& \\
+(4) &[\![A \bullet B]\!] = [\![A]\!] \otimes [\![B]\!]&\\
+(5) &[\![!_{s} A]\!] = F_s [\![A]\!]& \\
+\end{array}$
 \end{defin}
 
 \begin{theorem} The following statements are equivalent:
@@ -376,6 +390,8 @@ $ $
 \end{prooftree}
 
     \item Completeness:
+
+
   \end{itemize}
 \end{proof}
 
