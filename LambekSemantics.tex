@@ -391,6 +391,8 @@ $ $
 
     \item Completeness:
 
+\begin{defin}
+\end{defin}
 
   \end{itemize}
 \end{proof}
@@ -398,7 +400,64 @@ $ $
 \section{Concrete model}
 
 \begin{defin} Quantale
-
+  A quantale is a triple $\langle A, \bigvee, \cdot \rangle$, such that $\langle A, \bigvee \rangle$
+is a complete lattice and $\langle A, \cdot \rangle$ is a semigroup. A quanlate is called unital, if $\langle A, \cdot \rangle$
+is a monoid.
 \end{defin}
+
+It is easy to see, that any (unital) quantale is a residual (monoid) semigroup. We define divisions as follows:
+
+\begin{enumerate}
+\item $a \backslash b = \bigvee \{ c \: | \: a \cdot c \leq b \}$
+\item $b / a = \bigvee \{ c \: | \: c \cdot a \leq b \}$
+\end{enumerate}
+
+\begin{defin}
+  Let $\langle A, \bigvee, \cdot \rangle$ be a quantale. The center of a quantale is the set $Z(Q) = \{ a \in Q \: | \: \forall b \in Q, a \cdot b = b \cdot a \}$
+\end{defin}
+
+\begin{defin} An open modality on quantale $Q$ is a map $I : Q \to Q$, such that
+
+\begin{enumerate}
+  \item $I(x) \leq x$;
+  \item $I(x) = I(I(x))$;
+  \item $x \leq y \Rightarrow I(x) \leq I(y)$;
+  \item $I(x) \cdot I(y) = I(I(x) \cdot I(y))$.
+\end{enumerate}
+\end{defin}
+
+\begin{lemma}
+$ $
+
+  Let $\langle A, \bigvee, \cdot \rangle$ be a quantale and $I : Q \to Q$ is an open modality on $Q$, then
+  $I(x) \cdot I(y) \leq I(x \cdot y)$.
+\end{lemma}
+
+\begin{proof}
+$ $
+
+  $I(x) \cdot I(y) \leq x \cdot y$, then $I(I(x) \cdot I(y)) \leq I(x \cdot y)$, but
+$I(x) \cdot I(y) \leq I(I(x) \cdot I(y))$. Thus, $I(x) \cdot I(y) \leq I(x \cdot y)$.
+\end{proof}
+
+\begin{defin}
+  An open modality is called central, if $\forall a, b \in Q, I(a) \cdot b = b \cdot I(a)$.
+\end{defin}
+
+\begin{defin}
+  An open modality is called weak idempotent, if $\forall a, b \in Q, I(a) \cdot b \leq I(a) \cdot b \cdot I(a)$ and
+  $b \cdot I(a) \leq I(a) \cdot b \cdot I(a)$.
+\end{defin}
+
+\begin{defin}
+  An open modality is called unital, if $\forall a \in Q, I(a) \leq e$.
+\end{defin}
+
+\begin{lemma}
+  Let $I$ be an open modality. Then, if $I$ is unital and weak idempotent, then $I$ is an unital.
+\end{lemma}
+
+\begin{proof}
+\end{proof}
 
 \end{document}
