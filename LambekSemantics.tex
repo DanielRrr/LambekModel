@@ -173,6 +173,14 @@ $W, C, E$ are subsets of $I$ and $W \cup C \subseteq E$.
     \end{prooftree}
 \end{defin}
 
+\begin{lemma}
+  Let $A \Leftrightarrow B$, then $C [p_i := A] \Leftrightarrow C [p_i := B]$
+\end{lemma}
+
+\begin{proof}
+  By induction on $C$.
+\end{proof}
+
 \begin{defin} Monoidal comonad
   $ $
 
@@ -454,10 +462,29 @@ $I(x) \cdot I(y) \leq I(I(x) \cdot I(y))$. Thus, $I(x) \cdot I(y) \leq I(x \cdot
 \end{defin}
 
 \begin{lemma}
-  Let $I$ be an open modality. Then, if $I$ is unital and weak idempotent, then $I$ is an unital.
+  Let $I$ be an interior on some unital quantale $\langle Q, \bigvee, \cdot, e \rangle$.
+  Then, if $I$ is unital and weak idempotent, then $I$ is central.
 \end{lemma}
 
 \begin{proof}
+$ $
+
+  $\begin{array}{lll}
+  & b \cdot I(a) \leq & \\
+  & \:\: \text{Right weak idempotence}& \\
+  &I(a) \cdot b \cdot I(a) \leq & \\
+  & \:\: \text{Unitality}& \\
+  & I(a) \cdot b \cdot I(e) \leq & \\
+  & \:\: \text{Identity}& \\
+  &I(a) \cdot b \leq & \\
+  & \:\: \text{Left weak idempotence}& \\
+  &I(a) \cdot b \cdot I(a) \leq & \\
+  & \:\: \text{Unitality}& \\
+  &e \cdot b \cdot I(a) \leq & \\
+  & \:\: \text{Identity}& \\
+  &b \cdot I(a)&
+  \end{array}$
+
 \end{proof}
 
 \end{document}
