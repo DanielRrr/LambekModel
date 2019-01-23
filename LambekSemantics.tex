@@ -471,20 +471,111 @@ $ $
 
   $\begin{array}{lll}
   & b \cdot I(a) \leq & \\
-  & \:\: \text{Right weak idempotence}& \\
+  & \:\:\:\: \text{Right weak idempotence}& \\
   &I(a) \cdot b \cdot I(a) \leq & \\
-  & \:\: \text{Unitality}& \\
+  & \:\:\:\: \text{Unitality}& \\
   & I(a) \cdot b \cdot I(e) \leq & \\
-  & \:\: \text{Identity}& \\
+  & \:\:\:\: \text{Identity}& \\
   &I(a) \cdot b \leq & \\
-  & \:\: \text{Left weak idempotence}& \\
+  & \:\:\:\: \text{Left weak idempotence}& \\
   &I(a) \cdot b \cdot I(a) \leq & \\
-  & \:\: \text{Unitality}& \\
+  & \:\:\:\: \text{Unitality}& \\
   &e \cdot b \cdot I(a) \leq & \\
-  & \:\: \text{Identity}& \\
+  & \:\:\:\: \text{Identity}& \\
   &b \cdot I(a)&
   \end{array}$
 
+Hence, $b \cdot I(a) = I(a) \cdot b$
+
 \end{proof}
+
+\begin{prop}
+$ $
+
+  Let $Q$ be a quantale and $S \subseteq Q$ a subquantale, then $I : Q \to Q$, such that
+$I(a) = \bigvee \{ s \in S \: | \: x \leq a \}$, is an open modality.
+\end{prop}
+
+\begin{proof}
+  See
+\end{proof}
+
+\begin{prop}
+$ $
+
+  Let $Q$ be a quantale and $S_1, S_2 \subseteq Q$, such that $S_1 \subseteq S_2$.
+
+  Then $I_1 (a) \leq I_2 (a)$.
+\end{prop}
+
+\begin{proof}
+$ $
+
+  Let $a \in Q$, so $\{ s \in S_1 \: | \: s \leq a \} \subseteq \{ s \in S_2 \: | \: s \leq a \}$, so
+  $\bigvee \{ s \in S_1 \: | \: s \leq a \} \subseteq \bigvee \{ s \in S_2 \: | \: s \leq a \}$.
+  Thus, $I_1 (a) \leq I_2 (a)$.
+\end{proof}
+
+\begin{prop}
+$ $
+
+Let $Q$ be a quantale and $S \subseteq Q$ a subquantale, then the following operations are open modalities:
+
+\begin{enumerate}
+  \item $I_z (a) = \bigvee \{ s \in S \: | s \leq a, s \in Z(Q) \}$;
+  \item $I_{\mathds{1}} (a) = \bigvee \{ s \in S \: | s \leq a, s \leq \mathds{1} \}$;
+  \item $I_{idem} (a) = \bigvee \{ s \in S \: | s \leq a, \forall b \in Q, b \cdot s \vee s \cdot b \leq s \cdot b \cdot s\}$;
+  \item $I_{z, \mathds{1}}, I_{z, idem}, I_{\mathds{1}, idem}, I_{z, \mathds{1}, idem}$.
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+  Immediatly.
+\end{proof}
+
+\begin{prop}
+$ $
+
+\begin{enumerate}
+  \item $\forall a \in Q, I_{\mathds{1}, idem}(a) \leq I_z (a)$.
+  \item $\forall a \in Q, I_{z, \mathds{1}, idem} = I_{\mathds{1}, idem}(a)$
+\end{enumerate}
+
+\end{prop}
+
+\begin{proof}
+  Follows from Lemma 3.
+\end{proof}
+
+\begin{prop}
+$ $
+
+\begin{enumerate}
+  \item $I_z (a) \vee I_{\mathds{1}} (a) \vee I_{idem} (a) \leq I(a)$
+  \item $I_{z, \mathds{1}, idem} \leq I_{z, \mathds{1}} (a) \wedge I_{z, idem} (a)$
+\end{enumerate}
+\end{prop}
+
+\begin{lemma}
+\end{lemma}
+
+\begin{lemma}
+  $I_1(a_1) \cdot I_2(a_2) \leq I^{'} (I_1(a_1) \cdot I_2(a_2))$, where $I^{'} \leq I_i, i = 1,2$.
+\end{lemma}
+
+\begin{lemma}
+$ $
+
+$I_1, \dots, I_n$ are open modalities, thus:
+  $I_1(a_1) \cdot I_2(a_2) \dots \cdot I_n (a_n) \leq a$, then $I_1(a_1) \cdot \dots I_n (a_n) \leq I^{'}(a)$,
+  where $I^{'} \leq I_i$ for all $i$.
+\end{lemma}
+
+\begin{proof}
+\end{proof}
+
+\begin{theorem}
+  $\Gamma \rightarrow A \Rightarrow \Gamma \models A$
+\end{theorem}
 
 \end{document}
