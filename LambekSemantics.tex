@@ -556,12 +556,80 @@ $ $
 \end{enumerate}
 \end{prop}
 
+\begin{prop}
+  $ $
+
+$I_2 (I_1 (a)) \leq I_2 (a)$.
+\end{prop}
+
+\begin{proof}
+  $I_1 (a) \leq a \Rightarrow I_2 (I_1 (a)) \leq I_2 (a)$.
+\end{proof}
+
+\begin{prop}
+$ $
+
+  $I_2 (I_1 (a)) = I_1 (I_2 (a))$, for $I_2 (a) \leq I_1 (a)$.
+\end{prop}
+
+\begin{proof}
+$ $
+
+\begin{enumerate}
+  \item $I_2 (I_1 (a)) \leq I_1 (I_2 (a))$
+
+  $I_2 (I_1 (a)) \leq I_2 (a) = I_2 (I_2 (a)) \leq I_1 (I_2 (a))$
+  \item $I_1 (I_2 (a)) \leq I_2 (I_1 (a))$
+
+  $\begin{array}{lll}
+  (1) & I_2 (a) \leq a& \\
+  & \:\:\:\: \text{Monotonicity}& \\
+  (2) & I_1 (I_2 (a)) \leq I_1 (a)& \\
+  & \:\:\:\: \text{Monotonicity}& \\
+  (3) & I_2 (I_1 (I_2 (a))) \leq I_2 (I_1 (a))& \\
+  & \:\:\:\: \text{The previous part}& \\
+  (4) & I_2 (I_1 (a)) \leq I_1 (I_2 (a)) & \\
+  & \:\:\:\: \text{Monotonicity}& \\
+  (5) & I_2 (I_2 (I_1 (a))) \leq I_2 (I_1 (I_2 (a))) & \\
+  & \:\:\:\: \text{Idempotence}& \\
+  (6) & I_1 (a) \leq I_2 (I_1 (I_2 (a))) & \\
+  & \:\:\:\: \text{(1), (6), transitivity} & \\
+  (7) & I_1 (I_2 (a)) \leq I_2 (I_1 (I_2 (a))) & \\
+  & \:\:\:\: \text{(1), (6), transitivity} & \\
+  (8) & I_2 (I_1 (I_2 (a))) \leq I_2 (I_1 (a))& \\
+  & \:\:\:\: \text{(1), monotonicity twice} & \\
+  (9) &I_1 (I_2 (a)) \leq I_2 (I_1 (a))& \\
+  & \:\:\:\: \text{(7), (8), transitivity} & \\
+  \end{array}$
+\end{enumerate}
+\end{proof}
+
 \begin{lemma}
+  $\forall a \in Q, I_1 (a) \leq I_2 (I_1 (a))$, if $I_2 (a) \leq I_1 (a)$.
 \end{lemma}
+
+\begin{proof}
+  $\begin{array}{lll}
+  &I_1 (a) \leq I_1 (a)&\\
+  &I_2 (I_1 (a)) \leq I_1 (I_2 (a))&\\
+  \end{array}$
+
+\end{proof}
 
 \begin{lemma}
   $I_1(a_1) \cdot I_2(a_2) \leq I^{'} (I_1(a_1) \cdot I_2(a_2))$, where $I^{'} \leq I_i, i = 1,2$.
 \end{lemma}
+
+\begin{proof}
+  $I_1(a_1) \cdot I_2(a_2) \leq a_1 \cdot a_2$, so $I^{'} (I_1(a_1) \cdot I_2(a_2)) \leq I^{'} (a_1 \cdot a_2) \leq $
+\end{proof}
+
+\begin{proof}
+   $\begin{array}{lll}
+   & I^{'} (I_1(a_1) \cdot I_2(a_2)) \leq & \\
+   & &
+   \end{array}$
+\end{proof}
 
 \begin{lemma}
 $ $
