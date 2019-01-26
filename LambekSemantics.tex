@@ -181,6 +181,44 @@ $W, C, E$ are subsets of $I$ and $W \cup C \subseteq E$.
   By induction on $C$.
 \end{proof}
 
+\begin{lemma}
+  \begin{itemize}
+  \item $!_{s_i} \Gamma \rightarrow A$ iff $!_{s_i} \Gamma \rightarrow !_{s_i} A$.
+  \item $!_{s_i} A \leftrightarrow !_{s_i} (!_{s_i} A)$
+\end{itemize}
+\end{lemma}
+
+\begin{proof}
+$ $
+
+\begin{enumerate}
+\item $!_{s_i} \Gamma \rightarrow A$ iff $!_{s_i} \Gamma \rightarrow !_{s_i} A$;
+  \begin{prooftree}
+    \AxiomC{$!_{s_i} \Gamma  \rightarrow A$}
+    \RightLabel{$\to !_{s_i}$}
+    \UnaryInfC{$!_{s_i} \Gamma  \rightarrow !_{s_i} A$}
+  \end{prooftree}
+
+\begin{prooftree}
+  \AxiomC{$!_{s_i} \Gamma \rightarrow !_{s_i} A$}
+  \AxiomC{$A \rightarrow A$}
+  \RightLabel{$!_{s_i} \to$}
+  \UnaryInfC{$!_{s_i} A \rightarrow A$}
+  \RightLabel{\text{cut}}
+  \BinaryInfC{$!_{s_i} \Gamma \rightarrow A$}
+\end{prooftree}
+
+\item $!_{s_i} A \leftrightarrow !_{s_i} !_{s_i} A$
+
+\begin{prooftree}
+  \AxiomC{$A \rightarrow A$}
+  \UnaryInfC{$!_{s_i} A \rightarrow A$}
+  \UnaryInfC{$!_{s_i} A \rightarrow !_{s_i} A$}
+  \UnaryInfC{$!_{s_i} !_{s_i} A \rightarrow !_{s_i} A$}
+\end{prooftree}
+\end{enumerate}
+\end{proof}
+
 \begin{defin} Monoidal comonad
   $ $
 
@@ -493,7 +531,7 @@ Hence, $b \cdot I(a) = I(a) \cdot b$
 $ $
 
   Let $Q$ be a quantale and $S \subseteq Q$ a subquantale, then $I : Q \to Q$, such that
-$I(a) = \bigvee \{ s \in S \: | \: x \leq a \}$, is an open modality.
+$I(a) = \bigvee \{ s \in S \: | \: x \leq a \}$, is an open modality. Moreover, $\{ x \in Q \: | \: I(x) = x\} = S$.
 \end{prop}
 
 \begin{proof}
@@ -704,6 +742,15 @@ Let $Q_1 \subseteq \mathcal{Q}$, define a map $\Box : Q \to Q$, such that $\Box(
 Then $\Box$ is a quantic conucleus.
 \end{lemma}
 
+\begin{lemma}
+  Let $!_s \in I$, $I \notin W \cap E \cap C$ and $Q \subseteq \mathcal{Q}$.
+  Then there exist a subset $Q \subseteq \mathcal{Q}$ and
+  a quantic conucleus $\Box_s (\bigvee \{ A \}) = \{ \bigvee Q \in \mathcal{Q} \: | \: \}$
+\end{lemma}
+
+\begin{proof}
+\end{proof}
+
 \begin{proof}
   See
 \end{proof}
@@ -720,5 +767,45 @@ Then $\Box$ is a quantic conucleus.
 \begin{proof}
   Follow from one of lemmas above.
 \end{proof}
+
+\begin{lemma}
+  Let $!_s \in I$, $I \notin W \cap E \cap C$,
+  then $\Box_s (\bigvee A) = \bigvee \{ \bigvee (!_s W) \: | \: \bigvee !_s W \subseteq \bigvee A \}$
+  is a quantic conucleus.
+\end{lemma}
+
+\begin{proof}
+$ $
+
+\begin{enumerate}
+  \item $\Box_s (\bigvee A) \subseteq \bigvee A$;
+
+$\bigvee (!_s W) \in \Box_s (\bigvee A)$,
+then $\bigvee (!_s W) \in \bigvee \{ \bigvee (!_s W) \: | \: \bigvee !_s W \subseteq \bigvee A \}$.
+Hence, $\bigvee (!_s F) \subseteq \bigvee \{ A \}$, so, $!_s F \rightarrow A$. Therefore, $!_s F \in \bigvee \{ A \}$.
+
+  \item $\Box_s (\Box_s(\bigvee A)) = \bigvee \Box_s (\bigvee A)$;
+
+$\Box_s (\Box_s(\bigvee A)) = \{ \bigvee (!_s !_s F) \: | \: \bigvee (!_s !_s F) \subseteq \bigvee A \}$.
+
+Let $\bigvee (!_s !_s F) \in \Box_s (\Box_s(\bigvee A))$, then $!_s !_s F \rightarrow A$, hence
+$!_s F \rightarrow A$ by equivalence, so $\bigvee (!_s !_s F) \in \Box_s (\bigvee A)$
+
+  \item $\bigvee A \subseteq \bigvee B \Rightarrow \Box_s (\bigvee A) \subseteq \Box_s (\bigvee B)$;
+  \item $\Box_s \bigvee A \cdot \Box_s \bigvee A = \Box_s (\Box_s \bigvee A \cdot \Box_s \bigvee A)$.
+\end{enumerate}
+\end{proof}
+
+\begin{lemma}
+  Let $Q$ be a quantale constructed above and $\Box_1, \dots, \Box_n$ be a family of quantic conuclei on $Q$.
+  Then there exist a model $\langle Q, [\![.]\!]\rangle$, such that $[\![A]\!] = \bigvee \{ A \}$, $A \in Fm$.
+\end{lemma}
+
+\begin{proof}
+\end{proof}
+
+\begin{theorem}
+  $\Gamma \models A \Rightarrow \Gamma \rightarrow A$.
+\end{theorem}
 
 \end{document}
