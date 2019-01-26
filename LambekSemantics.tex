@@ -24,7 +24,7 @@
 \newtheorem{con}{Consequence}
 \usepackage{listings} 		% for source code
 \date{}
-\title{Categorical model of noncommutative linear logic with subexponentials}
+\title{Quantale model of noncommutative linear logic with subexponentials}
 \begin{document}
 
 
@@ -632,6 +632,93 @@ Thus, $\sigma(s)(\sigma(s_1)[\![A_1]\!] \cdot \dots \cdot \sigma(s_n) [\![A_n]\!
 By Lemma 5, $\sigma(s_1)[\![A_1]\!] \cdot \dots \cdot \sigma(s_n) [\![A_n]\!] \leq \sigma(s)(\sigma(s_1)[\![A_1]\!] \cdot \dots \cdot \sigma(s_n) [\![A_n]\!])$.
 
 So, $\sigma(s_1)[\![A_1]\!] \cdot \dots \cdot \sigma(s_n) [\![A_n]\!] \leq \sigma(s)([\![A]\!])$.
+\end{proof}
+
+\section{Quantale completeness}
+
+\begin{defin}
+$ $
+
+  Let $\mathcal{F} \subseteq Fm$, an ideal is a subset $\mathcal{I} \subseteq \mathcal{F}$, such that:
+
+\begin{itemize}
+  \item If $B \in \mathcal{I}$ and $A \rightarrow B$, then $A \in \mathcal{I}$;
+  \item If $A, B \in \mathcal{I}$, then $A \lor B \in \mathcal{I}$.
+\end{itemize}
+\end{defin}
+
+\begin{defin}
+$ $
+
+  Let $S \subseteq \mathcal{F} \subseteq Fm$,
+  then $\bigvee S = \bigcap \{ \mathcal{I} \subseteq \mathcal{F} \: | \: S \subseteq \mathcal{I} \}$
+\end{defin}
+
+\begin{prop}
+  $\bigvee S$ is an ideal.
+\end{prop}
+
+\begin{lemma}
+  $A \in \mathcal{F}$, then $\{ B \: | \: B \rightarrow A \} = \bigvee \{ A \}$.
+\end{lemma}
+
+\begin{proof}
+$ $
+
+Let $A \in \mathcal{F}$. Then $\{ B \: | \: B \rightarrow A \} \subseteq \bigvee \{ A \}$.
+
+On the other hand, $\{ B \: | \: B \rightarrow A \}$ is an ideal, hence, $\{ A \} \subseteq \{ B \: | \: B \rightarrow A \}$.
+\end{proof}
+
+\begin{lemma}
+  $\bigvee \{ A\} \subseteq \bigvee \{ B \}$ iff $A \rightarrow B$.
+\end{lemma}
+
+\begin{proof}
+  Let $\bigvee \{ A\} \subseteq \bigvee \{ B \}$,
+  then $\{ C | C \rightarrow A\} \subseteq \{ C \: | \: C \rightarrow B \}$.
+
+  $A \in \{ C | C \rightarrow A\}$, so far as $A \rightarrow A$, but $\{ C \: | \: C \rightarrow B \}$,
+  hence $A \rightarrow B$.
+
+  On the other hand, let $A \rightarrow B$ and $C \in \bigvee \{ A\}$.
+  Then $C \in \bigvee \{ C^{'} \: | \: C^{'} \rightarrow A \}$, hence, $C \rightarrow A$, thus
+  $C \rightarrow B$ by cut. So, $C \in \bigvee \{ A \}$.
+
+\end{proof}
+
+\begin{lemma}
+  Let $\mathcal{Q} = \{ \bigvee S \: | \: S \subseteq Fm \}$ and $\bigvee \mathcal{A} \cdot \bigvee \mathcal{B} =
+  \{ A \bullet B \: | \: A \in \mathcal{A}, B \in \mathcal{B} \}$.
+  Then $\langle \mathcal{Q}, \subseteq, \cdot, \bigvee{{\bf 1}}\rangle$ is a quantale.
+\end{lemma}
+
+\begin{proof}
+  See
+\end{proof}
+
+\begin{lemma} Interior lemma.
+$ $
+
+Let $Q_1 \subseteq \mathcal{Q}$, define a map $\Box : Q \to Q$, such that $\Box(A) = \{  Q \in Q_1 \: | \: Q \subseteq A \}$.
+Then $\Box$ is a quantic conucleus.
+\end{lemma}
+
+\begin{proof}
+  See
+\end{proof}
+
+\begin{lemma} Let $Q \subseteq \mathcal{Q}$, then the following operators are quantic conuclei:
+  \begin{enumerate}
+    \item $\Box_z (A) = \bigvee \{ \bigvee \{ W \} \in Q \: | \bigvee \{ W \} \subseteq \bigvee \{ A \}, \bigvee \{ W \} \in Z(Q) \}$;
+    \item $\Box_{{\bf 1}} (A) = \bigvee \{ \bigvee \{ W \} \in Q \: | \bigvee \{ W \} \subseteq \bigvee \{ A \}, \bigvee \{ W \} \subseteq \bigvee \{ {\bf 1} \} \}$;
+    \item $\Box_{idem} (A) = \bigvee \{ \bigvee \{ W \} \in Q \: | \bigvee \{ W \} \subseteq \bigvee \{ A \}, \forall B \in Fm, (\bigvee \{ B \} \cdot \bigvee \{ W \}) \cup (\bigvee \{ W \} \cdot \bigvee \{ B \}) \subseteq \bigvee \{ W \} \cdot \bigvee \{ A \} \cdot \bigvee \{ W \} \}$;
+    \item $\Box_{z, \mathds{1}}, \Box_{z, idem}, \Box_{\mathds{1}, idem}, \Box_{z, \mathds{1}, idem}$.
+  \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+  Follow from one of lemmas above.
 \end{proof}
 
 \end{document}
