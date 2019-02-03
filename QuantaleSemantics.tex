@@ -223,6 +223,8 @@ $ $
 \section{Semantics}
 
 \begin{defin} Quantale
+$ $
+
   A quantale is a triple $\langle A, \bigvee, \cdot \rangle$, such that $\langle A, \bigvee \rangle$
 is a complete lattice and $\langle A, \cdot \rangle$ is a semigroup. A quanlate is called unital, if $\langle A, \cdot \rangle$
 is a monoid.
@@ -236,10 +238,12 @@ It is easy to see, that any (unital) quantale is a residual (monoid) semigroup. 
 \end{enumerate}
 
 \begin{defin}
+$ $
+
   Let $\langle A, \bigvee, \cdot \rangle$ be a quantale. The center of a quantale is the set $Z(Q) = \{ a \in Q \: | \: \forall b \in Q, a \cdot b = b \cdot a \}$
 \end{defin}
 
-\begin{defin} An open modality on quantale $Q$ is a map $I : Q \to Q$, such that
+\begin{defin} An open modality (or quantic conucleus) on quantale $Q$ is a map $I : Q \to Q$, such that
 
 \begin{enumerate}
   \item $I(x) \leq x$;
@@ -437,7 +441,10 @@ $\begin{array}{lll}
 \begin{proof}
 We consider the case with polymodal promotion rule.
 
-Let $!_{s_1} A_1, \dots, !_{s_n} A_n \rightarrow A$ and $\forall i, s \preceq s_i$.
+\begin{enumerate}
+
+\item Let $!_{s_1} A_1, \dots, !_{s_n} A_n \rightarrow A$ and $\forall i, s \preceq s_i$.
+
 Then $\forall a \in Q, \sigma(s_i)(a) \leq \sigma(s)(a)$.
 
 By IH, $\sigma(s_1)[\![A_1]\!] \cdot \dots \cdot \sigma(s_n) [\![A_n]\!] \leq [\![A]\!]$.
@@ -447,6 +454,40 @@ Thus, $\sigma(s)(\sigma(s_1)[\![A_1]\!] \cdot \dots \cdot \sigma(s_n) [\![A_n]\!
 By Lemma 5, $\sigma(s_1)[\![A_1]\!] \cdot \dots \cdot \sigma(s_n) [\![A_n]\!] \leq \sigma(s)(\sigma(s_1)[\![A_1]\!] \cdot \dots \cdot \sigma(s_n) [\![A_n]\!])$.
 
 So, $\sigma(s_1)[\![A_1]\!] \cdot \dots \cdot \sigma(s_n) [\![A_n]\!] \leq \sigma(s)([\![A]\!])$.
+
+\item Let $\Gamma, A, \Delta \rightarrow B$.
+
+By IH, $[\![\Gamma]\!] \cdot [\![A]\!] \cdot [\![\Delta]\!] \leq [\![B]\!]$.
+
+By the definition, $\sigma(s_i)([\![A]\!]) \leq [\![A]\!]$.
+
+So, $[\![\Gamma]\!] \cdot \sigma(s_i)([\![A]\!]) \cdot [\![\Delta]\!] \leq [\![B]\!]$
+
+\item Let $\Gamma, \Delta \rightarrow B$, $A \in Fm$, and $s_i \in W$.
+
+So, $[\![\Gamma]\!] \cdot [\![\Delta]\!] \leq [\![B]\!]$,
+then $[\![\Gamma]\!] \cdot e \cdot [\![\Delta]\!] \leq [\![B]\!]$, where $e \in Q$ is unit.
+
+By the definition of unital open modality, $\sigma(s_i)([\![A]\!]) \leq e$.
+
+Thus, $[\![\Gamma]\!] \cdot \sigma(s_i)([\![A]\!]) \cdot [\![\Delta]\!] \leq [\![B]\!]$.
+
+\item Let $\Gamma, !_{s_i} A, \Delta, !_{s_i} A, \Pi \rightarrow B$ and $s_i \in C$.
+
+By IH, $[\![\Gamma]\!] \cdot \sigma(s_i)([\![A]\!]) \cdot [\![\Delta]\!] \cdot \sigma(s_i)([\![A]\!]) \cdot [\![\Pi]\!] \leq [\![B]\!]$.
+
+By the definition, $\sigma(s_i)([\![A]\!]) \cdot [\![\Delta]\!] \leq \sigma(s_i)([\![A]\!]) \cdot [\![\Delta]\!] \cdot \sigma(s_i)([\![A]\!])$.
+
+Then $[\![\Gamma]\!] \cdot \sigma(s_i)([\![A]\!]) \cdot [\![\Delta]\!] \cdot [\![\Pi]\!] \leq [\![B]\!]$
+
+\item Let $\Gamma, !_{s_i} A, \Delta, \Pi \rightarrow B$ and $s_i \in E$, so $\sigma(s_i)(a) \in Z(Q)$ for all $a \in Q$ by the definition.
+
+By IH, $[\![\Gamma]\!] \cdot \sigma(s_i)([\![A]\!]) \cdot [\![\Delta]\!] \cdot [\![\Pi]\!] \leq [\![B]\!]$.
+
+Hence, $[\![\Gamma]\!] \cdot [\![\Delta]\!] \cdot \sigma(s_i)([\![A]\!]) \cdot [\![\Pi]\!] \leq [\![B]\!]$
+
+\end{enumerate}
+
 \end{proof}
 
 \section{Quantale completeness}
