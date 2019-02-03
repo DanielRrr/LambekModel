@@ -482,9 +482,9 @@ Then $[\![\Gamma]\!] \cdot \sigma(s_i)([\![A]\!]) \cdot [\![\Delta]\!] \cdot [\!
 
 \item Let $\Gamma, !_{s_i} A, \Delta, \Pi \rightarrow B$ and $s_i \in E$, so $\sigma(s_i)(a) \in Z(Q)$ for all $a \in Q$ by the definition.
 
-By IH, $[\![\Gamma]\!] \cdot \sigma(s_i)([\![A]\!]) \cdot [\![\Delta]\!] \cdot [\![\Pi]\!] \leq [\![B]\!]$.
+By IH, $[\![\Gamma]\!] \cdot \sigma(s_i)([\![A]\!]) \cdot [\![\Delta]\!] \cdot [\![\Pi]\!] \leq [\![B]\!]$
 
-Hence, $[\![\Gamma]\!] \cdot [\![\Delta]\!] \cdot \sigma(s_i)([\![A]\!]) \cdot [\![\Pi]\!] \leq [\![B]\!]$
+Hence, $[\![\Gamma]\!] \cdot [\![\Delta]\!] \cdot \sigma(s_i)([\![A]\!]) \cdot [\![\Pi]\!] \leq [\![B]\!]$.
 
 \end{enumerate}
 
@@ -515,31 +515,31 @@ $ $
 \end{prop}
 
 \begin{lemma}
-  $A \in \mathcal{F}$, then $\{ B \: | \: B \rightarrow A \} = \bigvee \{ A \}$.
+  $A \subseteq Fm$, then $\{ B \: | \: B \rightarrow A' \} = \bigvee A$.
 \end{lemma}
 
 \begin{proof}
 $ $
 
-Let $A \in \mathcal{F}$. Then $\{ B \: | \: B \rightarrow A \} \subseteq \bigvee \{ A \}$.
+Let $A \subseteq Fm$. Then $\{ B \: | \: B \rightarrow A', A' \in A \} \subseteq \bigvee A$, so far as $A' \rightarrow A'$ by axiom.
 
-On the other hand, $\{ B \: | \: B \rightarrow A \}$ is an ideal, hence, $\{ A \} \subseteq \{ B \: | \: B \rightarrow A \}$.
+On the other hand, $\{ B \: | \: B \rightarrow A', A' \in A \}$ is an ideal, hence, $A \subseteq \{ B \: | \: B \rightarrow A', A' \in A \}$.
 \end{proof}
 
 \begin{lemma}
-  $\bigvee \{ A\} \subseteq \bigvee \{ B \}$ iff $A \rightarrow B$.
+  $\bigvee A \subseteq \bigvee B$ iff $\forall A' \in A, \forall B' \in B, A' \rightarrow B'$.
 \end{lemma}
 
 \begin{proof}
-  Let $\bigvee \{ A\} \subseteq \bigvee \{ B \}$,
-  then $\{ C | C \rightarrow A\} \subseteq \{ C \: | \: C \rightarrow B \}$.
+  Let $\bigvee A \subseteq \bigvee B$,
+  then $\{ C | C \rightarrow A', A' \in A \} \subseteq \{ D \: | \: D \rightarrow B', B' \in B \}$.
 
-  $A \in \{ C | C \rightarrow A\}$, so far as $A \rightarrow A$, but $\{ C \: | \: C \rightarrow B \}$,
-  hence $A \rightarrow B$.
+Thus, for all $A' \in A$, $A' \in \{ C | C \rightarrow A', A' \in A \}$,
+then $A' \in \{ D \: | \: D \rightarrow B', B' \in B \}$, hence $A' \rightarrow B'$, for all $B' \in B$.
 
-  On the other hand, let $A \rightarrow B$ and $C \in \bigvee \{ A\}$.
-  Then $C \in \bigvee \{ C^{'} \: | \: C^{'} \rightarrow A \}$, hence, $C \rightarrow A$, thus
-  $C \rightarrow B$ by cut. So, $C \in \bigvee \{ A \}$.
+On the other hand, let $A' \rightarrow B'$ for all $A' \in A$, $B' \in B$ and $C \in \bigvee A$.
+
+Thus, $C \rightarrow A'$, then $C \rightarrow B'$ by cut, so $C \in B'$.
 
 \end{proof}
 
@@ -559,6 +559,26 @@ $ $
 Let $Q_1 \subseteq \mathcal{Q}$, define a map $\Box : Q \to Q$, such that $\Box(A) = \{  Q \in Q_1 \: | \: Q \subseteq A \}$.
 Then $\Box$ is a quantic conucleus.
 \end{lemma}
+
+\begin{lemma}
+$ $
+
+  Let $A_1, A_2 \subseteq Fm$ and $!_s A_i = \{ !_s W \: | \: W \in S_i \}$, for $i = 1,2$.
+
+  Then $\bigvee (!_s A_1 \cdot !_s A_2) \subseteq \bigvee (!_s (A_1 \cdot A_2))$.
+\end{lemma}
+
+\begin{proof}
+$ $
+
+$\bigvee (!_s A_1 \cdot !_s A_2) = \bigvee \{ \bigvee W \: | \: \bigvee W \subseteq \bigvee (!_s A_1 \cdot !_s A_2) \}$.
+
+Let $W^{'} \in \bigvee (!_s A_1 \cdot !_s A_2)$,
+then $W^{'} \rightarrow \: !_s A_1^{'} \bullet !_s A_1^{'}$ for each $A_i^{'} \in A_i$.
+But, $!_s A_1^{'} \bullet !_s A_2^{'} \rightarrow !_s (A_1^{'} \bullet A_2^{'})$.
+
+Then, $W^{'} \rightarrow !_s (A_1^{'} \bullet A_2^{'})$ by cut, then $W^{'} \in \bigvee (!_s (A_1 \cdot A_2))$.
+\end{proof}
 
 \begin{lemma}
   Let $!_s \in I$, $I \notin W \cap E \cap C$ and $Q \subseteq \mathcal{Q}$.
@@ -598,9 +618,10 @@ $ $
 \begin{enumerate}
   \item $\Box_s (\bigvee A) \subseteq \bigvee A$;
 
-$\bigvee (!_s W) \in \Box_s (\bigvee A)$,
-then $\bigvee (!_s W) \in \bigvee \{ \bigvee (!_s W) \: | \: \bigvee !_s W \subseteq \bigvee A \}$.
-Hence, $\bigvee (!_s F) \subseteq \bigvee \{ A \}$, so, $!_s F \rightarrow A$. Therefore, $!_s F \in \bigvee \{ A \}$.
+$\Box_s (\bigvee A) = \Box_s (\{ B \: | \: B \rightarrow A', A' \in A\}) =
+\{ !_s B \: | \: !_s B \rightarrow A', A' \in A\}$.
+
+Let $!_s B \in \Box_s (\bigvee A)$, then $!_s B \rightarrow A'$, $A' \in A$, hence $!_s B \in \bigvee A$.
 
   \item $\Box_s (\Box_s(\bigvee A)) = \bigvee \Box_s (\bigvee A)$;
 
@@ -610,7 +631,22 @@ Let $\bigvee (!_s !_s F) \in \Box_s (\Box_s(\bigvee A))$, then $!_s !_s F \right
 $!_s F \rightarrow A$ by equivalence, so $\bigvee (!_s !_s F) \in \Box_s (\bigvee A)$
 
   \item $\bigvee A \subseteq \bigvee B \Rightarrow \Box_s (\bigvee A) \subseteq \Box_s (\bigvee B)$;
-  \item $\Box_s \bigvee A \cdot \Box_s \bigvee A = \Box_s (\Box_s \bigvee A \cdot \Box_s \bigvee A)$.
+  \item $\Box_s \bigvee A \cdot \Box_s \bigvee B = \Box_s (\Box_s \bigvee A \cdot \Box_s \bigvee B)$.
+
+We show that $\Box_s \bigvee A \cdot \Box_s \bigvee B \subseteq \Box_s (\Box_s \bigvee A \cdot \Box_s \bigvee B)$.
+
+Let us show, that $\Box_s \bigvee A \cdot \Box_s \bigvee B \leq \Box_s (\bigvee A \cdot \bigvee B)$.
+
+We know, that $\Box_s \bigvee A \cdot \Box_s \bigvee B =
+\bigvee \{ \bigvee (!_s W_1) \cdot \bigvee (!_s W_2) \: | \: \bigvee !_s W_1 \subseteq \bigvee A, \bigvee !_s W_2 \subseteq \bigvee B \} =
+\bigvee \{ \bigvee (!_s W_1 \cdot !_s W_2) \: | \: \bigvee !_s W_1 \subseteq \bigvee A, \bigvee !_s W_2 \subseteq \bigvee B \}$.
+
+On the other hand, $\Box_s (\bigvee A \cdot \bigvee B) = \bigvee \{ \bigvee (!_s W) \: | \: \bigvee (!_s W) \subseteq \bigvee A \cdot \bigvee B \}$.
+
+Let $\bigvee (!_s W_1 \cdot !_s W_2) \in \Box_s \bigvee A \cdot \Box_s \bigvee B$.
+
+From lemma 11, $\bigvee (!_s W_1 \cdot !_s W_2) \subseteq \bigvee (!_s (W_1 \cdot W_2))$
+
 \end{enumerate}
 \end{proof}
 
