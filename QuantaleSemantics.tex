@@ -608,7 +608,7 @@ Then, $W^{'} \rightarrow !_s (A_1^{'} \bullet A_2^{'})$ by cut, then $W^{'} \in 
 
 \begin{lemma}
   Let $!_s \in I$, $I \notin W \cap E \cap C$,
-  then $\Box_s (\bigvee A) = \bigvee \{ \bigvee (!_s W) \: | \: \bigvee !_s W \subseteq \bigvee A \}$
+  then $\Box_s (\bigvee A) = \bigvee \{ !_s B \: | \: !_s B \rightarrow \bigvee A^{'}, A^{'} \in A \}$
   is a quantic conucleus.
 \end{lemma}
 
@@ -623,31 +623,57 @@ $\Box_s (\bigvee A) = \Box_s (\{ B \: | \: B \rightarrow A', A' \in A\}) =
 
 Let $!_s B \in \Box_s (\bigvee A)$, then $!_s B \rightarrow A'$, $A' \in A$, hence $!_s B \in \bigvee A$.
 
-  \item $\Box_s (\Box_s(\bigvee A)) = \bigvee \Box_s (\bigvee A)$;
+\item $\Box_s (\Box_s(\bigvee A)) = \bigvee \Box_s (\bigvee A)$;
 
-$\Box_s (\Box_s(\bigvee A)) = \{ \bigvee (!_s !_s F) \: | \: \bigvee (!_s !_s F) \subseteq \bigvee A \}$.
+$\Box_s (\Box_s(\bigvee A)) = \{ !_s !_s B \: | \: !_s !_s F \rightarrow \bigvee A^{'}, A^{'} \in A \}$.
 
-Let $\bigvee (!_s !_s F) \in \Box_s (\Box_s(\bigvee A))$, then $!_s !_s F \rightarrow A$, hence
-$!_s F \rightarrow A$ by equivalence, so $\bigvee (!_s !_s F) \in \Box_s (\bigvee A)$
+Follows from equivalence $!_s !_s B \leftrightarrow !_s B$.
 
-  \item $\bigvee A \subseteq \bigvee B \Rightarrow \Box_s (\bigvee A) \subseteq \Box_s (\bigvee B)$;
-  \item $\Box_s \bigvee A \cdot \Box_s \bigvee B = \Box_s (\Box_s \bigvee A \cdot \Box_s \bigvee B)$.
+\item $\bigvee A \subseteq \bigvee B \Rightarrow \Box_s (\bigvee A) \subseteq \Box_s (\bigvee B)$;
 
-We show that $\Box_s \bigvee A \cdot \Box_s \bigvee B \subseteq \Box_s (\Box_s \bigvee A \cdot \Box_s \bigvee B)$.
+Follows from admissiability of K-rule for all $s \in I$.
 
-Let us show, that $\Box_s \bigvee A \cdot \Box_s \bigvee B \leq \Box_s (\bigvee A \cdot \bigvee B)$.
+\item $\Box_s \bigvee A \cdot \Box_s \bigvee B = \Box_s (\Box_s \bigvee A \cdot \Box_s \bigvee B)$.
 
-We know, that $\Box_s \bigvee A \cdot \Box_s \bigvee B =
-\bigvee \{ \bigvee (!_s W_1) \cdot \bigvee (!_s W_2) \: | \: \bigvee !_s W_1 \subseteq \bigvee A, \bigvee !_s W_2 \subseteq \bigvee B \} =
-\bigvee \{ \bigvee (!_s W_1 \cdot !_s W_2) \: | \: \bigvee !_s W_1 \subseteq \bigvee A, \bigvee !_s W_2 \subseteq \bigvee B \}$.
-
-On the other hand, $\Box_s (\bigvee A \cdot \bigvee B) = \bigvee \{ \bigvee (!_s W) \: | \: \bigvee (!_s W) \subseteq \bigvee A \cdot \bigvee B \}$.
-
-Let $\bigvee (!_s W_1 \cdot !_s W_2) \in \Box_s \bigvee A \cdot \Box_s \bigvee B$.
-
-From lemma 11, $\bigvee (!_s W_1 \cdot !_s W_2) \subseteq \bigvee (!_s (W_1 \cdot W_2))$
+$\begin{array}{lll}
+&\Box_s \bigvee A \cdot \Box_s \bigvee B = & \\
+&\bigvee \{ !_s C \bullet !_s D \: | \: !_s C \rightarrow A^{'}, !_s D \rightarrow B^{'}, A^{'} \in A, B^{'} \in B \} = & \\
+&\bigvee \{ !_s (!_s C \bullet !_s D) \: | \: !_s C \rightarrow A^{'}, !_s D \rightarrow B^{'}, A^{'} \in A, B^{'} \in B \} = & \\
+&\Box_s \bigvee \{ !_s C \bullet !_s D \: | \: !_s C \rightarrow A^{'}, !_s D \rightarrow B^{'}, A^{'} \in A, B^{'} \in B \} = & \\
+&\Box_s (\Box_s \bigvee A \cdot \Box_s \bigvee B)&
+\end{array}$
 
 \end{enumerate}
+\end{proof}
+
+\begin{lemma}
+  \begin{enumerate}
+    \item Let $s \in W$, then for all $A \subseteq Fm$, ${\bf 1} \in \Box_s (\bigvee A)$;
+    \item Let $s \in E$, then $\Box_s (\bigvee A) \cdot \bigvee B = \bigvee B \cdot \Box_s (\bigvee A)$.
+    \item Let $s \in C$, then $(\Box_s \bigvee A \cdot \bigvee B) \cup (\bigvee B \cdot \Box_s \bigvee A) \subseteq \Box_s \bigvee A \cdot \bigvee B \cdot \Box_s \bigvee A$, for all $B \subseteq Fm$.
+  \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+  \begin{enumerate}
+    \item Let $s \in W$, then for all $A \subseteq Fm$, $\Box_s (\bigvee A) = \{ !_s B \: | \: !_s B \rightarrow A^{'}, A^{'} \in A \}$.
+    But, $!_s B \rightarrow {\bf 1}$, hence, $1 \in \Box_s (\bigvee A)$, so far as $\Box_s (\bigvee A)$ is an ideal.
+    \item  $ $
+
+    $\begin{array}{lll}
+    &\Box_s (\bigvee A) \cdot \bigvee B = & \\
+    &\bigvee \{ !_s C \bullet D \: | \: !_s C \bullet D \rightarrow A^{'} \bullet B^{'}, A^{'} \in A, B^{'} \in B \} = & \\
+    &\bigvee \{ D \bullet !_s C \: | \: D \bullet !_s C \rightarrow A^{'} \bullet B^{'}, A^{'} \in A, B^{'} \in B \} = & \\
+    &\bigvee B \cdot \Box_s (\bigvee A)&
+    \end{array}$
+
+    \item $ $
+
+    $\Box_s \bigvee A \cdot \bigvee B = \bigvee \{ !_s C \bullet D \: | \: !_s C \bullet D \rightarrow A^{'} \bullet B^{'}\}$.
+    $!_s C \bullet D \rightarrow !_s C \bullet D \bullet !_s C$, hence $\Box_s \bigvee A \cdot \bigvee B \subseteq \Box_s \bigvee A \cdot \bigvee B \cdot \Box_s \bigvee A$.
+
+    Similarly with $\bigvee B \cdot \Box_s \bigvee A$.
+  \end{enumerate}
 \end{proof}
 
 \begin{lemma}
