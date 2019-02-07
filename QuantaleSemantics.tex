@@ -50,172 +50,144 @@ $W, C, E$ are subsets of $I$ and $W \cup C \subseteq E$.
 \begin{prooftree}
 \AxiomC{$ $}
 \RightLabel{\scriptsize{ax}}
-\UnaryInfC{$A \Rightarrow A$}
+\UnaryInfC{$A \rightarrow A$}
 \end{prooftree}
 
 \begin{minipage}{0.5\textwidth}
   \begin{flushleft}
     \begin{prooftree}
-      \AxiomC{$\Gamma \Rightarrow A$}
-      \AxiomC{$\Delta, B, \Theta \Rightarrow C$}
+      \AxiomC{$\Gamma \rightarrow A$}
+      \AxiomC{$\Delta, B, \Theta \rightarrow C$}
       \RightLabel{$\backslash \rightarrow$}
-      \BinaryInfC{$\Delta, \Gamma, A \backslash B, \Theta \Rightarrow C$}
+      \BinaryInfC{$\Delta, \Gamma, A \backslash B, \Theta \rightarrow C$}
     \end{prooftree}
 
     \begin{prooftree}
-      \AxiomC{$\Gamma \Rightarrow A$}
-      \AxiomC{$\Delta, B, \Theta \Rightarrow C$}
+      \AxiomC{$\Gamma \rightarrow A$}
+      \AxiomC{$\Delta, B, \Theta \rightarrow C$}
       \RightLabel{$/ \rightarrow$}
-      \BinaryInfC{$\Delta, B / A, \Gamma, \Theta \Rightarrow C$}
+      \BinaryInfC{$\Delta, B / A, \Gamma, \Theta \rightarrow C$}
     \end{prooftree}
 
     \begin{prooftree}
-      \AxiomC{$\Gamma, A, B, \Delta \Rightarrow C$}
+      \AxiomC{$\Gamma, A, B, \Delta \rightarrow C$}
       \RightLabel{$\bullet \rightarrow$}
-      \UnaryInfC{$\Gamma, A \bullet B, \Delta \Rightarrow C$}
+      \UnaryInfC{$\Gamma, A \bullet B, \Delta \rightarrow C$}
     \end{prooftree}
 
     \begin{prooftree}
-      \AxiomC{$\Gamma, A_i, \Delta \Rightarrow B$}
+      \AxiomC{$\Gamma, A_i, \Delta \rightarrow B$}
       \RightLabel{$\&, i = 1,2 \rightarrow$}
-      \UnaryInfC{$\Gamma, A_1 \& A_2, \Delta \Rightarrow B$}
+      \UnaryInfC{$\Gamma, A_1 \& A_2, \Delta \rightarrow B$}
     \end{prooftree}
 
     \begin{prooftree}
-      \AxiomC{$\Gamma, A, \Delta \Rightarrow C$}
-      \AxiomC{$\Gamma, B, \Delta \Rightarrow C$}
+      \AxiomC{$\Gamma, A, \Delta \rightarrow C$}
+      \AxiomC{$\Gamma, B, \Delta \rightarrow C$}
       \RightLabel{$\vee \rightarrow$}
-      \BinaryInfC{$\Gamma, A \vee B, \Delta \Rightarrow C$}
+      \BinaryInfC{$\Gamma, A \vee B, \Delta \rightarrow C$}
     \end{prooftree}
 
     \begin{prooftree}
-      \AxiomC{$\Gamma, \Delta \Rightarrow A$}
+      \AxiomC{$\Gamma, \Delta \rightarrow A$}
       \RightLabel{${\bf 1} \rightarrow$}
-      \UnaryInfC{$\Gamma, {\bf 1}, \Delta \Rightarrow A$}
+      \UnaryInfC{$\Gamma, {\bf 1}, \Delta \rightarrow A$}
     \end{prooftree}
 
     \begin{prooftree}
-    \AxiomC{$\Gamma, A, \Delta \Rightarrow C$}
+    \AxiomC{$\Gamma, A, \Delta \rightarrow C$}
     \RightLabel{$! \rightarrow$}
-    \UnaryInfC{$\Gamma, !^{s} A, \Delta \Rightarrow C$}
+    \UnaryInfC{$\Gamma, !^{s} A, \Delta \rightarrow C$}
     \end{prooftree}
   \end{flushleft}
 \end{minipage}
 \begin{minipage}{0.5\textwidth}
   \begin{flushright}
     \begin{prooftree}
-      \AxiomC{$A, \Pi \Rightarrow B$}
+      \AxiomC{$A, \Pi \rightarrow B$}
       \RightLabel{$\rightarrow \backslash$}
-      \UnaryInfC{$\Pi \Rightarrow A \backslash B$}
+      \UnaryInfC{$\Pi \rightarrow A \backslash B$}
     \end{prooftree}
 
     \begin{prooftree}
-      \AxiomC{$\Pi, A \Rightarrow B$}
+      \AxiomC{$\Pi, A \rightarrow B$}
       \RightLabel{$\rightarrow /$}
-      \UnaryInfC{$\Pi \Rightarrow B / A$}
+      \UnaryInfC{$\Pi \rightarrow B / A$}
     \end{prooftree}
 
     \begin{prooftree}
-      \AxiomC{$\Gamma \Rightarrow A$}
-      \AxiomC{$\Delta \Rightarrow B$}
+      \AxiomC{$\Gamma \rightarrow A$}
+      \AxiomC{$\Delta \rightarrow B$}
       \RightLabel{$\rightarrow \bullet$}
-      \BinaryInfC{$\Gamma, \Delta \Rightarrow A \bullet B$}
+      \BinaryInfC{$\Gamma, \Delta \rightarrow A \bullet B$}
     \end{prooftree}
 
     \begin{prooftree}
-      \AxiomC{$\Gamma \Rightarrow A$}
-      \AxiomC{$\Gamma \Rightarrow B$}
+      \AxiomC{$\Gamma \rightarrow A$}
+      \AxiomC{$\Gamma \rightarrow B$}
       \RightLabel{$\rightarrow \&$}
-      \BinaryInfC{$\Gamma \Rightarrow A \& B$}
+      \BinaryInfC{$\Gamma \rightarrow A \& B$}
     \end{prooftree}
 
     \begin{prooftree}
-      \AxiomC{$\Gamma \Rightarrow A_i$}
+      \AxiomC{$\Gamma \rightarrow A_i$}
       \RightLabel{$\rightarrow \vee, i = 1,2$}
-      \UnaryInfC{$\Gamma \Rightarrow A_1 \vee A_2$}
+      \UnaryInfC{$\Gamma \rightarrow A_1 \vee A_2$}
     \end{prooftree}
 
     \begin{prooftree}
       \AxiomC{$ $}
       \RightLabel{$\rightarrow {\bf 1}$}
-      \UnaryInfC{$\Rightarrow {\bf 1}$}
+      \UnaryInfC{$\rightarrow {\bf 1}$}
     \end{prooftree}
 
     \begin{prooftree}
-    \AxiomC{$!^{s_1} A_1, \dots, !^{s_n} A_n \Rightarrow A$}
+    \AxiomC{$!^{s_1} A_1, \dots, !^{s_n} A_n \rightarrow A$}
     \RightLabel{$\rightarrow !, \forall j, s_j \succeq s$}
-    \UnaryInfC{$!^{s_1} A_1, \dots, !^{s_n} A_n \Rightarrow !^{s} A$}
+    \UnaryInfC{$!^{s_1} A_1, \dots, !^{s_n} A_n \rightarrow !^{s} A$}
     \end{prooftree}
   \end{flushright}
 \end{minipage}
 
 \begin{prooftree}
-  \AxiomC{$\Gamma, \Delta \Rightarrow B$}
+  \AxiomC{$\Gamma, \Delta \rightarrow B$}
   \RightLabel{${\bf weak}_!, s \in C$}
-  \UnaryInfC{$\Gamma, !^{s} A, \Delta \Rightarrow B$}
+  \UnaryInfC{$\Gamma, !^{s} A, \Delta \rightarrow B$}
 \end{prooftree}
 
     \begin{prooftree}
-    \AxiomC{$\Gamma, !^{s} A, \Delta, !^{s} A, \Theta \Rightarrow B$}
+    \AxiomC{$\Gamma, !^{s} A, \Delta, !^{s} A, \Theta \rightarrow B$}
     \RightLabel{${\bf ncontr}_1, s \in C$}
-    \UnaryInfC{$\Gamma, !^{s} A, \Delta, \Theta \Rightarrow B$}
+    \UnaryInfC{$\Gamma, !^{s} A, \Delta, \Theta \rightarrow B$}
     \end{prooftree}
 
     \begin{prooftree}
-      \AxiomC{$\Gamma, !^{s} A, \Delta, !^{s} A, \Theta \Rightarrow B$}
+      \AxiomC{$\Gamma, !^{s} A, \Delta, !^{s} A, \Theta \rightarrow B$}
       \RightLabel{${\bf ncontr}_2, s \in C$}
-      \UnaryInfC{$\Gamma, \Delta, !^{s} A, \Theta \Rightarrow B$}
+      \UnaryInfC{$\Gamma, \Delta, !^{s} A, \Theta \rightarrow B$}
     \end{prooftree}
 
     \begin{prooftree}
-    \AxiomC{$\Gamma, \Delta, !^{s} A, \Theta \Rightarrow B$}
+    \AxiomC{$\Gamma, \Delta, !^{s} A, \Theta \rightarrow B$}
     \RightLabel{${\bf ex}_1, s \in E$}
-    \UnaryInfC{$\Gamma, !^{s} A, \Delta, \Theta \Rightarrow A$}
+    \UnaryInfC{$\Gamma, !^{s} A, \Delta, \Theta \rightarrow A$}
     \end{prooftree}
 
     \begin{prooftree}
-      \AxiomC{$\Gamma, !^{s} A, \Delta, \Theta \Rightarrow B$}
+      \AxiomC{$\Gamma, !^{s} A, \Delta, \Theta \rightarrow B$}
       \RightLabel{${\bf ex}_1, s \in E$}
-      \UnaryInfC{$\Gamma, \Delta, !^{s} A, \Theta \Rightarrow A$}
+      \UnaryInfC{$\Gamma, \Delta, !^{s} A, \Theta \rightarrow A$}
     \end{prooftree}
 \end{defin}
 
-\begin{lemma}
-  Let $A \Leftrightarrow B$, then $C [p_i := A] \Leftrightarrow C [p_i := B]$
-\end{lemma}
+\begin{prop}
 
-\begin{proof}
-  By induction on $C$.
-\end{proof}
+$!_{s_i} A \leftrightarrow !_{s_i} (!_{s_i} A)$
 
-\begin{lemma}
-  \begin{itemize}
-  \item $!_{s_i} \Gamma \rightarrow A$ iff $!_{s_i} \Gamma \rightarrow !_{s_i} A$.
-  \item $!_{s_i} A \leftrightarrow !_{s_i} (!_{s_i} A)$
-\end{itemize}
-\end{lemma}
+\end{prop}
 
 \begin{proof}
 $ $
-
-\begin{enumerate}
-\item $!_{s_i} \Gamma \rightarrow A$ iff $!_{s_i} \Gamma \rightarrow !_{s_i} A$;
-  \begin{prooftree}
-    \AxiomC{$!_{s_i} \Gamma  \rightarrow A$}
-    \RightLabel{$\to !_{s_i}$}
-    \UnaryInfC{$!_{s_i} \Gamma  \rightarrow !_{s_i} A$}
-  \end{prooftree}
-
-\begin{prooftree}
-  \AxiomC{$!_{s_i} \Gamma \rightarrow !_{s_i} A$}
-  \AxiomC{$A \rightarrow A$}
-  \RightLabel{$!_{s_i} \to$}
-  \UnaryInfC{$!_{s_i} A \rightarrow A$}
-  \RightLabel{\text{cut}}
-  \BinaryInfC{$!_{s_i} \Gamma \rightarrow A$}
-\end{prooftree}
-
-\item $!_{s_i} A \leftrightarrow !_{s_i} !_{s_i} A$
 
 \begin{prooftree}
   \AxiomC{$A \rightarrow A$}
@@ -223,7 +195,7 @@ $ $
   \UnaryInfC{$!_{s_i} A \rightarrow !_{s_i} A$}
   \UnaryInfC{$!_{s_i} !_{s_i} A \rightarrow !_{s_i} A$}
 \end{prooftree}
-\end{enumerate}
+
 \end{proof}
 
 \section{Semantics}
@@ -246,91 +218,91 @@ It is easy to see, that any (unital) quantale is a residual (monoid) semigroup. 
 \begin{defin}
 $ $
 
-  Let $\langle A, \bigvee, \cdot \rangle$ be a quantale. The center of a quantale is the set $Z(Q) = \{ a \in Q \: | \: \forall b \in Q, a \cdot b = b \cdot a \}$
+  Let $\mathcal{Q} = \langle A, \bigvee, \cdot \rangle$ be a quantale. The center of a quantale is the set $\mathcal{Z}(\mathcal{Q}) = \{ a \in A \: | \: \forall b \in A, a \cdot b = b \cdot a \}$
 \end{defin}
 
-\begin{defin} An open modality (or quantic conucleus) on quantale $Q$ is a map $I : Q \to Q$, such that
+\begin{defin} An open modality (or quantic conucleus) on quantale $\mathcal{Q}$ is a map $\Box : \mathcal{Q} \to \mathcal{Q}$, such that
 
 \begin{enumerate}
-  \item $I(x) \leq x$;
-  \item $I(x) = I(I(x))$;
-  \item $x \leq y \Rightarrow I(x) \leq I(y)$;
-  \item $I(x) \cdot I(y) = I(I(x) \cdot I(y))$.
+  \item $\Box (x) \leq x$;
+  \item $\Box (x) = \Box(\Box(x))$;
+  \item $x \leq y \Rightarrow \Box (x) \leq \Box (y)$;
+  \item $\Box (x) \cdot \Box (y) = \Box (\Box (x) \cdot \Box (y))$.
 \end{enumerate}
 \end{defin}
 
 \begin{defin}
-  We define a partial order on open modalities on $Q$ as $I_1 \leq I_2 \Leftrightarrow \forall a \in Q, I_1 (a) \leq I_2 (a)$.
+  We define a partial order on open modalities on $\mathcal{Q}$ as $\Box_1 \leq \Box_2 \Leftrightarrow \forall a \in Q, \Box_1 (a) \leq \Box_2 (a)$.
 \end{defin}
 
 \begin{lemma}
-  Let $Q$ be a quantale and $\mathcal{I}$ be a set of all open modalities on $Q$. Then $\mathcal{I}$ for a locally small category.
+  Let $\mathcal{Q}$ be a quantale and $\Box_{\mathcal{Q}}$ be a set of all open modalities on $\mathcal{Q}$. Then $\Box_{\mathcal{Q}}$ is a locally small category.
 \end{lemma}
 
 \begin{proof}
-  $\langle \mathcal{I}, \leq \rangle$ form a partial order, so $\langle \mathcal{I}, \leq \rangle$ is a locally small category.
+  $\langle \Box_{\mathcal{Q}}, \leq \rangle$ form a partial order, so $\langle \Box_{\mathcal{Q}}, \leq \rangle$ is a locally small category.
 \end{proof}
 
 \begin{lemma}
 $ $
 
-  Let $\langle A, \bigvee, \cdot \rangle$ be a quantale and $I : Q \to Q$ is an open modality on $Q$, then
-  $I(x) \cdot I(y) \leq I(x \cdot y)$.
+  Let $\mathcal{Q} = \langle A, \bigvee, \cdot \rangle$ be a quantale and $\Box : \mathcal{Q} \to \mathcal{Q}$ is an open modality on $\mathcal{Q}$, then
+  $\Box(x) \cdot \Box(y) \leq \Box(x \cdot y)$.
 \end{lemma}
 
 \begin{proof}
 $ $
 
-  $I(x) \cdot I(y) \leq x \cdot y$, then $I(I(x) \cdot I(y)) \leq I(x \cdot y)$, but
-$I(x) \cdot I(y) \leq I(I(x) \cdot I(y))$. Thus, $I(x) \cdot I(y) \leq I(x \cdot y)$.
+  $\Box(x) \cdot \Box(y) \leq x \cdot y$, then $\Box(\Box(x) \cdot \Box(y)) \leq \Box(x \cdot y)$, but
+$\Box(x) \cdot \Box(y) \leq \Box(\Box(x) \cdot \Box(y))$. Thus, $\Box(x) \cdot \Box(y) \leq \Box(x \cdot y)$.
 \end{proof}
 
 \begin{defin}
-  An open modality is called central, if $\forall a, b \in Q, I(a) \cdot b = b \cdot I(a)$.
+  An open modality is called central, if $\forall a, b \in Q, \Box(a) \cdot b = b \cdot \Box(a)$.
 \end{defin}
 
 \begin{defin}
-  An open modality is called weak idempotent, if $\forall a, b \in Q, I(a) \cdot b \leq I(a) \cdot b \cdot I(a)$ and
-  $b \cdot I(a) \leq I(a) \cdot b \cdot I(a)$.
+  An open modality is called weak idempotent, if $\forall a, b \in Q, \Box(a) \cdot b \leq \Box(a) \cdot b \cdot \Box(a)$ and
+  $b \cdot \Box(a) \leq \Box(a) \cdot b \cdot \Box(a)$.
 \end{defin}
 
 \begin{defin}
-  An open modality is called unital, if $\forall a \in Q, I(a) \leq e$.
+  An open modality is called unital, if $\forall a \in Q, \Box(a) \leq e$.
 \end{defin}
 
 \begin{lemma}
-  Let $I$ be an interior on some unital quantale $\langle Q, \bigvee, \cdot, e \rangle$.
-  Then, if $I$ is unital and weak idempotent, then $I$ is central.
+  Let $\Box$ be an open modality on some unital quantale $\mathcal{Q} = \langle A, \bigvee, \cdot, e \rangle$.
+  Then, if $\Box$ is unital and weak idempotent, then $\Box$ is central.
 \end{lemma}
 
 \begin{proof}
 $ $
 
   $\begin{array}{lll}
-  & b \cdot I(a) \leq & \\
+  & b \cdot \Box(a) \leq & \\
   & \:\:\:\: \text{Right weak idempotence}& \\
-  &I(a) \cdot b \cdot I(a) \leq & \\
+  &\Box(a) \cdot b \cdot \Box(a) \leq & \\
   & \:\:\:\: \text{Unitality}& \\
-  & I(a) \cdot b \cdot I(e) \leq & \\
+  & \Box(a) \cdot b \cdot e \leq & \\
   & \:\:\:\: \text{Identity}& \\
-  &I(a) \cdot b \leq & \\
+  &\Box(a) \cdot b \leq & \\
   & \:\:\:\: \text{Left weak idempotence}& \\
-  &I(a) \cdot b \cdot I(a) \leq & \\
+  &\Box(a) \cdot b \cdot \Box(a) \leq & \\
   & \:\:\:\: \text{Unitality}& \\
-  &e \cdot b \cdot I(a) \leq & \\
+  &e \cdot b \cdot \Box(a) \leq & \\
   & \:\:\:\: \text{Identity}& \\
-  &b \cdot I(a)&
+  &b \cdot \Box(a)&
   \end{array}$
 
-Hence, $b \cdot I(a) = I(a) \cdot b$
+Hence, $b \cdot \Box(a) = \Box(a) \cdot b$, so $\forall a \in A, \Box(a) \in \mathcal{Z}(\mathcal{Q})$.
 
 \end{proof}
 
 \begin{prop}
 $ $
 
-  Let $Q$ be a quantale and $S \subseteq Q$ a subquantale, then $I : Q \to Q$, such that
-$I(a) = \bigvee \{ s \in S \: | \: x \leq a \}$, is an open modality. Moreover, $\{ x \in Q \: | \: I(x) = x\} = S$.
+  Let $\mathcal{Q}$ be a quantale and $S \subseteq \mathcal{Q}$ a subquantale, then $\Box : \mathcal{Q} \to \mathcal{Q}$, such that
+$\Box(a) = \bigvee \{ s \in S \: | \: x \leq a \}$, is an open modality.
 \end{prop}
 
 \begin{proof}
@@ -340,9 +312,9 @@ $I(a) = \bigvee \{ s \in S \: | \: x \leq a \}$, is an open modality. Moreover, 
 \begin{prop}
 $ $
 
-  Let $Q$ be a quantale and $S_1, S_2 \subseteq Q$, such that $S_1 \subseteq S_2$.
+  Let $\mathcal{Q}$ be a quantale and $S_1 \subseteq S_2 \subseteq \mathcal{Q}$.
 
-  Then $I_1 (a) \leq I_2 (a)$.
+  Then $\Box_1 (a) \leq \Box_2 (a)$.
 \end{prop}
 
 \begin{proof}
@@ -350,19 +322,19 @@ $ $
 
   Let $a \in Q$, so $\{ s \in S_1 \: | \: s \leq a \} \subseteq \{ s \in S_2 \: | \: s \leq a \}$, so
   $\bigvee \{ s \in S_1 \: | \: s \leq a \} \subseteq \bigvee \{ s \in S_2 \: | \: s \leq a \}$.
-  Thus, $I_1 (a) \leq I_2 (a)$.
+  Thus, $\Box_1 (a) \leq \Box_2 (a)$.
 \end{proof}
 
 \begin{prop}
 $ $
 
-Let $Q$ be a quantale and $S \subseteq Q$ a subquantale, then the following operations are open modalities:
+Let $\mathcal{Q}$ be a quantale and $S \subseteq \mathcal{Q}$ a subquantale, then the following operations are open modalities:
 
 \begin{enumerate}
-  \item $I_z (a) = \bigvee \{ s \in S \: | s \leq a, s \in Z(Q) \}$;
-  \item $I_{\mathds{1}} (a) = \bigvee \{ s \in S \: | s \leq a, s \leq \mathds{1} \}$;
-  \item $I_{idem} (a) = \bigvee \{ s \in S \: | s \leq a, \forall b \in Q, b \cdot s \vee s \cdot b \leq s \cdot b \cdot s\}$;
-  \item $I_{z, \mathds{1}}, I_{z, idem}, I_{\mathds{1}, idem}, I_{z, \mathds{1}, idem}$.
+  \item $\Box_z (a) = \bigvee \{ s \in S \: | s \leq a, s \in \mathcal{Z}(\mathcal{Q}) \}$;
+  \item $\Box_{\mathds{1}} (a) = \bigvee \{ s \in S \: | s \leq a, s \leq \mathds{1} \}$;
+  \item $\Box_{idem} (a) = \bigvee \{ s \in S \: | s \leq a, \forall b \in Q, b \cdot s \vee s \cdot b \leq s \cdot b \cdot s\}$;
+  \item $\Box_{z, \mathds{1}}, I_{z, idem}, I_{\mathds{1}, idem}, I_{z, \mathds{1}, idem}$.
 \end{enumerate}
 \end{prop}
 
@@ -374,8 +346,8 @@ Let $Q$ be a quantale and $S \subseteq Q$ a subquantale, then the following oper
 $ $
 
 \begin{enumerate}
-  \item $\forall a \in Q, I_{\mathds{1}, idem}(a) \leq I_z (a)$.
-  \item $\forall a \in Q, I_{z, \mathds{1}, idem} = I_{\mathds{1}, idem}(a)$
+  \item $\forall a \in \mathcal{Q}, \Box_{\mathds{1}, idem}(a) \leq \Box_z (a)$.
+  \item $\forall a \in \mathcal{Q}, \Box_{z, \mathds{1}, idem} = \Box_{\mathds{1}, idem}(a)$
 \end{enumerate}
 
 \end{prop}
@@ -388,54 +360,54 @@ $ $
 $ $
 
 \begin{enumerate}
-  \item $I_z (a) \vee I_{\mathds{1}} (a) \vee I_{idem} (a) \leq I(a)$
-  \item $I_{z, \mathds{1}, idem} \leq I_{z, \mathds{1}} (a) \wedge I_{z, idem} (a)$
+  \item $\Box_z (a) \vee \Box_{\mathds{1}} (a) \vee \Box_{idem} (a) \leq \Box(a)$
+  \item $\Box_{z, \mathds{1}, idem} \leq \Box_{z, \mathds{1}} (a) \wedge \Box_{z, idem} (a)$
 \end{enumerate}
 \end{prop}
 
 \begin{lemma}
-  $\forall a \in Q, I_1 (a) \leq I_2 (I_1 (a))$, if $I_1 (a) \leq I_2 (a)$.
+  $\forall a \in Q, \Box_1 (a) \leq \Box_2 (\Box_1 (a))$, if $\Box_1 (a) \leq \Box_2 (a)$.
 \end{lemma}
 
 \begin{proof}
-  $I_1 (a) \leq I_1 (I_1 (a)) \leq I_2 (I_1 (a))$
+  $\Box_1 (a) \leq \Box_1 (\Box_1 (a)) \leq \Box_2 (\Box_1 (a))$
 \end{proof}
 
 \begin{lemma}
-  $I_1(a_1) \cdot I_2(a_2) \leq I^{'} (I_1(a_1) \cdot I_2(a_2))$, where $I_i \leq I^{'}, i = 1,2$.
+  $\Box_1(a_1) \cdot \Box_2(a_2) \leq \Box^{'} (\Box_1(a_1) \cdot \Box_2(a_2))$, where $\Box_i \leq \Box^{'}, i = 1,2$.
 \end{lemma}
 
 \begin{proof}
 $ $
 
   $\begin{array}{lll}
-  &I_1(a_1) \cdot I_2(a_2) \leq & \\
-  &I_1 (I_1 (a_1)) \cdot I_2 (I_2 (a_2)) \leq & \\
-  &I^{'} (I_1 (a_1)) \cdot I^{'} (I_2 (a_2)) \leq & \\
-  &I^{'}(I_1 (a_1) \cdot I_2 (a_2))&
+  &\Box_1(a_1) \cdot \Box_2(a_2) \leq & \\
+  &\Box_1 (\Box_1 (a_1)) \cdot \Box_2 (\Box_2 (a_2)) \leq & \\
+  &\Box^{'} (\Box_1 (a_1)) \cdot \Box^{'} (\Box_2 (a_2)) \leq & \\
+  &\Box^{'}(\Box_1 (a_1) \cdot \Box_2 (a_2))&
   \end{array}$
 \end{proof}
 
 \begin{defin} Interpretation of subexponential signature
 
   Let $\Sigma = \langle I, \preceq, W, C, E \rangle$ be a subexponential signature, where $|I| = n$ and
-  $\mathcal{Q}$ is a category of open modalities on $Q$.
-  Subexponential interpretation is a contravariant functor $\sigma : I \to \mathcal{Q}$ defined as follows:
+  $\Box_{\mathcal{Q}}$ is a category of open modalities on a quantale $\mathcal{Q}$.
+  Subexponential interpretation is a contravariant functor $\sigma : I \to \Box_{\mathcal{Q}}$ defined as follows:
 
   $\sigma(s_i) = \begin{cases}
-  \Box_i : Q \to Q \text{, s.t.} \forall a \in Q, \Box_i(a) = \{ s \in S_i \: | \: s \leq a\},
+  \Box_i : \mathcal{Q} \to \mathcal{Q} \text{, s.t.} \forall a \in Q, \Box_i(a) = \{ s \in S_i \: | \: s \leq a\},
   \\ \:\:\:\: \text{if $s_i \notin W \cap C \cap E$} \\
-  \Box_i : Q \to Q \text{, s.t.} \forall a \in Q, \Box_i(a) = \{ s \in S_i \: | \: s \leq a, \leq \mathds{1}\},
+  \Box_i : \mathcal{Q} \to \mathcal{Q} \text{, s.t.} \forall a \in Q, \Box_i(a) = \{ s \in S_i \: | \: s \leq a, s \leq \mathds{1}\},
   \\ \:\:\:\: \text{if $s_i \in W$} \\
-  \Box_i : Q \to Q \text{, s.t.} \forall a \in Q, \Box_i(a) = \{ s \in S_i \: | \: s \leq a, \in Z(Q) \},
+  \Box_i : \mathcal{Q} \to \mathcal{Q} \text{, s.t.} \forall a \in Q, \Box_i(a) = \{ s \in S_i \: | \: s \leq a, s \in \mathcal{Z}(\mathcal{Q}) \},
   \\ \:\:\:\: \text{if $s_i \in E$} \\
-  \Box_i : Q \to Q \text{, s.t.} \forall a \in Q, \Box_i(a) = \{ s \in S_i \: | \: s \leq a, \forall b, b \cdot s \vee s \cdot b \leq s \cdot b \cdot s \},
+  \Box_i : \mathcal{Q} \to \mathcal{Q} \text{, s.t.} \forall a \in Q, \Box_i(a) = \{ s \in S_i \: | \: s \leq a, \forall b, b \cdot s \vee s \cdot b \leq s \cdot b \cdot s \},
   \\ \:\:\:\: \text{if $s_i \in E$} \\
   \text{otherwise, if $s_i$ belongs to some intersection of subsets, then we combine the relevant conditions } \\
   \end{cases}$
 \end{defin}
 
-\begin{defin} Let $Q$ be a quantale, $f : Tp \to Q$ a valuation and $\sigma : I \to \mathcal{S}$ a subexponential interpretation, then
+\begin{defin} Let $\mathcal{Q}$ be a quantale, $f : Tp \to \mathcal{Q}$ a valuation and $\sigma : I \to \Box_{\mathcal{Q}}$ a subexponential interpretation, then
   interpretation is defined inductively:
 
 \begin{center}
@@ -453,7 +425,7 @@ $\begin{array}{lll}
 \end{defin}
 
 \begin{defin}
-  $\Gamma \models A \Leftrightarrow \forall f \forall \sigma, [\![\Gamma]\!] \leq [\![A]\!]$
+  $\Gamma \models A \Leftrightarrow \forall f, \forall \sigma, [\![\Gamma]\!] \leq [\![A]\!]$
 \end{defin}
 
 \begin{theorem}
@@ -502,7 +474,7 @@ By the definition, $\sigma(s_i)([\![A]\!]) \cdot [\![\Delta]\!] \leq \sigma(s_i)
 
 Then $[\![\Gamma]\!] \cdot \sigma(s_i)([\![A]\!]) \cdot [\![\Delta]\!] \cdot [\![\Pi]\!] \leq [\![B]\!]$
 
-\item Let $\Gamma, !_{s_i} A, \Delta, \Pi \rightarrow B$ and $s_i \in E$, so $\sigma(s_i)(a) \in Z(Q)$ for all $a \in Q$ by the definition.
+\item Let $\Gamma, !_{s_i} A, \Delta, \Pi \rightarrow B$ and $s_i \in E$, so $\sigma(s_i)(a) \in \mathcal{Z}(\mathcal{Q})$ for all $a \in Q$ by the definition.
 
 By IH, $[\![\Gamma]\!] \cdot \sigma(s_i)([\![A]\!]) \cdot [\![\Delta]\!] \cdot [\![\Pi]\!] \leq [\![B]\!]$
 
@@ -567,7 +539,7 @@ Thus, $C \rightarrow A'$, then $C \rightarrow B'$ by cut, so $C \in B'$.
 
 \begin{lemma}
   Let $\mathcal{Q} = \{ \bigvee S \: | \: S \subseteq Fm \}$ and $\bigvee \mathcal{A} \cdot \bigvee \mathcal{B} =
-  \{ A \bullet B \: | \: A \in \mathcal{A}, B \in \mathcal{B} \}$.
+  \bigvee \{ A \bullet B \: | \: A \in \mathcal{A}, B \in \mathcal{B} \}$.
   Then $\langle \mathcal{Q}, \subseteq, \cdot, \bigvee{{\bf 1}}\rangle$ is a quantale.
 \end{lemma}
 
@@ -577,7 +549,7 @@ Thus, $C \rightarrow A'$, then $C \rightarrow B'$ by cut, so $C \in B'$.
 
 \begin{lemma}
   Let $!_s \in I$, $I \notin W \cap E \cap C$,
-  then $\Box_s (\bigvee A) = \bigvee \{ B \: | \: B \rightarrow \bigvee !_s A^{'}, A^{'} \in A \}$
+  then $\Box_s (\bigvee A) = \bigvee \{ B \: | \: B \rightarrow !_s A^{'}, A^{'} \in A \}$
   is a quantic conucleus.
 \end{lemma}
 
@@ -594,8 +566,8 @@ but $!_s A^{'} \rightarrow A^{'}$, then $B \rightarrow A^{'}$, so $B \in \bigvee
 
 $\begin{array}{lll}
 & \Box_s (\Box_s(\bigvee A)) = & \\
-& \{ B \: | \: B \rightarrow \bigvee !_s !_s A^{'}, A^{'} \in A \} = & \\
-& \{ B \: | \: B \rightarrow \bigvee !_s A^{'}, A^{'} \in A \} &
+& \{ B \: | \: B \rightarrow !_s !_s A^{'}, A^{'} \in A \} = & \\
+& \{ B \: | \: B \rightarrow !_s A^{'}, A^{'} \in A \} &
 \end{array}$,
 that follows from equivalence $!_s !_s B \leftrightarrow !_s B$.
 
@@ -674,7 +646,7 @@ $ $
 \end{lemma}
 
 \begin{proof}
-  Follows from lemmas 11 and 12.
+  Follows from lemmas 10 and 11.
 \end{proof}
 
 \begin{lemma}
@@ -706,7 +678,7 @@ $ $
 \end{theorem}
 
 \begin{proof}
-  Follows from lemmas 9, 12, 13, 14.
+  Follows from lemmas 6, 12, 13.
 \end{proof}
 
 \end{document}
