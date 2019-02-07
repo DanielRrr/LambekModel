@@ -15,6 +15,8 @@
 \usepackage{geometry}
 \usepackage{trfsigns}
 \usepackage{cmll}
+\usepackage{authblk}
+
 \newtheorem{theorem}{Theorem}
 \newtheorem{prop}{Proposition}
 \newtheorem{lemma}{Lemma}
@@ -24,7 +26,11 @@
 \newtheorem{con}{Consequence}
 \usepackage{listings} 		% for source code
 \date{}
-\title{Quantale model of noncommutative linear logic with subexponentials}
+\author[1,2]{Daniel Rogozin}
+\affil[1]{Lomonosov Moscow State University}
+\affil[2]{Serokell O\"{U}}
+\title{Quantale model of Lambek calculus with subexponentials}
+
 \begin{document}
 
 \maketitle
@@ -253,6 +259,18 @@ $ $
 \end{enumerate}
 \end{defin}
 
+\begin{defin}
+  We define a partial order on open modalities on $Q$ as $I_1 \leq I_2 \Leftrightarrow \forall a \in Q, I_1 (a) \leq I_2 (a)$.
+\end{defin}
+
+\begin{lemma}
+  Let $Q$ be a quantale and $\mathcal{I}$ be a set of all open modalities on $Q$. Then $\mathcal{I}$ for a locally small category.
+\end{lemma}
+
+\begin{proof}
+  $\langle \mathcal{I}, \leq \rangle$ form a partial order, so $\langle \mathcal{I}, \leq \rangle$ is a locally small category.
+\end{proof}
+
 \begin{lemma}
 $ $
 
@@ -401,8 +419,8 @@ $ $
 \begin{defin} Interpretation of subexponential signature
 
   Let $\Sigma = \langle I, \preceq, W, C, E \rangle$ be a subexponential signature, where $|I| = n$ and
-  $\mathcal{S} = \{ \Box_1, \dots, \Box_n \}$ be a set of open modalities on quantale $Q$.
-  Subexponential interpretation is a contravariant map $\sigma : I \to \mathcal{S}$ defined as follows:
+  $\mathcal{Q}$ is a category of open modalities on $Q$.
+  Subexponential interpretation is a contravariant functor $\sigma : I \to \mathcal{Q}$ defined as follows:
 
   $\sigma(s_i) = \begin{cases}
   \Box_i : Q \to Q \text{, s.t.} \forall a \in Q, \Box_i(a) = \{ s \in S_i \: | \: s \leq a\},
@@ -434,12 +452,16 @@ $\begin{array}{lll}
 \end{center}
 \end{defin}
 
+\begin{defin}
+  $\Gamma \models A \Leftrightarrow \forall f \forall \sigma, [\![\Gamma]\!] \leq [\![A]\!]$
+\end{defin}
+
 \begin{theorem}
   $\Gamma \rightarrow A \Rightarrow [\![\Gamma]\!] \leq [\![A]\!]$
 \end{theorem}
 
 \begin{proof}
-We consider the case with polymodal promotion rule.
+We consider cases with modal rules.
 
 \begin{enumerate}
 
@@ -553,62 +575,9 @@ Thus, $C \rightarrow A'$, then $C \rightarrow B'$ by cut, so $C \in B'$.
   See
 \end{proof}
 
-\begin{lemma} Interior lemma.
-$ $
-
-Let $Q_1 \subseteq \mathcal{Q}$, define a map $\Box : Q \to Q$, such that $\Box(A) = \{  Q \in Q_1 \: | \: Q \subseteq A \}$.
-Then $\Box$ is a quantic conucleus.
-\end{lemma}
-
-\begin{lemma}
-$ $
-
-  Let $A_1, A_2 \subseteq Fm$ and $!_s A_i = \{ !_s W \: | \: W \in S_i \}$, for $i = 1,2$.
-
-  Then $\bigvee (!_s A_1 \cdot !_s A_2) \subseteq \bigvee (!_s (A_1 \cdot A_2))$.
-\end{lemma}
-
-\begin{proof}
-$ $
-
-$\bigvee (!_s A_1 \cdot !_s A_2) = \bigvee \{ \bigvee W \: | \: \bigvee W \subseteq \bigvee (!_s A_1 \cdot !_s A_2) \}$.
-
-Let $W^{'} \in \bigvee (!_s A_1 \cdot !_s A_2)$,
-then $W^{'} \rightarrow \: !_s A_1^{'} \bullet !_s A_1^{'}$ for each $A_i^{'} \in A_i$.
-But, $!_s A_1^{'} \bullet !_s A_2^{'} \rightarrow !_s (A_1^{'} \bullet A_2^{'})$.
-
-Then, $W^{'} \rightarrow !_s (A_1^{'} \bullet A_2^{'})$ by cut, then $W^{'} \in \bigvee (!_s (A_1 \cdot A_2))$.
-\end{proof}
-
-\begin{lemma}
-  Let $!_s \in I$, $I \notin W \cap E \cap C$ and $Q \subseteq \mathcal{Q}$.
-  Then there exist a subset $Q \subseteq \mathcal{Q}$ and
-  a quantic conucleus $\Box_s (\bigvee \{ A \}) = \{ \bigvee Q \in \mathcal{Q} \: | \: \}$
-\end{lemma}
-
-\begin{proof}
-\end{proof}
-
-\begin{proof}
-  See
-\end{proof}
-
-\begin{lemma} Let $Q \subseteq \mathcal{Q}$, then the following operators are quantic conuclei:
-  \begin{enumerate}
-    \item $\Box_z (A) = \bigvee \{ \bigvee \{ W \} \in Q \: | \bigvee \{ W \} \subseteq \bigvee \{ A \}, \bigvee \{ W \} \in Z(Q) \}$;
-    \item $\Box_{{\bf 1}} (A) = \bigvee \{ \bigvee \{ W \} \in Q \: | \bigvee \{ W \} \subseteq \bigvee \{ A \}, \bigvee \{ W \} \subseteq \bigvee \{ {\bf 1} \} \}$;
-    \item $\Box_{idem} (A) = \bigvee \{ \bigvee \{ W \} \in Q \: | \bigvee \{ W \} \subseteq \bigvee \{ A \}, \forall B \in Fm, (\bigvee \{ B \} \cdot \bigvee \{ W \}) \cup (\bigvee \{ W \} \cdot \bigvee \{ B \}) \subseteq \bigvee \{ W \} \cdot \bigvee \{ A \} \cdot \bigvee \{ W \} \}$;
-    \item $\Box_{z, \mathds{1}}, \Box_{z, idem}, \Box_{\mathds{1}, idem}, \Box_{z, \mathds{1}, idem}$.
-  \end{enumerate}
-\end{lemma}
-
-\begin{proof}
-  Follow from one of lemmas above.
-\end{proof}
-
 \begin{lemma}
   Let $!_s \in I$, $I \notin W \cap E \cap C$,
-  then $\Box_s (\bigvee A) = \bigvee \{ !_s B \: | \: !_s B \rightarrow \bigvee A^{'}, A^{'} \in A \}$
+  then $\Box_s (\bigvee A) = \bigvee \{ B \: | \: B \rightarrow \bigvee !_s A^{'}, A^{'} \in A \}$
   is a quantic conucleus.
 \end{lemma}
 
@@ -618,16 +587,17 @@ $ $
 \begin{enumerate}
   \item $\Box_s (\bigvee A) \subseteq \bigvee A$;
 
-$\Box_s (\bigvee A) = \Box_s (\{ B \: | \: B \rightarrow A', A' \in A\}) =
-\{ !_s B \: | \: !_s B \rightarrow A', A' \in A\}$.
-
-Let $!_s B \in \Box_s (\bigvee A)$, then $!_s B \rightarrow A'$, $A' \in A$, hence $!_s B \in \bigvee A$.
+Let $B \in \Box_s (\bigvee A)$, then for all $A^{'} \in A$, $B \rightarrow !_s A^{'}$,
+but $!_s A^{'} \rightarrow A^{'}$, then $B \rightarrow A^{'}$, so $B \in \bigvee A$.
 
 \item $\Box_s (\Box_s(\bigvee A)) = \bigvee \Box_s (\bigvee A)$;
 
-$\Box_s (\Box_s(\bigvee A)) = \{ !_s !_s B \: | \: !_s !_s F \rightarrow \bigvee A^{'}, A^{'} \in A \}$.
-
-Follows from equivalence $!_s !_s B \leftrightarrow !_s B$.
+$\begin{array}{lll}
+& \Box_s (\Box_s(\bigvee A)) = & \\
+& \{ B \: | \: B \rightarrow \bigvee !_s !_s A^{'}, A^{'} \in A \} = & \\
+& \{ B \: | \: B \rightarrow \bigvee !_s A^{'}, A^{'} \in A \} &
+\end{array}$,
+that follows from equivalence $!_s !_s B \leftrightarrow !_s B$.
 
 \item $\bigvee A \subseteq \bigvee B \Rightarrow \Box_s (\bigvee A) \subseteq \Box_s (\bigvee B)$;
 
@@ -637,9 +607,8 @@ Follows from admissiability of K-rule for all $s \in I$.
 
 $\begin{array}{lll}
 &\Box_s \bigvee A \cdot \Box_s \bigvee B = & \\
-&\bigvee \{ !_s C \bullet !_s D \: | \: !_s C \rightarrow A^{'}, !_s D \rightarrow B^{'}, A^{'} \in A, B^{'} \in B \} = & \\
-&\bigvee \{ !_s (!_s C \bullet !_s D) \: | \: !_s C \rightarrow A^{'}, !_s D \rightarrow B^{'}, A^{'} \in A, B^{'} \in B \} = & \\
-&\Box_s \bigvee \{ !_s C \bullet !_s D \: | \: !_s C \rightarrow A^{'}, !_s D \rightarrow B^{'}, A^{'} \in A, B^{'} \in B \} = & \\
+&\bigvee \{ C \bullet D \: | \: C \bullet D \rightarrow !_s A^{'} \bullet !_s B^{'} \} = & \\
+&\bigvee \{ C \bullet D \: | \: C \bullet D \rightarrow !_s (!_s A^{'} \bullet !_s B^{'})\} = & \\
 &\Box_s (\Box_s \bigvee A \cdot \Box_s \bigvee B)&
 \end{array}$
 
@@ -647,6 +616,8 @@ $\begin{array}{lll}
 \end{proof}
 
 \begin{lemma}
+$ $
+
   \begin{enumerate}
     \item Let $s \in W$, then for all $A \subseteq Fm$, ${\bf 1} \in \Box_s (\bigvee A)$;
     \item Let $s \in E$, then $\Box_s (\bigvee A) \cdot \bigvee B = \bigvee B \cdot \Box_s (\bigvee A)$.
@@ -677,15 +648,65 @@ $\begin{array}{lll}
 \end{proof}
 
 \begin{lemma}
+$ $
+
+  Let $i, j \in I$ and $i \preceq j$, then for all $A \subseteq Fm$, $\Box_j (\bigvee A) \subseteq \Box_i (\bigvee A)$.
+\end{lemma}
+
+\begin{proof}
+  \begin{enumerate}
+
+    Let $i, j \in I$ and $i \preceq j$. Let $B \in \Box_j (\bigvee A)$, then $\forall A^{'}$, $B \rightarrow !_j A^{'}$.
+
+    But $!_j A \rightarrow !_i A$. Then $B \rightarrow !_i A$ by hence. So, $B \in \Box_j (\bigvee A)$.
+  \end{enumerate}
+\end{proof}
+
+\begin{defin} Let $Q$ be a syntactic quantale as proposed above and
+  $\mathcal{I} = \langle I, \preceq, W, C, E \rangle$ be a subexponential signature.
+
+  We define a map $\Box : \mathcal{I} \to Mod_{\mathcal{Q}}$ as follows:
+
+  $\Box(i)(\bigvee A) = \{ B \: | \: B \rightarrow !_i A \}$.
+\end{defin}
+
+\begin{lemma} $\Box$ is a subexponential interpretation.
+\end{lemma}
+
+\begin{proof}
+  Follows from lemmas 11 and 12.
+\end{proof}
+
+\begin{lemma}
+$ $
+
   Let $Q$ be a quantale constructed above and $\Box_1, \dots, \Box_n$ be a family of quantic conuclei on $Q$.
   Then there exist a model $\langle Q, [\![.]\!]\rangle$, such that $[\![A]\!] = \bigvee \{ A \}$, $A \in Fm$.
 \end{lemma}
 
 \begin{proof}
+$ $
+
+  We define an interpreation as follows:
+
+\begin{enumerate}
+  \item $[\![p_i]\!] = \bigvee \{ p_i \}$
+  \item $[\![{\bf 1}]\!] = \bigvee \{ {\bf 1} \}$
+  \item $[\![A \bullet B]\!] = \bigvee \{ A \bullet B \}$
+  \item $[\![A / B]\!] = \bigvee \{ A / B \}$
+  \item $[\![B \setminus A]\!] = \bigvee \{ B \setminus A \}$
+  \item $[\![A \& B ]\!] = \bigvee \{ A \& B \}$
+  \item $[\![A \lor B]\!] = \bigvee \{ A \lor B\}$
+  \item $[\![!_s A]\!] = \Box(s) (\bigvee A) = \{ B \: | \: B \rightarrow !_s A \} = \bigvee \{ !_s A \}$
+\end{enumerate}
 \end{proof}
 
 \begin{theorem}
   $\Gamma \models A \Rightarrow \Gamma \rightarrow A$.
 \end{theorem}
+
+\begin{proof}
+  Follows from lemmas 9, 12, 13, 14.
+\end{proof}
 
 \end{document}
