@@ -579,8 +579,8 @@ Follows from admissiability of K-rule for all $s \in I$.
 
 $\begin{array}{lll}
 &\Box_s \bigvee A \cdot \Box_s \bigvee B = & \\
-&\bigvee \{ C \bullet D \: | \: C \bullet D \rightarrow !_s A^{'} \bullet !_s B^{'} \} = & \\
-&\bigvee \{ C \bullet D \: | \: C \bullet D \rightarrow !_s (!_s A^{'} \bullet !_s B^{'})\} = & \\
+&\bigvee \{ C  \: | \: C \rightarrow !_s A^{'} \bullet !_s B^{'} \} = & \\
+&\bigvee \{ C  \: | \: C \rightarrow !_s (!_s A^{'} \bullet !_s B^{'})\} = & \\
 &\Box_s (\Box_s \bigvee A \cdot \Box_s \bigvee B)&
 \end{array}$
 
@@ -598,6 +598,8 @@ $ $
 \end{lemma}
 
 \begin{proof}
+$ $
+
   \begin{enumerate}
     \item Let $s \in W$, then for all $A \subseteq Fm$, $\Box_s (\bigvee A) = \{ !_s B \: | \: !_s B \rightarrow A^{'}, A^{'} \in A \}$.
     But, $!_s B \rightarrow {\bf 1}$, hence, $1 \in \Box_s (\bigvee A)$, so far as $\Box_s (\bigvee A)$ is an ideal.
@@ -605,15 +607,15 @@ $ $
 
     $\begin{array}{lll}
     &\Box_s (\bigvee A) \cdot \bigvee B = & \\
-    &\bigvee \{ !_s C \bullet D \: | \: !_s C \bullet D \rightarrow A^{'} \bullet B^{'}, A^{'} \in A, B^{'} \in B \} = & \\
-    &\bigvee \{ D \bullet !_s C \: | \: D \bullet !_s C \rightarrow A^{'} \bullet B^{'}, A^{'} \in A, B^{'} \in B \} = & \\
+    &\bigvee \{ C \: | C \rightarrow !_s A^{'} \bullet B^{'}, A^{'} \in A, B^{'} \in B \} = & \\
+    &\bigvee \{ C \: | C \rightarrow B^{'} \bullet !_s A^{'}, A^{'} \in A, B^{'} \in B \} = & \\
     &\bigvee B \cdot \Box_s (\bigvee A)&
     \end{array}$
 
     \item $ $
 
-    $\Box_s \bigvee A \cdot \bigvee B = \bigvee \{ !_s C \bullet D \: | \: !_s C \bullet D \rightarrow A^{'} \bullet B^{'}\}$.
-    $!_s C \bullet D \rightarrow !_s C \bullet D \bullet !_s C$, hence $\Box_s \bigvee A \cdot \bigvee B \subseteq \Box_s \bigvee A \cdot \bigvee B \cdot \Box_s \bigvee A$.
+    $\Box_s \bigvee A \cdot \bigvee B = \bigvee \{ C \: | \: C \rightarrow !_s A^{'} \bullet B^{'}\}$.
+    $!_s A^{'} \bullet B^{'} \rightarrow !_s A^{'} \bullet B^{'} \bullet !_s A^{'}$, hence $\Box_s \bigvee A \cdot \bigvee B \subseteq \Box_s \bigvee A \cdot \bigvee B \cdot \Box_s \bigvee A$.
 
     Similarly with $\bigvee B \cdot \Box_s \bigvee A$.
   \end{enumerate}
