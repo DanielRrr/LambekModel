@@ -17,25 +17,38 @@
 \usepackage{cmll}
 \usepackage{authblk}
 
-\newtheorem{theorem}{Theorem}
-\newtheorem{prop}{Proposition}
-\newtheorem{lemma}{Lemma}
+\theoremstyle{defin}
 \newtheorem{defin}{Definition}
+
+\theoremstyle{theorem}
+\newtheorem{theorem}{Theorem}
+
+\theoremstyle{prop}
+\newtheorem{prop}{Proposition}
+
+\theoremstyle{lemma}
+\newtheorem{lemma}{Lemma}
+
+\theoremstyle{ex}
 \newtheorem{ex}{Example}
+
+\theoremstyle{col}
 \newtheorem{col}{Corollary}
-\newtheorem{con}{Consequence}
 \usepackage{listings} 		% for source code
 \date{}
 \author[1,2]{Daniel Rogozin}
 \affil[1]{Lomonosov Moscow State University}
 \affil[2]{Serokell O\"{U}}
-\title{Quantale model of Lambek calculus with subexponentials}
+\title{Models of Lambek calculus enriched with subexponentials}
 
 \begin{document}
 
 \maketitle
 
-\section{Calculus}
+\begin{abstract}
+\end{abstract}
+
+\section{The Lambek Calculus with subexponentials}
 
 \begin{defin} A subexponential signature is an ordered quintuple:
 
@@ -43,7 +56,14 @@
 \end{defin}
 
 where $I = \{ s_1, \dots, s_n\}$, $\langle I, \preceq \rangle$ is a preorder.
-$W, C, E$ are upwardly closed subsets of $I$ and $W \cup C \subseteq E$.
+$W, C, E$ are upwardly closed subsets of $I$ and $W \cap C \subseteq E$.
+
+
+\begin{defin}
+$ $
+
+  $\mathcal{F}_{\Sigma} ::= Tp \: | \: (\mathcal{F}_{\Sigma} / \mathcal{F}_{\Sigma}) \: | \: (\mathcal{F}_{\Sigma} \backslash \mathcal{F}_{\Sigma}) \: | \: (\mathcal{F}_{\Sigma} \bullet \mathcal{F}_{\Sigma}) \: | \: (\mathcal{F}_{\Sigma} \lor \mathcal{F}_{\Sigma}) \: | (\mathcal{F}_{\Sigma} \land \mathcal{F}_{\Sigma}) \: | !_s \mathcal{F}_{\Sigma} $
+\end{defin}
 
 \begin{defin} Noncommutative linear logic with subexponentials ($SMALC_{\Sigma}$), where $\Sigma$ is a subexponential signature.
 
@@ -148,55 +168,64 @@ $W, C, E$ are upwardly closed subsets of $I$ and $W \cup C \subseteq E$.
     \end{prooftree}
   \end{flushright}
 \end{minipage}
+Structural rules:
 
-\begin{prooftree}
-  \AxiomC{$\Gamma, \Delta \rightarrow B$}
-  \RightLabel{${\bf weak}_!, s \in C$}
-  \UnaryInfC{$\Gamma, !^{s} A, \Delta \rightarrow B$}
-\end{prooftree}
+\begin{minipage}{0.5\textwidth}
+  \begin{flushleft}
+        \begin{prooftree}
+        \AxiomC{$\Gamma, !^{s} A, \Delta, !^{s} A, \Theta \rightarrow B$}
+        \RightLabel{${\bf ncontr}_1, s \in C$}
+        \UnaryInfC{$\Gamma, !^{s} A, \Delta, \Theta \rightarrow B$}
+        \end{prooftree}
 
-    \begin{prooftree}
-    \AxiomC{$\Gamma, !^{s} A, \Delta, !^{s} A, \Theta \rightarrow B$}
-    \RightLabel{${\bf ncontr}_1, s \in C$}
-    \UnaryInfC{$\Gamma, !^{s} A, \Delta, \Theta \rightarrow B$}
-    \end{prooftree}
-
-    \begin{prooftree}
-      \AxiomC{$\Gamma, !^{s} A, \Delta, !^{s} A, \Theta \rightarrow B$}
-      \RightLabel{${\bf ncontr}_2, s \in C$}
-      \UnaryInfC{$\Gamma, \Delta, !^{s} A, \Theta \rightarrow B$}
-    \end{prooftree}
+        \begin{prooftree}
+        \AxiomC{$\Gamma, \Delta, !^{s} A, \Theta \rightarrow B$}
+        \RightLabel{${\bf ex}_1, s \in E$}
+        \UnaryInfC{$\Gamma, !^{s} A, \Delta, \Theta \rightarrow A$}
+        \end{prooftree}
 
     \begin{prooftree}
-    \AxiomC{$\Gamma, \Delta, !^{s} A, \Theta \rightarrow B$}
-    \RightLabel{${\bf ex}_1, s \in E$}
-    \UnaryInfC{$\Gamma, !^{s} A, \Delta, \Theta \rightarrow A$}
+      \AxiomC{$\Gamma, \Delta \rightarrow B$}
+      \RightLabel{${\bf weak}_!, s \in C$}
+      \UnaryInfC{$\Gamma, !^{s} A, \Delta \rightarrow B$}
     \end{prooftree}
 
-    \begin{prooftree}
-      \AxiomC{$\Gamma, !^{s} A, \Delta, \Theta \rightarrow B$}
-      \RightLabel{${\bf ex}_2, s \in E$}
-      \UnaryInfC{$\Gamma, \Delta, !^{s} A, \Theta \rightarrow A$}
-    \end{prooftree}
+  \end{flushleft}
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+  \begin{flushright}
+
+      \begin{prooftree}
+        \AxiomC{$\Gamma, !^{s} A, \Delta, !^{s} A, \Theta \rightarrow B$}
+        \RightLabel{${\bf ncontr}_2, s \in C$}
+        \UnaryInfC{$\Gamma, \Delta, !^{s} A, \Theta \rightarrow B$}
+      \end{prooftree}
+
+      \begin{prooftree}
+        \AxiomC{$\Gamma, !^{s} A, \Delta, \Theta \rightarrow B$}
+        \RightLabel{${\bf ex}_2, s \in E$}
+        \UnaryInfC{$\Gamma, \Delta, !^{s} A, \Theta \rightarrow A$}
+      \end{prooftree}
+
+  \begin{prooftree}
+    \AxiomC{$\Gamma \rightarrow A$}
+    \AxiomC{$\Pi, A, \Delta \rightarrow B$}
+    \RightLabel{${\bf cut}$}
+    \BinaryInfC{$\Gamma, \Pi, \Delta \rightarrow B$}
+  \end{prooftree}
+  \end{flushright}
+\end{minipage}
 \end{defin}
 
-\begin{prop}
-
-$!_{s_i} A \leftrightarrow !_{s_i} (!_{s_i} A)$
-
-\end{prop}
-
-\begin{proof}
+\begin{theorem}
 $ $
 
-\begin{prooftree}
-  \AxiomC{$A \rightarrow A$}
-  \UnaryInfC{$!_{s_i} A \rightarrow A$}
-  \UnaryInfC{$!_{s_i} A \rightarrow !_{s_i} A$}
-  \UnaryInfC{$!_{s_i} !_{s_i} A \rightarrow !_{s_i} A$}
-\end{prooftree}
-
-\end{proof}
+  \begin{enumerate}
+    \item Cut-rule is admissable;
+    \item $\text{SMALC}_{\Sigma}$ is undecidable, if $C \neq \emptyset$;
+    \item If $C$ is empty, then the decidability problem of $\text{SMALC}_{\Sigma}$ belongs to PSPACE.
+  \end{enumerate}
+\end{theorem}
 
 \section{Semantics}
 
@@ -207,6 +236,16 @@ $ $
 is a complete lattice and $\langle A, \cdot \rangle$ is a semigroup. A quanlate is called unital, if $\langle A, \cdot \rangle$
 is a monoid.
 \end{defin}
+
+Some example of quantales:
+
+\begin{itemize}
+\item Let $A$ be a semigroup (monoid), then $\langle \mathcal{P}(A), \cdot, \subseteq \rangle$
+is a free (unital) quantale.
+\item Let $R$ be a ring and $Sub(R)$ be a set of additive subgroups of $R$.
+We define $A \cdot B$ as an additive subgroup generated by finite sums of products $ab$ and order is defined by inclusion.
+\item Any locale is a quantale with $\cdot = \wedge$.
+\end{itemize}
 
 It is easy to see, that any (unital) quantale is a residual (monoid) semigroup. We define divisions as follows:
 
@@ -224,50 +263,40 @@ $ $
 \begin{defin} An open modality (or quantic conucleus) on quantale $\mathcal{Q}$ is a map $\Box : \mathcal{Q} \to \mathcal{Q}$, such that
 
 \begin{enumerate}
-  \item $\Box (x) \leq x$;
-  \item $\Box (x) = \Box(\Box(x))$;
-  \item $x \leq y \Rightarrow \Box (x) \leq \Box (y)$;
-  \item $\Box (x) \cdot \Box (y) = \Box (\Box (x) \cdot \Box (y))$.
+  \item $\Box x \leq x$;
+  \item $\Box x = \Box \Box x$;
+  \item $x \leq y \Rightarrow \Box x \leq \Box y$;
+  \item $\Box x \cdot \Box y = \Box (\Box x \cdot \Box y)$.
 \end{enumerate}
 \end{defin}
+
+For unital quantale, we require that $\Box e = e$.
+
+Note that, we may replace the last condition on equivalent condition $\Box (x) \cdot \Box (y) \leq \Box (x \cdot y)$.
 
 \begin{defin}
   We define a partial order on open modalities on $\mathcal{Q}$ as $\Box_1 \leq \Box_2 \Leftrightarrow \forall a \in Q, \Box_1 (a) \leq \Box_2 (a)$.
 \end{defin}
 
 \begin{lemma}
-  Let $\mathcal{Q}$ be a quantale and $\Box_{\mathcal{Q}}$ be a set of all open modalities on $\mathcal{Q}$. Then $\Box_{\mathcal{Q}}$ is a locally small category.
+  Let $\mathcal{Q}$ be a quantale and $\Box_{\mathcal{Q}}$ be a set of all open modalities on $\mathcal{Q}$.
+  Then $\Box_{\mathcal{Q}}$ is a small category.
 \end{lemma}
 
 \begin{proof}
-  $\langle \Box_{\mathcal{Q}}, \leq \rangle$ form a partial order, so $\langle \Box_{\mathcal{Q}}, \leq \rangle$ is a locally small category.
-\end{proof}
-
-\begin{lemma}
-$ $
-
-  Let $\mathcal{Q} = \langle A, \bigvee, \cdot \rangle$ be a quantale and $\Box : \mathcal{Q} \to \mathcal{Q}$ is an open modality on $\mathcal{Q}$, then
-  $\Box(x) \cdot \Box(y) \leq \Box(x \cdot y)$.
-\end{lemma}
-
-\begin{proof}
-$ $
-
-  $\Box(x) \cdot \Box(y) \leq x \cdot y$, then $\Box(\Box(x) \cdot \Box(y)) \leq \Box(x \cdot y)$, but
-$\Box(x) \cdot \Box(y) \leq \Box(\Box(x) \cdot \Box(y))$. Thus, $\Box(x) \cdot \Box(y) \leq \Box(x \cdot y)$.
+  $\langle \Box_{\mathcal{Q}}, \leq \rangle$ form a partial order, so $\langle \Box_{\mathcal{Q}}, \leq \rangle$ is a small category.
 \end{proof}
 
 \begin{defin}
-  An open modality is called central, if $\forall a, b \in Q, \Box(a) \cdot b = b \cdot \Box(a)$.
-\end{defin}
+$ $
+\begin{enumerate}
+  \item An open modality is called central, if $\forall a, b \in Q, \Box(a) \cdot b = b \cdot \Box(a)$.
 
-\begin{defin}
-  An open modality is called weak idempotent, if $\forall a, b \in Q, \Box(a) \cdot b \leq \Box(a) \cdot b \cdot \Box(a)$ and
+  \item An open modality is called pseudo-idempotent, if $\forall a, b \in Q, \Box(a) \cdot b \leq \Box(a) \cdot b \cdot \Box(a)$ and
   $b \cdot \Box(a) \leq \Box(a) \cdot b \cdot \Box(a)$.
-\end{defin}
 
-\begin{defin}
-  An open modality is called unital, if $\forall a \in Q, \Box(a) \leq e$.
+  \item An open modality is called unital, if $\forall a \in Q, \Box(a) \leq e$.
+\end{enumerate}
 \end{defin}
 
 \begin{lemma}
@@ -302,7 +331,7 @@ Hence, $b \cdot \Box(a) = \Box(a) \cdot b$, so $\forall a \in A, \Box(a) \in \ma
 $ $
 
   Let $\mathcal{Q}$ be a quantale and $S \subseteq \mathcal{Q}$ a subquantale, then $\Box : \mathcal{Q} \to \mathcal{Q}$, such that
-$\Box(a) = \bigvee \{ s \in S \: | \: x \leq a \}$, is an open modality.
+$\Box(a) = \bigvee \{ s \in S \: | \: s \leq a \}$, is an open modality.
 \end{prop}
 
 \begin{proof}
@@ -318,11 +347,8 @@ $ $
 \end{prop}
 
 \begin{proof}
-$ $
 
-  Let $a \in Q$, so $\{ s \in S_1 \: | \: s \leq a \} \subseteq \{ s \in S_2 \: | \: s \leq a \}$, so
-  $\bigvee \{ s \in S_1 \: | \: s \leq a \} \subseteq \bigvee \{ s \in S_2 \: | \: s \leq a \}$.
-  Thus, $\Box_1 (a) \leq \Box_2 (a)$.
+Immediatly.
 \end{proof}
 
 \begin{prop}
@@ -354,23 +380,6 @@ $ $
 
 \begin{proof}
   Follows from Lemma 3.
-\end{proof}
-
-\begin{prop}
-$ $
-
-\begin{enumerate}
-  \item $\Box_z (a) \vee \Box_{\mathds{1}} (a) \vee \Box_{idem} (a) \leq \Box(a)$
-  \item $\Box_{z, \mathds{1}, idem} \leq \Box_{z, \mathds{1}} (a) \wedge \Box_{z, idem} (a)$
-\end{enumerate}
-\end{prop}
-
-\begin{lemma}
-  $\forall a \in Q, \Box_1 (a) \leq \Box_2 (\Box_1 (a))$, if $\Box_1 (a) \leq \Box_2 (a)$.
-\end{lemma}
-
-\begin{proof}
-  $\Box_1 (a) \leq \Box_1 (\Box_1 (a)) \leq \Box_2 (\Box_1 (a))$
 \end{proof}
 
 \begin{lemma}
@@ -407,7 +416,7 @@ $ $
   \end{cases}$
 \end{defin}
 
-\begin{defin} Let $\mathcal{Q}$ be a quantale, $f : Tp \to \mathcal{Q}$ a valuation and $\sigma : I \to \Box_{\mathcal{Q}}$ a subexponential interpretation, then
+\begin{defin} Let $\mathcal{Q}$ be an unital quantale, $f : Tp \to \mathcal{Q}$ a valuation and $\sigma : I \to \Box_{\mathcal{Q}}$ a subexponential interpretation, then
   interpretation is defined inductively:
 
 \begin{center}
@@ -433,11 +442,9 @@ $\begin{array}{lll}
 \end{theorem}
 
 \begin{proof}
-We consider cases with modal rules.
+We consider the promotion case, the rest modal cases are immediatly shown.
 
-\begin{enumerate}
-
-\item Let $!_{s_1} A_1, \dots, !_{s_n} A_n \rightarrow A$ and $\forall i, s \preceq s_i$.
+Let $!_{s_1} A_1, \dots, !_{s_n} A_n \rightarrow A$ and $\forall i, s \preceq s_i$.
 
 Then $\forall a \in Q, \sigma(s_i)(a) \leq \sigma(s)(a)$.
 
@@ -448,40 +455,6 @@ Thus, $\sigma(s)(\sigma(s_1)[\![A_1]\!] \cdot \dots \cdot \sigma(s_n) [\![A_n]\!
 By Lemma 5, $\sigma(s_1)[\![A_1]\!] \cdot \dots \cdot \sigma(s_n) [\![A_n]\!] \leq \sigma(s)(\sigma(s_1)[\![A_1]\!] \cdot \dots \cdot \sigma(s_n) [\![A_n]\!])$.
 
 So, $\sigma(s_1)[\![A_1]\!] \cdot \dots \cdot \sigma(s_n) [\![A_n]\!] \leq \sigma(s)([\![A]\!])$.
-
-\item Let $\Gamma, A, \Delta \rightarrow B$.
-
-By IH, $[\![\Gamma]\!] \cdot [\![A]\!] \cdot [\![\Delta]\!] \leq [\![B]\!]$.
-
-By the definition, $\sigma(s_i)([\![A]\!]) \leq [\![A]\!]$.
-
-So, $[\![\Gamma]\!] \cdot \sigma(s_i)([\![A]\!]) \cdot [\![\Delta]\!] \leq [\![B]\!]$
-
-\item Let $\Gamma, \Delta \rightarrow B$, $A \in Fm$, and $s_i \in W$.
-
-So, $[\![\Gamma]\!] \cdot [\![\Delta]\!] \leq [\![B]\!]$,
-then $[\![\Gamma]\!] \cdot e \cdot [\![\Delta]\!] \leq [\![B]\!]$, where $e \in Q$ is unit.
-
-By the definition of unital open modality, $\sigma(s_i)([\![A]\!]) \leq e$.
-
-Thus, $[\![\Gamma]\!] \cdot \sigma(s_i)([\![A]\!]) \cdot [\![\Delta]\!] \leq [\![B]\!]$.
-
-\item Let $\Gamma, !_{s_i} A, \Delta, !_{s_i} A, \Pi \rightarrow B$ and $s_i \in C$.
-
-By IH, $[\![\Gamma]\!] \cdot \sigma(s_i)([\![A]\!]) \cdot [\![\Delta]\!] \cdot \sigma(s_i)([\![A]\!]) \cdot [\![\Pi]\!] \leq [\![B]\!]$.
-
-By the definition, $\sigma(s_i)([\![A]\!]) \cdot [\![\Delta]\!] \leq \sigma(s_i)([\![A]\!]) \cdot [\![\Delta]\!] \cdot \sigma(s_i)([\![A]\!])$.
-
-Then $[\![\Gamma]\!] \cdot \sigma(s_i)([\![A]\!]) \cdot [\![\Delta]\!] \cdot [\![\Pi]\!] \leq [\![B]\!]$
-
-\item Let $\Gamma, !_{s_i} A, \Delta, \Pi \rightarrow B$ and $s_i \in E$, so $\sigma(s_i)(a) \in \mathcal{Z}(\mathcal{Q})$ for all $a \in Q$ by the definition.
-
-By IH, $[\![\Gamma]\!] \cdot \sigma(s_i)([\![A]\!]) \cdot [\![\Delta]\!] \cdot [\![\Pi]\!] \leq [\![B]\!]$
-
-Hence, $[\![\Gamma]\!] \cdot [\![\Delta]\!] \cdot \sigma(s_i)([\![A]\!]) \cdot [\![\Pi]\!] \leq [\![B]\!]$.
-
-\end{enumerate}
-
 \end{proof}
 
 \section{Quantale completeness}
@@ -654,5 +627,228 @@ $ $
 \begin{proof}
   Follows from lemmas above.
 \end{proof}
+
+\begin{defin} Monoidal comonad
+  $ $
+
+  A monoidal comonad on some monoidal category $\mathcal{C}$ is a triple $\langle \mathcal{F}, \epsilon, \delta \rangle$,
+  where $\mathcal{F}$ is a monoidal endofunctor and $\epsilon : \mathcal{F} \Rightarrow Id_{\mathcal{C}}$ (counit) and $\epsilon : \mathcal{F} \Rightarrow \mathcal{F}^2$ (comultiplication),
+  such that the following diagrams commute:
+
+\begin{minipage}{0.45\textwidth}
+\begin{small}
+\xymatrix{
+\mathcal{F}A \otimes \mathcal{F}B \ar[dd]_{\delta_A \otimes \delta_B} \ar[r]^{\phi_{A,B}} & \mathcal{F}(A \otimes B) \ar[dr]^{\delta_{A \otimes B}} \\
+&& \mathcal{F}\mathcal{F}(A \otimes B) \\
+\mathcal{F}\mathcal{F}A \otimes \mathcal{F}\mathcal{F}B \ar[r]_{\phi_{\mathcal{F}A, \mathcal{F}B}} & \mathcal{F}(\mathcal{F}A \otimes \mathcal{F}B) \ar[ur]_{\mathcal{F}(\phi_{A,B})}
+}
+\end{small}
+\end{minipage}%
+\hfill
+\begin{minipage}{0.5\textwidth}
+\begin{tabular}{p{\textwidth}}
+\xymatrix{
+\mathcal{F}A \otimes \mathcal{F}B \ar[rr]^{\phi_{A,B}} \ar[dr]_{\epsilon_A \otimes \epsilon_B} && \mathcal{F}(A \otimes B) \ar[dl]^{\epsilon_{A \otimes B}} \\
+& A \otimes B &
+}
+\end{tabular}
+\end{minipage}%
+
+\xymatrix{
+&&&&&&& \mathds{1} \ar[r]^{\phi} \ar[d]_{\phi} & \mathcal{F}\mathds{1} \ar[d]^{\delta_{\mathds{1}}} \\
+&&&&&&& \mathcal{F}\mathds{1} \ar[r]_{\mathcal{F}(\phi)} & \mathcal{F}\mathcal{F}\mathds{1}
+}
+
+\xymatrix{
+&&&&&&& \mathds{1} \ar[dr]_{\phi} \ar[rr]^{id_{\mathds{1}}} && \mathds{1}\\
+&&&&&&&& \mathcal{F}\mathds{1} \ar[ur]_{\epsilon_{\mathds{1}}} &
+}
+\end{defin}
+
+\begin{defin} Biclosed monoidal category
+
+  Let $\mathcal{C}$ be a monoidal category. Biclosed monoidal category is a monoidal category with the following additional data:
+  \begin{enumerate}
+    \item Bifunctors $\underline{\quad} \multimapinv \underline{\quad}, \underline{\quad} \multimap \underline{\quad} : \mathcal{C}^{op} \times \mathcal{C} \to \mathcal{C}$;
+    \item Natural isomophism ${\bf curry}_{A,B,C} : Hom (A \otimes B, C) \cong (B, A \multimap C)$;
+    \item Natural isomophism ${\bf curry}^{'}_{A,B,C} : Hom (A \otimes B, C) \cong (A, C \multimap B)$;
+    \item For each $A, B \in Ob_{\mathcal{C}}$, there are exist arrows $ev_{A,B} : A \otimes (A \Rightarrow B) \rightarrow B$ and $ev_{A,B}^{'} : (B \Leftarrow A) \otimes A \rightarrow B$,
+    such that for all $f : A \otimes C \rightarrow B$:
+      \begin{enumerate}
+        \item $\Lambda_l \circ (id_A \otimes {\bf curry}(f)) = f$;
+        \item $\Lambda_r \circ ({\bf curry}^{'}(f) \otimes id_A) = f$
+      \end{enumerate}
+  \end{enumerate}
+\end{defin}
+
+\begin{defin}
+  Let $F$ be endofunctor and $A \in Ob\mathcal{C}$, then a coalgebra of $F$ is a tuple $\langle A, \theta \rangle$, where $\theta : A \to F A$.
+\end{defin}
+
+Given coalgebras $\langle A, \theta \rangle$ and $\langle A, \psi \rangle$, a homomorphism is a morphism $f : A \to B$, s.t. the diagram below commutes:
+
+\xymatrix{
+&&&&&& A \ar[dd]_{f} \ar[rr]^{\theta} && F A \ar[dd]^{F f} \\
+\\
+&&&&&& B \ar[rr]_{\psi} && F B
+}
+that is, $F f \circ \theta = \psi \circ f$
+
+\begin{defin} Subexponential model structure
+
+  Let $\Sigma = \langle I, \preceq, W, C, E \rangle$ be a subexponential signature and $\mathcal{C}$ be a biclosed monoidal category,
+  then a subexponential model structure is $\langle \mathcal{C}, \{ \mathcal{F}_{s} \}_{s \in I} \rangle$ with the following additional data:
+
+\begin{itemize}
+  \item for all $s \in I$, $\mathcal{F}_s$ is a monoidal comonad;
+  \item if $s \in W$, then for all $A \in Ob(\mathcal{C})$, there exists a morphism ${w_{A}}_{s} : F_s A \to \mathds{1}$;
+  \item if $s \in C$, then for all $A \in Ob(\mathcal{C})$, there exists morphisms
+${w_{A}}_{l} : F_s A \otimes A \otimes F_s A \to F_s A \otimes B$ and ${w_{A}}_{r} : F_s A \otimes A \otimes F_s A \to B \otimes F_s A$;
+  \item if $s \in E$, then for all $A \in Ob(\mathcal{C})$, there is an isomorpism, ${e_A} : F_s A \otimes B \cong B \otimes F_s A$;
+  \item if $s_1 \in W$, $s_2 \in I$ and $s_1 \preceq s_2$, then there is a morphism ${w_{A}}_{s_2} : F_{s_2} A \to \mathds{1}$ for all $A \in Ob(\mathcal{C})$ and ditto for $E$ and $C$;
+  \item Let $\bigotimes_{s \in J, i = 0}^{n} F_{s} A$, where $J \subset I$, and $s^{'} \in I$, s.t. $s \succeq s^{'}$ for all $s \in I'$;
+  Then there exists morphism a morphism $\theta_{\bigotimes_{s \in J, i = 1}^{n} {F_{s}}_j A_i} : \bigotimes_{s \in J, i = 0}^{n} F_{s} A \to F_{s^{'}} (\bigotimes_{s \in J, i = 0}^{n} F_{s} A)$, such that
+  $\langle \bigotimes_{s \in J, i = 1}^{n} {F_{s}}_j A_i, \theta_{\bigotimes_{s \in J, i = 1}^{n} {F_{s}}_j A_i} \rangle$ is a coalgebra on $F_s$.
+\end{itemize}
+\end{defin}
+
+\begin{defin}
+  Let $\langle \mathcal{C}, \{ \mathcal{F}_{s} \}_{s \in I} \rangle$ be a subexponential model structure
+  for subexponential signature $\Sigma = \langle I, \preceq, W, C, E \rangle$.
+  Let $v : Tp \to Ob(\mathcal{C})$ be a valuation map. Then the interpretation function $[\![.]\!]$ is defined as follows:
+
+$\begin{array}{lll}
+(1) &[\![{\bf 1}]\!] = \mathds{1}& \\
+(2) &[\![A \backslash B]\!] = [\![A]\!] \multimap [\![B]\!]& \\
+(3) &[\![A / B]\!] = [\![A]\!] \multimapinv [\![B]\!]& \\
+(4) &[\![A \bullet B]\!] = [\![A]\!] \otimes [\![B]\!]&\\
+(5) &[\![!_{s} A]\!] = F_s [\![A]\!]& \\
+\end{array}$
+\end{defin}
+
+\begin{theorem} The following statements are equivalent:
+
+  \begin{itemize}
+    \item $SMLC_{\Sigma} + (cut) \vdash \Gamma \Rightarrow A$
+    \item $SMLC_{\Sigma} \vdash \Gamma \Rightarrow A$
+    \item $\exists f, f : [\![\Gamma]\!] \rightarrow [\![A]\!]$
+  \end{itemize}
+\end{theorem}
+
+\begin{proof}
+  \begin{itemize}
+$ $
+
+    \item (1) $\Rightarrow$ (2): cut elimination.
+    \item (2) $\Rightarrow$ (3): Soundness:
+
+\begin{prooftree}
+  \AxiomC{$f : \Gamma \otimes A \otimes \Delta \rightarrow B$}
+  \UnaryInfC{$f \circ (id_{\Gamma} \otimes \delta_s^{A} \otimes id_{\Delta}) : \Gamma \otimes F_s A \otimes \Delta \rightarrow B$}
+\end{prooftree}
+
+\begin{prooftree}
+  \AxiomC{$f : F_{s_1} A_1 \otimes \dots \otimes F_{s_n} A_n \rightarrow B$}
+  \UnaryInfC{$F_s(f) : F_s(F_{s_1} A_1 \otimes \dots \otimes F_{s_n} A_n) \rightarrow F_s B$}
+  \UnaryInfC{$F_s (f) \circ \theta_{\bigotimes_{s \in J, i = 1}^{n} {F_{s}}_j A_i} : F_{s_1} A_1 \otimes \dots \otimes F_{s_n} A_n \rightarrow F_s B$}
+\end{prooftree}
+
+\begin{prooftree}
+  \AxiomC{$f : \Gamma \otimes \Delta \rightarrow A$}
+  \UnaryInfC{$f \circ (\rho_{\Gamma} \otimes id_{\Delta}) : (\Gamma \otimes \mathds{1}) \otimes \Delta \rightarrow A$}
+  \UnaryInfC{$f \circ (\rho_{\Gamma} \otimes id_{\Delta}) \circ (id_{\Gamma} \otimes {w_{A}}_{s}) \otimes id_{\Delta} : (\Gamma \otimes F_s A) \otimes \Delta \rightarrow A$}
+\end{prooftree}
+
+\begin{prooftree}
+  \AxiomC{$f : \Gamma \otimes (F_s A \otimes B \otimes F_s A) \otimes \Delta \rightarrow C$}
+  \UnaryInfC{$f \circ (id_{\Gamma} \otimes {c_A}_{s}^l \otimes id_{\Delta}) : \Gamma \otimes (F_s A \otimes B) \otimes \Delta \rightarrow C$}
+\end{prooftree}
+
+\begin{prooftree}
+  \AxiomC{$f : \Gamma \otimes (F_s A \otimes B \otimes F_s A) \otimes \Delta \rightarrow C$}
+  \UnaryInfC{$(id_{\Gamma} \otimes {c_A}_{s}^r \otimes id_{\Delta}) \circ f: \Gamma \otimes (B \otimes F_s A) \otimes \Delta \rightarrow C$}
+\end{prooftree}
+
+\begin{prooftree}
+  \AxiomC{$f : \Gamma \otimes (\Delta \otimes F_s A) \otimes \Theta \rightarrow B$}
+  \UnaryInfC{$(id_{\Gamma} \otimes (id_{\Delta} \otimes {e_A}_{s}) \otimes id_{\Theta}) \circ f: \Gamma \otimes (F_s A \otimes \Delta) \otimes \Theta \rightarrow B$}
+\end{prooftree}
+
+\begin{prooftree}
+  \AxiomC{$f : \Gamma \otimes (F_s A \otimes \Delta) \otimes \Theta \rightarrow B$}
+  \UnaryInfC{$(id_{\Gamma} \otimes (id_{\Delta} \otimes {e_A}_{s}^{-1}) \otimes id_{\Theta}) \circ f: \Gamma \otimes (\Delta \otimes F_s A) \otimes \Theta \rightarrow B$}
+\end{prooftree}
+
+    \item Completeness:
+
+\begin{defin}
+\end{defin}
+
+  \end{itemize}
+\end{proof}
+
+\section{Relational semantics}
+
+\begin{defin}
+  $ $
+
+  Let $A$ be a set. Then relational quantale on $A$ is a tuple $\mathcal{Q} = \langle \mathcal{A}, \mathcal{I} \rangle$
+  where $\mathcal{A} \subseteq 2^{A \times A}$:
+
+  \begin{itemize}
+    \item $\langle \mathcal{A}, \subseteq \rangle$ is a complete semi-lattice;
+    \item Multiplication is defined as
+      $R \circ S = \{ \langle a, c \rangle \: | \: \exists b \in A, \langle a, b \rangle \in R \text{ and } \langle b, c \rangle \in S\}$
+    \item $\langle \mathcal{A}, \circ, \mathcal{I} \rangle$ is a monoid;
+    \item For each indexing set $J$, $R \circ \bigvee_{j \in J} S_j = \bigvee_{j \in J} (R \circ S_j)$ and
+      $\bigvee_{j \in J} R_j \circ S = \bigvee_{j \in J}(R_j \circ S)$.
+  \end{itemize}
+\end{defin}
+
+Let us define forcing relation $\Vdash$ between elements of $\mathcal{Q}$ and types as follows for arbitrary valuation map $w : Tp \to \mathcal{A}$:
+\begin{enumerate}
+  \item Let $p_i \in Tp$, then $\langle a, b \rangle \Vdash p_i \Leftrightarrow \langle a, b \rangle \in w(p_i)$;
+  \item $\langle a, b \rangle \Vdash {\bf 1} \Leftrightarrow \langle a, b \rangle \in \mathcal{I}$;
+  \item $\langle a, b \rangle \Vdash A \backslash B \Leftrightarrow \forall c \in A, \langle c, a \rangle \Vdash A \Rightarrow \langle c, b \rangle \Vdash A$;
+  \item $\langle a, b \rangle \Vdash B / A \Leftrightarrow \forall c \in A, \langle a, c \rangle \Vdash A \Rightarrow \langle b, c \rangle \Vdash A$;
+  \item $\langle a, b \rangle \Vdash A \bullet B \Leftrightarrow \exists c, \langle a, c \rangle \Vdash A \text{ and } \langle c, b \rangle \Vdash B$;
+  \item $\langle a, b \rangle \Vdash A \lor B \Leftrightarrow \langle a, b \rangle \Vdash A \text{ or } \langle a, b \rangle \Vdash B$;
+  \item $\langle a, b \rangle \Vdash A \& B \Leftrightarrow \langle a, b \rangle \Vdash A \text{ and } \langle a, b \rangle \Vdash B$;
+  \item $\langle a, b \rangle \Vdash !A \Leftrightarrow \exists S_{\langle a, b \rangle} \forall \langle a', b' \rangle \in S_{\langle a, b \rangle}, \langle a', b' \rangle \Vdash A$
+  \item $\langle a, b \rangle \Vdash \Gamma \rightarrow A \Leftrightarrow \langle a,b \rangle \Vdash A_1 \bullet \dots \bullet A_n \Rightarrow  \langle a,b \rangle \vdash A$;
+\end{enumerate}
+
+Example:
+
+\begin{itemize}
+Let us show that $\mathcal{Q} \models !A \rightarrow A$.
+
+Let $\mathcal{Q} \models !A$ and $v$ be a valuation, hence $\langle a, b \rangle \Vdash !A$.
+Hence there exists $S_{\langle a, b \rangle} \subseteq \mathcal{Q}$,
+such that $\forall \langle a', b' \rangle \in S_{\langle a, b \rangle}, \langle a', b' \rangle \models A$,
+but $\langle a, b \rangle \in S_{\langle a, b \rangle}$, so $\langle a, b \rangle \models A$.
+
+\item Let us show that $\mathcal{Q} \models !A \rightarrow !!A$.
+
+Let $\langle a, b \rangle \models !A$. Let us show that $\langle a, b \rangle \models !!A$.
+
+So there exists $S_{\langle a, b \rangle} \subseteq \mathcal{Q}$,
+such that $\forall \langle a', b' \rangle \in S_{\langle a, b \rangle}, \langle a', b' \rangle \models A$.
+
+Let $S' \subseteq S_{\langle a, b \rangle}$, then for each $\langle a', b' \rangle \in S', \langle a', b' \rangle \Vdash A$,
+so $\forall \langle a', b' \rangle \in S_{\langle a, b \rangle}, \langle a', b' \rangle \models !A$, so  $\langle a, b \rangle \models !!A$.
+\end{itemize}
+
+\begin{theorem}
+
+  Let $\langle A \rangle$
+\end{theorem}
+
+
+\begin{theorem}
+$ $
+
+  Let $\mathcal{Q}$ be a relational quantale, then $Log(\mathcal{Q}) = L^{*}(\backslash, /, \bullet, {\bf 1}, \&, \vee)$.
+\end{theorem}
 
 \end{document}
