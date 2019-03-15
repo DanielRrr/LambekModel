@@ -217,6 +217,11 @@ Structural rules:
 \end{minipage}
 \end{defin}
 
+\begin{defin}
+  By ${L^{*}_{\bf 1} \land \lor}_{\bf S4}$ we mean $SMALC_{\Sigma}$, where $\Sigma = \{ s \}$ and $C = W = E = \emptyset$.
+\end{defin}
+
+
 \begin{theorem}
 $ $
 
@@ -809,37 +814,74 @@ $ $
   \end{itemize}
 \end{defin}
 
+\begin{prop}
+  $ $
+
+Let $\mathcal{Q}_1$, $\mathcal{Q}_2$ be quantales and
+$\mathcal{S} \subseteq \mathcal{Q}_1$ is a subquantale of $\mathcal{Q}_2$.
+
+Then, if $f : \mathcal{Q}_1 \to \mathcal{Q}_2$ is a quantale homomorphism, then $f(\mathcal{S}) \subseteq \mathcal{Q}_2$ is a subquantale of $\mathcal{Q}_2$.
+\end{prop}
+
+\begin{proof}
+  It is clearly that $f(\mathcal{S}) \subseteq \mathcal{Q}_2$ is a submonoid of $\mathcal{Q}_2$.
+
+  Let $a \in S$, so $\bigvee a \in S$, but $f(a) \in f(\mathcal{S})$, so $f(\bigvee a) = \bigvee (f (a)) \in f(\mathcal{S})$,
+  so $f(\mathcal{S})$ is closed under joins, so $f(\mathcal{S})$ is a subquantale of $\mathcal{Q}_2$
+\end{proof}
+
 \begin{theorem}
-  Every unital quantale $\mathcal{Q} = \langle A, \leq, \cdot, \bigvee \rangle$ with quantic conucleus $\Box$ is
-  isomorphic to some relation quantale $\hat{\Box}$
+  $ $
+
+  Let $\mathcal{Q} = \langle A, \leq, \cdot, \bigvee \rangle$ be a unital quantale and $\mathcal{S}$ is a subquantale of $\mathcal{Q}$.
+
+  Then $\langle \mathcal{Q}, \Box_{\mathcal{S}} \rangle$ is isomorphic to some relational quantale of $A$
+  wit some quantic conucleus $\hat{\Box}$.
 \end{theorem}
 
 \begin{proof}
-  Consider a relational quantale by Brown and Gurr $\hat{\mathcal{Q}} = \langle \mathcal{R}, \subseteq, \circ, \bigvee \rangle$ where:
+  Consider a relational quantale proposed by Brown and Gurr. This quantale is 4-tuple $\theta(\mathcal{Q}) = \langle \mathcal{R}, \subseteq, \circ, \bigvee \rangle$ defined as follows:
   \begin{enumerate}
-    \item $\hat{a} = \{ \langle b, c \rangle \: | \: b \cdot a \leq c \}$;
-    \item $\widehat{a \cdot b} = \hat{a} \circ \hat{b}$;
-    \item $\widehat{\bigvee a} = \bigvee \hat{a}$.
+    \item $\theta(a) = \{ \langle b, c \rangle \: | \: b \leq a \cdot c \}$;
+    \item $\theta(a \cdot b) = \theta(a) \circ \theta(b)$;
+    \item $\theta(\bigvee a) = \bigvee \theta(a)$;
+    \item $\theta(\varepsilon) = \{ \langle b, c \rangle \: | \: b \cdot \varepsilon \leq c \} = \{ \langle b, c \rangle \: | \: b \leq c \}$
   \end{enumerate}
 
-  Consider $\hat{\Box} \hat{a} = \bigvee $
+  Let $\mathcal{S} \subseteq \mathcal{Q}$, we define $\Box a = \{ s \: | \: s \in S, s \leq a \}$ is quantic conucleus.
 
-  \begin{enumerate}
-    \item $\hat{\Box} \hat{a} \subseteq \hat{a}$;
-    \item $\hat{\Box} \hat{a} \subseteq \hat{\Box} \hat{\Box} \hat{a}$;
-    \item $\hat{a} \subseteq \hat{b} \Rightarrow \hat{\Box}\hat{a} \subseteq \hat{\Box}\hat{b}$;
-    \item $\hat{\Box}\hat{a} \circ \hat{\Box}\hat{b} \subseteq \Box(\hat{a} \circ \hat{b})$;
-    \item $\hat{\Box}\hat{\varepsilon} = \hat{\varepsilon}$.
-  \end{enumerate}
+  So, $\theta(S) \subseteq \theta(\mathcal{Q})$ is a subquantale of $\theta(\mathcal{Q})$.
 
-  Let us show that $\hat{\Box} \hat {a} = \widehat{\Box a} = \{ \langle b, c \rangle \: | \:  b \cdot \Box a \leq c \}$
+  Let us define $\theta(\Box) \theta{a} := \bigvee \{ \theta{s} \: | \: \theta{s} \in \theta{S}, \theta{s} \subseteq \theta{a} \}$, so
+
+  $\begin{array}{lll}
+  &\theta(\Box a) = \{ \langle p, q \rangle \: | \: p \leq \Box a \cdot q \} = &\\
+  &\{ \langle p, q \rangle \: | \: p \leq \bigvee \{ s \: | \: s \in S, s \leq a \} \cdot q \} = &\\
+  &\theta(\bigvee_{s \in S, s \leq a} s) = & \\
+  &\bigvee_{s \in S, s \leq a} \theta(s) = & \\
+  &\bigvee \{ \theta(s) \: | \: s \in S, s \leq a \} = & \\
+  &\bigvee \{ \theta(s) \: | \: \theta(s) \in \theta(S), \theta(s) \subseteq \theta(a) \} = \theta(\Box) \theta(a)& \\
+  \end{array}$
+
 \end{proof}
 
+\begin{theorem}
+  $\Gamma \models A$, then ${L^{*}_{\bf 1} \land \lor}_{\bf S4} \vdash \Gamma \rightarrow A$
+\end{theorem}
 
 \begin{defin}
-  Let $W$ be a set. A Kripke frame is a 3-tuple $\mathcal{W} = \langle W, R, I \rangle$,
-  where $R$ is a ternary relation on $W$ and $I$ is an unary relation on $W$.
+  Let $W$ be a set. A Kripke frame is a 3-tuple $\mathcal{W} = \langle W, R, I\rangle$,
+  where $R$ is a ternary relation on $W$ and $I$ is an unary relation on $W$ with additional requirements:
 
+\begin{enumerate}
+    \item $R^2 a (b c) d \Leftrightarrow R^2 (a b) c d$;
+    \item $I(b) \Leftrightarrow R a b a \& R b a a$;
+    \item $a \leq b \Leftrightarrow I(c) \& R c a b$;
+    \item $ $
+\end{enumerate}
+\end{defin}
+
+\begin{defin}
   A Kripke model is a triple $\mathcal{M} = \langle \mathcal{W}, v \rangle$, where
   $\mathcal{W}$ is a Kripke frame and $v : Tp \to 2^W$.
 
@@ -848,10 +890,10 @@ $ $
   \begin{enumerate}
     \item $\mathcal{M}, w \Vdash p_i \Leftrightarrow w \in v(p_i)$;
     \item $\mathcal{M}, w \Vdash {\bf 1} \Leftrightarrow I(w)$;
-    \item $\mathcal{M}, w \Vdash A \bullet B \Leftrightarrow \exists u, v \in W, R(u,v,w) \text{ and } \mathcal{W}, u \Vdash A \text{ and } \mathcal{W}, v \Vdash B$;
-    \item $\mathcal{M}, w \Vdash A \backslash B \Leftrightarrow \forall u, v \in W, R(u,w,v) \text{ and } \mathcal{W}, u \Vdash A \text{ implies } \mathcal{W}, v \Vdash B$;
-    \item $\mathcal{M}, w \Vdash B / A \Leftrightarrow \forall u, v \in W, R(w,u,v) \text{ and } \mathcal{W}, u \Vdash A \text{ implies } \mathcal{W}, v \Vdash B$;
-    \item $\mathcal{M}, w \Vdash A \lor B \Leftrightarrow \forall u, v \in W, R(u,v,w) \text{ either } \mathcal{W}, u \Vdash A \text{ or } \mathcal{W}, v \Vdash B$;
+    \item $\mathcal{M}, w \Vdash A \bullet B \Leftrightarrow \exists u, v \in W, R u v w \text{ and } \mathcal{W}, u \Vdash A \text{ and } \mathcal{W}, v \Vdash B$;
+    \item $\mathcal{M}, w \Vdash A \backslash B \Leftrightarrow \forall u, v \in W, R u w v \text{ and } \mathcal{W}, u \Vdash A \text{ implies } \mathcal{W}, v \Vdash B$;
+    \item $\mathcal{M}, w \Vdash B / A \Leftrightarrow \forall u, v \in W, R w u v \text{ and } \mathcal{W}, u \Vdash A \text{ implies } \mathcal{W}, v \Vdash B$;
+    \item $\mathcal{M}, w \Vdash A \lor B \Leftrightarrow \exists u, v \in W, S w u v \text{ and } \mathcal{W}, u \Vdash A \text{ and } \mathcal{W}, v \Vdash B$;
     \item $\mathcal{M}, w \Vdash A \land B \Leftrightarrow \mathcal{W}, w \Vdash A \text{ and } \mathcal{W}, w \Vdash A$;
     \item $\mathcal{M}, w \Vdash \Gamma \rightarrow A \Leftrightarrow \mathcal{W}, w \Vdash \bullet \Gamma \text{ implies } \mathcal{W}, w \Vdash A$.
   \end{enumerate}
@@ -884,16 +926,12 @@ $ $
 \end{proof}
 
 \begin{defin}
-  Mininal normal modal Lambek calculus is $L^{*}_{\bf 1} \land \lor$ with additional rule:
+  Mininal normal modal Lambek calculus ($L{\bf K}$) is $L^{*}_{\bf 1} \land \lor$ with additional rule:
 
   \begin{prooftree}
     \AxiomC{$\Gamma \rightarrow A$}
     \UnaryInfC{$!\Gamma \rightarrow !A$}
   \end{prooftree}
-\end{defin}
-
-\begin{defin}
-  By ${L^{*}_{\bf 1} \land \lor}_{\bf S4}$ we mean $SMALC_{\Sigma}$, where $\Sigma = \{ s \}$ and $C = W = E = \emptyset$.
 \end{defin}
 
 \begin{defin}
