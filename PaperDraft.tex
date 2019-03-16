@@ -52,17 +52,17 @@
 
 \begin{defin} A subexponential signature is an ordered quintuple:
 
-  $\Sigma = \langle I, \preceq, W, C, E \rangle$,
+  $\Sigma = \langle \mathcal{I}, \preceq, \mathcal{W}, \mathcal{C}, \mathcal{E} \rangle$,
 \end{defin}
 
-where $I = \{ s_1, \dots, s_n\}$, $\langle I, \preceq \rangle$ is a preorder.
-$W, C, E$ are upwardly closed subsets of $I$ and $W \cap C \subseteq E$.
+where $I = \{ s_1, \dots, s_n\}$, $\mathcal{I}, \preceq \rangle$ is a preorder.
+$W, C, E$ are upwardly closed subsets of $I$ and $\mathcal{W} \cap \mathcal{C} \subseteq \mathcal{E}$.
 
 
 \begin{defin}
 $ $
 
-  $\mathcal{F}_{\Sigma} ::= Tp \: | \: (\mathcal{F}_{\Sigma} / \mathcal{F}_{\Sigma}) \: | \: (\mathcal{F}_{\Sigma} \backslash \mathcal{F}_{\Sigma}) \: | \: (\mathcal{F}_{\Sigma} \bullet \mathcal{F}_{\Sigma}) \: | \: (\mathcal{F}_{\Sigma} \lor \mathcal{F}_{\Sigma}) \: | (\mathcal{F}_{\Sigma} \land \mathcal{F}_{\Sigma}) \: | !_s \mathcal{F}_{\Sigma} $
+  $\mathcal{F}_{\Sigma} ::= Tp \: | \: (\mathcal{F}_{\Sigma} / \mathcal{F}_{\Sigma}) \: | \: (\mathcal{F}_{\Sigma} \backslash \mathcal{F}_{\Sigma}) \: | \: (\mathcal{F}_{\Sigma} \bullet \mathcal{F}_{\Sigma}) \: | \: (\mathcal{F}_{\Sigma} \lor \mathcal{F}_{\Sigma}) \: | (\mathcal{F}_{\Sigma} \land \mathcal{F}_{\Sigma}) \: | {!_s \mathcal{F}_{\Sigma}}_{s \in \mathcal{I}} $
 \end{defin}
 
 \begin{defin} Noncommutative linear logic with subexponentials ($SMALC_{\Sigma}$), where $\Sigma$ is a subexponential signature.
@@ -237,9 +237,15 @@ $ $
 \begin{defin} Quantale
 $ $
 
-  A quantale is a triple $\langle A, \bigvee, \cdot \rangle$, such that $\langle A, \bigvee \rangle$
-is a complete lattice and $\langle A, \cdot \rangle$ is a semigroup. A quanlate is called unital, if $\langle A, \cdot \rangle$
-is a monoid.
+  A quantale is a triple $\mathcal{Q} = \langle A, \bigvee, \cdot \rangle$, such that $\langle A, \bigvee \rangle$
+is a complete lattice and $\langle A, \cdot \rangle$ is a semigroup, such that for all indexing set $I$:
+
+\begin{enumerate}
+  \item $a \cdot \bigvee \limits_{i \in I} b_i = \bigvee \limits_{i \in I} (a \cdot b_i)$;
+  \item $\bigvee \limits_{i \in I} a_i \cdot b = \bigvee \limits_{i \in I} (a_i \cdot b)$
+\end{enumerate}
+
+A quanlate is called unital, if $\langle A, \cdot \rangle$ is a monoid.
 \end{defin}
 
 Some example of quantales:
@@ -260,12 +266,54 @@ It is easy to see, that any (unital) quantale is a residual (monoid) semigroup. 
 \end{enumerate}
 
 \begin{defin}
-$ $
 
-  Let $\mathcal{Q} = \langle A, \bigvee, \cdot \rangle$ be a quantale. The center of a quantale is the set $\mathcal{Z}(\mathcal{Q}) = \{ a \in A \: | \: \forall b \in A, a \cdot b = b \cdot a \}$
+  Let $\mathcal{Q}_1$, $\mathcal{Q}_2$ be quantales. A quantale homomorphism is a map $f : \mathcal{Q}_1 \to \mathcal{Q}_2$, such that:
+
+  \begin{enumerate}
+    \item for all $a,b \in \mathcal{Q}_1$, $f(a \cdot b) = f(a) \cdot f(b)$;
+    \item for all indexing set $I$, $f(\bigvee \limits_{i \in I} a_i) = \bigvee \limits_{i \in I} f(a_i)$.
+  \end{enumerate}
+
+  If $\mathcal{Q}_1$, $\mathcal{Q}_2$ are unital quantales, then a unital homomorphism if a quantale homomorphism, such that $f(\varepsilon) = \varepsilon$.
 \end{defin}
 
-\begin{defin} An open modality (or quantic conucleus) on quantale $\mathcal{Q}$ is a map $\Box : \mathcal{Q} \to \mathcal{Q}$, such that
+\begin{defin}
+$ $
+
+  Let $\mathcal{Q} = \langle A, \bigvee, \cdot \rangle$ be a quantale. $\mathcal{S} \subseteq \mathcal{Q}$ is said to be a subquantale, if
+  $\mathcal{S}$ is closed under multiplication and sups.
+\end{defin}
+
+There occurs the following simple statement:
+
+\begin{prop}
+  $ $
+
+Let $\mathcal{Q}_1$, $\mathcal{Q}_2$ be quantales and $\mathcal{S} \subseteq \mathcal{Q}_1$ is a subquantale of $\mathcal{Q}_2$.
+
+Then, if $f : \mathcal{Q}_1 \to \mathcal{Q}_2$ is a quantale homomorphism, then $f(\mathcal{S}) \subseteq \mathcal{Q}_2$ is a subquantale of $\mathcal{Q}_2$.
+
+In other words, a homomorphic image of subquantale is a subquantale.
+\end{prop}
+
+\begin{proof}
+  It is clearly that $f(\mathcal{S}) \subseteq \mathcal{Q}_2$ is a submonoid of $\mathcal{Q}_2$.
+
+  Let $a_i \in S$ for each $i \in I$, so $\bigvee \limits_{i \in I} a_i \in S$, but $f(a_i) \in f(\mathcal{S})$ for any $i \in I$,
+  so $f(\bigvee \limits_{i \in I} a_i) = \bigvee \limits_{i \in I} (f (a)) \in f(\mathcal{S})$, so $f(\mathcal{S})$ is closed under joins, so $f(\mathcal{S})$ is a subquantale of $\mathcal{Q}_2$
+\end{proof}
+
+\begin{defin}
+$ $
+
+  Let $\mathcal{Q} = \langle A, \bigvee, \cdot \rangle$ be a quantale.
+  The center of a quantale is the subquantale $\mathcal{Z}(\mathcal{Q}) = \{ a \in A \: | \: \forall b \in A, a \cdot b = b \cdot a \}$
+\end{defin}
+
+\begin{defin}
+$ $
+
+  An open modality (or quantic conucleus) on quantale $\mathcal{Q}$ is a map $\Box : \mathcal{Q} \to \mathcal{Q}$, such that
 
 \begin{enumerate}
   \item $\Box x \leq x$;
@@ -273,38 +321,50 @@ $ $
   \item $x \leq y \Rightarrow \Box x \leq \Box y$;
   \item $\Box x \cdot \Box y = \Box (\Box x \cdot \Box y)$.
 \end{enumerate}
-\end{defin}
 
 For unital quantale, we require that $\Box e = e$.
+\end{defin}
 
 Note that, we may replace the last condition on equivalent condition $\Box (x) \cdot \Box (y) \leq \Box (x \cdot y)$.
 
 \begin{defin}
+$ $
+
   We define a partial order on open modalities on $\mathcal{Q}$ as $\Box_1 \leq \Box_2 \Leftrightarrow \forall a \in Q, \Box_1 (a) \leq \Box_2 (a)$.
 \end{defin}
 
 \begin{lemma}
-  Let $\mathcal{Q}$ be a quantale and $\Box_{\mathcal{Q}}$ be a set of all open modalities on $\mathcal{Q}$.
-  Then $\Box_{\mathcal{Q}}$ is a small category.
+  $\Box_1 a_1 \cdot \Box_2 a_2 \leq \Box^{'} (\Box_1 a_1 \cdot \Box_2 a_2)$, where $\Box_i \leq \Box, i = 1,2$.
 \end{lemma}
 
 \begin{proof}
-  $\langle \Box_{\mathcal{Q}}, \leq \rangle$ form a partial order, so $\langle \Box_{\mathcal{Q}}, \leq \rangle$ is a small category.
+$ $
+
+  $\begin{array}{lll}
+  &\Box_1 a_1 \cdot \Box_2 a_2 \leq & \\
+  &\Box_1 (\Box_1 a_1) \cdot \Box_2 (\Box_2 a_2) \leq & \\
+  &\Box (\Box_1 a_1) \cdot \Box (\Box_2 a_2) \leq & \\
+  &\Box (\Box_1 (a_1) \cdot \Box_2 (a_2))&
+  \end{array}$
 \end{proof}
 
 \begin{defin}
 $ $
 \begin{enumerate}
-  \item An open modality is called central, if $\forall a, b \in Q, \Box(a) \cdot b = b \cdot \Box(a)$.
+  \item An open modality is called central, if for all
+  $a, b \in \mathcal{Q}, \Box(a) \cdot b = b \cdot \Box(a)$.
 
-  \item An open modality is called pseudo-idempotent, if $\forall a, b \in Q, \Box(a) \cdot b \leq \Box(a) \cdot b \cdot \Box(a)$ and
-  $b \cdot \Box(a) \leq \Box(a) \cdot b \cdot \Box(a)$.
+  \item An open modality is called weak square-increasing,
+  if for all $a, b \in \mathcal{Q}, \Box a \cdot b \leq \Box a \cdot b \cdot \Box a$ and
+  $b \cdot \Box a \leq \Box a \cdot b \cdot \Box a$.
 
-  \item An open modality is called unital, if $\forall a \in Q, \Box(a) \leq e$.
+  \item An open modality is called unital, if $\forall a \in Q, \Box a \leq e$.
 \end{enumerate}
 \end{defin}
 
 \begin{lemma}
+$ $
+
   Let $\Box$ be an open modality on some unital quantale $\mathcal{Q} = \langle A, \bigvee, \cdot, e \rangle$.
   Then, if $\Box$ is unital and weak idempotent, then $\Box$ is central.
 \end{lemma}
@@ -313,30 +373,30 @@ $ $
 $ $
 
   $\begin{array}{lll}
-  & b \cdot \Box(a) \leq & \\
-  & \:\:\:\: \text{Right weak idempotence}& \\
-  &\Box(a) \cdot b \cdot \Box(a) \leq & \\
+  & b \cdot \Box a \leq & \\
+  & \:\:\:\: \text{Right weak square-increase}& \\
+  &\Box a \cdot b \cdot \Box a \leq & \\
   & \:\:\:\: \text{Unitality}& \\
-  & \Box(a) \cdot b \cdot e \leq & \\
+  & \Box a \cdot b \cdot e \leq & \\
   & \:\:\:\: \text{Identity}& \\
-  &\Box(a) \cdot b \leq & \\
-  & \:\:\:\: \text{Left weak idempotence}& \\
-  &\Box(a) \cdot b \cdot \Box(a) \leq & \\
+  &\Box a \cdot b \leq & \\
+  & \:\:\:\: \text{Left weak square-increase}& \\
+  &\Box a \cdot b \cdot \Box a \leq & \\
   & \:\:\:\: \text{Unitality}& \\
-  &e \cdot b \cdot \Box(a) \leq & \\
+  &e \cdot b \cdot \Box a \leq & \\
   & \:\:\:\: \text{Identity}& \\
   &b \cdot \Box(a)&
   \end{array}$
 
-Hence, $b \cdot \Box(a) = \Box(a) \cdot b$, so $\forall a \in A, \Box(a) \in \mathcal{Z}(\mathcal{Q})$.
+Hence, $b \cdot \Box a = \Box a \cdot b$, so for all $a \in \mathcal Q, \Box a \in \mathcal{Z}(\mathcal{Q})$.
 
 \end{proof}
 
 \begin{prop}
 $ $
 
-  Let $\mathcal{Q}$ be a quantale and $S \subseteq \mathcal{Q}$ a subquantale, then $\Box : \mathcal{Q} \to \mathcal{Q}$, such that
-$\Box(a) = \bigvee \{ s \in S \: | \: s \leq a \}$, is an open modality.
+  Let $\mathcal{Q}$ be a quantale and $S \subseteq \mathcal{Q}$ a subquantale,
+  then $\Box : \mathcal{Q} \to \mathcal{Q}$, such that $\Box(a) = \bigvee \{ s \in S \: | \: s \leq a \}$, is an open modality.
 \end{prop}
 
 \begin{proof}
@@ -346,9 +406,9 @@ $\Box(a) = \bigvee \{ s \in S \: | \: s \leq a \}$, is an open modality.
 \begin{prop}
 $ $
 
-  Let $\mathcal{Q}$ be a quantale and $S_1 \subseteq S_2 \subseteq \mathcal{Q}$.
+  Let $\mathcal{Q}$ be a quantale and $\mathcal{S}_1 \subseteq \mathcal{S}_2 \subseteq \mathcal{Q}$.
 
-  Then $\Box_1 (a) \leq \Box_2 (a)$.
+  Then $\Box_{\mathcal{S}_1} (a) \leq \Box_{\mathcal{S}_1} (a)$.
 \end{prop}
 
 \begin{proof}
@@ -359,7 +419,7 @@ Immediatly.
 \begin{prop}
 $ $
 
-Let $\mathcal{Q}$ be a quantale and $S \subseteq \mathcal{Q}$ a subquantale, then the following operations are open modalities:
+Let $\mathcal{Q}$ be a quantale and $\mathcal{S} \subseteq \mathcal{Q}$ a subquantale, then the following operations are open modalities:
 
 \begin{enumerate}
   \item $\Box_z (a) = \bigvee \{ s \in S \: | s \leq a, s \in \mathcal{Z}(\mathcal{Q}) \}$;
@@ -385,21 +445,6 @@ $ $
 
 \begin{proof}
   Follows from Lemma 3.
-\end{proof}
-
-\begin{lemma}
-  $\Box_1(a_1) \cdot \Box_2(a_2) \leq \Box^{'} (\Box_1(a_1) \cdot \Box_2(a_2))$, where $\Box_i \leq \Box^{'}, i = 1,2$.
-\end{lemma}
-
-\begin{proof}
-$ $
-
-  $\begin{array}{lll}
-  &\Box_1(a_1) \cdot \Box_2(a_2) \leq & \\
-  &\Box_1 (\Box_1 (a_1)) \cdot \Box_2 (\Box_2 (a_2)) \leq & \\
-  &\Box^{'} (\Box_1 (a_1)) \cdot \Box^{'} (\Box_2 (a_2)) \leq & \\
-  &\Box^{'}(\Box_1 (a_1) \cdot \Box_2 (a_2))&
-  \end{array}$
 \end{proof}
 
 \begin{defin} Interpretation of subexponential signature
@@ -528,7 +573,7 @@ Thus, $C \rightarrow A$, then $C \rightarrow B$ by cut.
 \end{proof}
 
 \begin{lemma}
-  Let $!_s \in I$ and $A$ be an arbitrary formula, then $\Box_s (\bigvee \{ A \}) = \bigvee \{ B \: | \: !_s B \rightarrow A \}$
+  Let $!_s \in I$ and $A \mathcal{F}_{\Sigma}$, then $\Box_s (\bigvee \{ A \}) = \bigvee \{ !_s B \: | \: !_s B \rightarrow A \}$
   is a quantic conucleus.
 \end{lemma}
 
@@ -539,7 +584,7 @@ See Yetter.
 \end{proof}
 
 \begin{lemma}
-  Let $A$ be a formula, then $\Box_s \bigvee \{ A \} = \bigvee \{ !_s A \}$, for each $s \in \mathcal{I}$.
+  Let $A \in \mathcal{F}_{\Sigma}$, then $\Box_s \bigvee \{ A \} = \bigvee \{ !_s A \}$, for each $s \in \mathcal{I}$.
 \end{lemma}
 
 \begin{proof}
@@ -555,21 +600,22 @@ See Yetter.
 \begin{lemma}
 $ $
 
-  Let $i, j \in I$ and $i \preceq j$, then for all $A \in Fm$, $\Box_j (\bigvee \{ A \}) \subseteq \Box_i (\bigvee \{ A \})$.
+  Let $i, j \in I$ and $i \preceq j$, then for all $A \in \mathcal{F}_{\Sigma}$, $\Box_j (\bigvee \{ A \}) \subseteq \Box_i (\bigvee \{ A \})$.
 \end{lemma}
 
 \begin{proof}
 $ $
 
-  Let $i, j \in I$ and $i \preceq j$. Then forall $A \in Fm$, $!_j A \rightarrow !_i A$ by promotion.
+  Let $i, j \in I$ and $i \preceq j$, then forall $A \in \mathcal{F}_{\Sigma}$, $!_j A \rightarrow !_i A$ by promotion.
   Then $\bigvee \{ !_j A \} \subseteq \bigvee \{ !_i A \}$, so $\Box_j (\bigvee \{ A \}) \subseteq \Box_i (\bigvee \{ A \})$.
 \end{proof}
 
 \begin{lemma}
 $ $
 
+For all $A \in \mathcal{F}_{\Sigma}$,
   \begin{enumerate}
-    \item Let $s \in W$, then for all $A \subseteq Fm$, $\Box_s \{ A \} \subseteq \{ {\bf 1} \}$;
+    \item Let $s \in W$, then $\Box_s \{ A \} \subseteq \{ {\bf 1} \}$;
     \item Let $s \in E$, then $\Box_s (\bigvee \{ A \}) \cdot \bigvee \{ B \} = \bigvee \{ B\} \cdot \Box_s (\bigvee \{ A \})$.
     \item Let $s \in C$, then $(\Box_s \bigvee A \cdot \bigvee B) \cup (\bigvee B \cdot \Box_s \bigvee A) \subseteq \Box_s \bigvee A \cdot \bigvee B \cdot \Box_s \bigvee A$, for all $B \subseteq Fm$.
   \end{enumerate}
@@ -809,26 +855,10 @@ $ $
     \item Multiplication is defined as
       $R \circ S = \{ \langle a, c \rangle \: | \: \exists b \in A, \langle a, b \rangle \in R \text{ and } \langle b, c \rangle \in S\}$
     \item $\langle \mathcal{A}, \circ, \mathcal{I} \rangle$ is a monoid;
-    \item For each indexing set $J$, $R \circ \bigvee_{j \in J} S_j = \bigvee_{j \in J} (R \circ S_j)$ and
-      $\bigvee_{j \in J} R_j \circ S = \bigvee_{j \in J}(R_j \circ S)$.
+    \item For each indexing set $J$, $R \circ \bigvee_{i \in I} S_i = \bigvee_{i \in I} (R \circ S_i)$ and
+      $\bigvee_{i \in I} R_i \circ S = \bigvee_{i \in I}(R_i \circ S)$.
   \end{itemize}
 \end{defin}
-
-\begin{prop}
-  $ $
-
-Let $\mathcal{Q}_1$, $\mathcal{Q}_2$ be quantales and
-$\mathcal{S} \subseteq \mathcal{Q}_1$ is a subquantale of $\mathcal{Q}_2$.
-
-Then, if $f : \mathcal{Q}_1 \to \mathcal{Q}_2$ is a quantale homomorphism, then $f(\mathcal{S}) \subseteq \mathcal{Q}_2$ is a subquantale of $\mathcal{Q}_2$.
-\end{prop}
-
-\begin{proof}
-  It is clearly that $f(\mathcal{S}) \subseteq \mathcal{Q}_2$ is a submonoid of $\mathcal{Q}_2$.
-
-  Let $a \in S$, so $\bigvee a \in S$, but $f(a) \in f(\mathcal{S})$, so $f(\bigvee a) = \bigvee (f (a)) \in f(\mathcal{S})$,
-  so $f(\mathcal{S})$ is closed under joins, so $f(\mathcal{S})$ is a subquantale of $\mathcal{Q}_2$
-\end{proof}
 
 \begin{theorem}
   $ $
@@ -840,28 +870,38 @@ Then, if $f : \mathcal{Q}_1 \to \mathcal{Q}_2$ is a quantale homomorphism, then 
 \end{theorem}
 
 \begin{proof}
-  Consider a relational quantale proposed by Brown and Gurr. This quantale is 4-tuple $\theta(\mathcal{Q}) = \langle \mathcal{R}, \subseteq, \circ, \bigvee \rangle$ defined as follows:
+$ $
+
+  Consider a relational quantale proposed by Brown and Gurr.
+
+  This quantale is 4-tuple $\theta(\mathcal{Q}) = \langle \mathcal{R}, \subseteq, \circ, \bigvee \rangle$ defined as follows:
   \begin{enumerate}
     \item $\theta(a) = \{ \langle b, c \rangle \: | \: b \leq a \cdot c \}$;
     \item $\theta(a \cdot b) = \theta(a) \circ \theta(b)$;
-    \item $\theta(\bigvee a) = \bigvee \theta(a)$;
+    \item $\theta(\bigvee \limits_{i \in I} a_i) = \bigvee \limits_{i \in I} \theta(a_i)$;
     \item $\theta(\varepsilon) = \{ \langle b, c \rangle \: | \: b \cdot \varepsilon \leq c \} = \{ \langle b, c \rangle \: | \: b \leq c \}$
   \end{enumerate}
 
-  Let $\mathcal{S} \subseteq \mathcal{Q}$, we define $\Box a = \{ s \: | \: s \in S, s \leq a \}$ is quantic conucleus.
+  Let $\mathcal{S} \subseteq \mathcal{Q}$, so $\Box_{\mathcal{S}} a := \bigvee \{ s \: | \: s \in S, s \leq a \}$ is quantic conucleus.
 
   So, $\theta(S) \subseteq \theta(\mathcal{Q})$ is a subquantale of $\theta(\mathcal{Q})$.
 
-  Let us define $\theta(\Box) \theta{a} := \bigvee \{ \theta{s} \: | \: \theta{s} \in \theta{S}, \theta{s} \subseteq \theta{a} \}$, so
+  Let us define $\hat{\Box} \theta(a) := \bigvee \{ \theta(s) \: | \: \theta(s) \in \theta(S), \theta(s) \subseteq \theta(a) \}$, so
 
   $\begin{array}{lll}
-  &\theta(\Box a) = \{ \langle p, q \rangle \: | \: p \leq \Box a \cdot q \} = &\\
-  &\{ \langle p, q \rangle \: | \: p \leq \bigvee \{ s \: | \: s \in S, s \leq a \} \cdot q \} = &\\
+  &\theta(\Box_{\mathcal{S}} a) = \{ \langle p, q \rangle \: | \: p \leq \Box_{\mathcal{S}} a \cdot q \} = &\\
+  &\{ \langle p, q \rangle \: | \: p \leq \bigvee \{ s \: | \: s \in \mathcal{S}, s \leq a \} \cdot q \} = &\\
+  &\:\:\:\: \text{Homomorphism}& \\
   &\theta(\bigvee_{s \in S, s \leq a} s) = & \\
+  &\:\:\:\: \text{Homomorphism preserves sups}& \\
   &\bigvee_{s \in S, s \leq a} \theta(s) = & \\
+  &\:\:\:\: \text{Unfolding}& \\
   &\bigvee \{ \theta(s) \: | \: s \in S, s \leq a \} = & \\
-  &\bigvee \{ \theta(s) \: | \: \theta(s) \in \theta(S), \theta(s) \subseteq \theta(a) \} = \theta(\Box) \theta(a)& \\
+  &\:\:\:\: \text{Unfolding}& \\
+  &\bigvee \{ \theta(s) \: | \: \theta(s) \in \theta(S), \theta(s) \subseteq \theta(a) \} = \hat{\Box} \theta(a)& \\
   \end{array}$
+
+So, $\hat{\Box} \theta(a) = \theta(\Box_{\mathcal{S}} a)$.
 
 \end{proof}
 
