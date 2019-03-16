@@ -1,0 +1,131 @@
+\documentclass[a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{bussproofs}
+\usepackage{mathtools}
+\usepackage{verbatim}
+\usepackage{dsfont}
+\usepackage{mathabx}
+\usepackage[all, 2cell]{xy}
+\usepackage[all]{xy}
+\usepackage{wasysym}
+\usepackage{rotating}
+\usepackage{geometry}
+\usepackage{trfsigns}
+\usepackage{cmll}
+\usepackage{authblk}
+
+\theoremstyle{defin}
+\newtheorem{defin}{Definition}
+
+\theoremstyle{theorem}
+\newtheorem{theorem}{Theorem}
+
+\theoremstyle{prop}
+\newtheorem{prop}{Proposition}
+
+\theoremstyle{lemma}
+\newtheorem{lemma}{Lemma}
+
+\theoremstyle{ex}
+\newtheorem{ex}{Example}
+
+\theoremstyle{col}
+\newtheorem{col}{Corollary}
+\usepackage{listings} 		% for source code
+\date{}
+\author[1,2]{Daniel Rogozin}
+\affil[1]{Lomonosov Moscow State University}
+\affil[2]{Serokell O\"{U}}
+\title{Models of Lambek calculus enriched with subexponentials}
+
+\begin{document}
+
+\maketitle
+
+\begin{defin}
+  Let $W$ be a set. A Kripke frame is a 3-tuple $\mathcal{W} = \langle W, R, I\rangle$,
+  where $R$ is a ternary relation on $W$ and $I$ is an unary relation on $W$ with additional requirements:
+
+\begin{enumerate}
+    \item $R^2 a (b c) d \Leftrightarrow R^2 (a b) c d$;
+    \item $I(b) \Leftrightarrow R a b a \& R b a a$;
+    \item $a \leq b \Leftrightarrow I(c) \& R c a b$;
+    \item $ $
+\end{enumerate}
+\end{defin}
+
+\begin{defin}
+  A Kripke model is a triple $\mathcal{M} = \langle \mathcal{W}, v \rangle$, where
+  $\mathcal{W}$ is a Kripke frame and $v : Tp \to 2^W$.
+
+  A forcing relation is defined as follows:
+
+  \begin{enumerate}
+    \item $\mathcal{M}, w \Vdash p_i \Leftrightarrow w \in v(p_i)$;
+    \item $\mathcal{M}, w \Vdash {\bf 1} \Leftrightarrow I(w)$;
+    \item $\mathcal{M}, w \Vdash A \bullet B \Leftrightarrow \exists u, v \in W, R u v w \text{ and } \mathcal{W}, u \Vdash A \text{ and } \mathcal{W}, v \Vdash B$;
+    \item $\mathcal{M}, w \Vdash A \backslash B \Leftrightarrow \forall u, v \in W, R u w v \text{ and } \mathcal{W}, u \Vdash A \text{ implies } \mathcal{W}, v \Vdash B$;
+    \item $\mathcal{M}, w \Vdash B / A \Leftrightarrow \forall u, v \in W, R w u v \text{ and } \mathcal{W}, u \Vdash A \text{ implies } \mathcal{W}, v \Vdash B$;
+    \item $\mathcal{M}, w \Vdash A \lor B \Leftrightarrow \exists u, v \in W, S w u v \text{ and } \mathcal{W}, u \Vdash A \text{ and } \mathcal{W}, v \Vdash B$;
+    \item $\mathcal{M}, w \Vdash A \land B \Leftrightarrow \mathcal{W}, w \Vdash A \text{ and } \mathcal{W}, w \Vdash A$;
+    \item $\mathcal{M}, w \Vdash \Gamma \rightarrow A \Leftrightarrow \mathcal{W}, w \Vdash \bullet \Gamma \text{ implies } \mathcal{W}, w \Vdash A$.
+  \end{enumerate}
+\end{defin}
+
+\begin{theorem} Soundness
+$ $
+
+  Let $\mathbb{F}$ be a class of Kripke frames, then $Log(\mathbb{F}) = L^{*}_{\bf 1} \land \lor$.
+\end{theorem}
+
+\begin{proof}
+$ $
+
+  \begin{enumerate}
+  \item Let $\Gamma \rightarrow A$. By IH, for each $\mathcal{W}, w \Vdash \Gamma \rightarrow A$.
+  \item Let $\Gamma, A, \Delta \rightarrow C$ and $\Gamma, B, \Delta \rightarrow C$,
+  \item Let $\Gamma \rightarrow A$ and $\Gamma \rightarrow B$
+  \item Let $\Gamma \rightarrow A_1 \land A_2$, so $\mathcal{W}, w \Vdash \Gamma \rightarrow A_i$, $i = 1,2$.
+  \end{enumerate}
+\end{proof}
+
+\begin{theorem} Strong completeness
+$ $
+
+  $\Gamma \models A$ implies that $L^{*}_{\bf 1} \land \lor \vdash \Gamma \rightarrow A$
+\end{theorem}
+
+\begin{proof}
+\end{proof}
+
+\begin{defin}
+  Mininal normal modal Lambek calculus ($L{\bf K}$) is $L^{*}_{\bf 1} \land \lor$ with additional rule:
+
+  \begin{prooftree}
+    \AxiomC{$\Gamma \rightarrow A$}
+    \UnaryInfC{$!\Gamma \rightarrow !A$}
+  \end{prooftree}
+\end{defin}
+
+\begin{defin}
+  A modal Kripke frame is a 4-tuple $\mathcal{W}_{!} = \langle W, R, Q, I \rangle$, where $Q$ is a preorder on $W$,
+  a Kripke model is tuple $\mathcal{M} \langle \mathcal{W}_{!}, v \rangle$. A forcing relation for $!$ is defined as follows:
+  \item $\mathcal{M}, w \Vdash !A \Leftrightarrow \forall v, Q(w, v) \Rightarrow \mathcal{W}, v \Vdash A$;
+\end{defin}
+
+\begin{theorem} Soundness
+  $ $
+
+  Let $\mathbb{F}$ be a class of modal Kripke frames, then $Log(\mathbb{F}) = {L^{*}_{\bf 1} \land \lor}_{\bf S4}$.
+\end{theorem}
+
+\begin{proof}
+  $ $
+
+  $\Gamma \models A$, then ${L^{*}_{\bf 1} \land \lor}_{\bf S4} \vdash \Gamma \rightarrow A$
+\end{proof}
+
+\end{document}
