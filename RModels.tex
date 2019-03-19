@@ -1,0 +1,169 @@
+\documentclass[a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{bussproofs}
+\usepackage{mathtools}
+\usepackage{verbatim}
+\usepackage{dsfont}
+\usepackage{mathabx}
+\usepackage[all, 2cell]{xy}
+\usepackage[all]{xy}
+\usepackage{wasysym}
+\usepackage{rotating}
+\usepackage{geometry}
+\usepackage{trfsigns}
+\usepackage{cmll}
+\usepackage{authblk}
+
+\theoremstyle{defin}
+\newtheorem{defin}{Definition}
+
+\theoremstyle{theorem}
+\newtheorem{theorem}{Theorem}
+
+\theoremstyle{prop}
+\newtheorem{prop}{Proposition}
+
+\theoremstyle{lemma}
+\newtheorem{lemma}{Lemma}
+
+\theoremstyle{ex}
+\newtheorem{ex}{Example}
+
+\theoremstyle{col}
+\newtheorem{col}{Corollary}
+\usepackage{listings} 		% for source code
+\date{}
+\author[1,2]{Daniel Rogozin}
+\affil[1]{Lomonosov Moscow State University}
+\affil[2]{Serokell O\"{U}}
+\title{On $R$-models}
+
+\begin{document}
+
+\maketitle
+
+\begin{defin}
+  $ $
+
+  $R$-model is a pair $\mathcal{M} = \langle W, R, v \rangle$,
+  where $R$ is a transitive relation on $W$ and $v : Tp \to 2^R$ is a valuation, such that:
+
+  \begin{enumerate}
+    \item $\mathcal{M}, w \Vdash p_i \Leftrightarrow w \in v(p_i)$;
+    \item $\mathcal{M}, \langle a, b \rangle \Vdash A \bullet B \Leftrightarrow
+      \text{there exists $c \in W$, $\mathcal{M}, a \Vdash A$ and $\mathcal{M}, b \Vdash B$}$;
+    \item $\mathcal{M}, \langle a, b \rangle \Vdash A \backslash B \Leftrightarrow
+      \text{for all $c \in R^{-1}(a)$, $\mathcal{M}, \langle c, a \rangle \Vdash A$ implies
+      $\mathcal{M}, \langle c, b \rangle \Vdash B$}$;
+      \item $\mathcal{M}, \langle a, b \rangle \Vdash B / A \Leftrightarrow
+        \text{for all $c \in R(a)$, $\mathcal{M}, \langle a, c \rangle \Vdash A$ implies
+        $\mathcal{M}, \langle b, c \rangle \Vdash B$}$;
+  \end{enumerate}
+\end{defin}
+
+\begin{defin}
+  $ $
+
+  Let $\mathcal{F}_1$, $\mathcal{F}_2$ be $R$-frames and
+  $\mathcal{M}_1 = \langle \mathcal{F}_1, v_1 \rangle$, $\mathcal{M}_2 = \langle \mathcal{F}_2, v_2 \rangle$
+  be $R$-models.
+
+  A map $f : W_1 \to W_2$ is said to be a $R$-frame $p$-morphism if the following conditions hold:
+
+  \begin{enumerate}
+    \item $f$ is onto;
+    \item $\forall a, b \in W_1 (a R_1 b \Rightarrow f(a) R_2 f (b))$ (monotonicity);
+    \item $\forall d \in W_1, c \in W_2, f(d) R_2 c \Rightarrow \exists c' \in W_1, f(c') = c \: \& \: d R_1 c'$ (left lift property);
+    \item $\forall d \in W_1, c \in W_2, c R_2 f(d) \Rightarrow \exists c' \in W_1, f(c') = c \: \& \: c' R_1 d$ (right lift property);
+  \end{enumerate}
+
+  A map $f : \mathcal{F}_1 \to \mathcal{F}_2$ is $R$-model $p$-moprhism, iff:
+
+  \begin{itemize}
+    \item $\mathcal{M}_1, \langle a, b \rangle \Vdash p_i \Leftrightarrow \mathcal{M}_2, \langle f(a), f(b) \rangle \Vdash p_i$
+  \end{itemize}
+\end{defin}
+
+\begin{lemma}
+  Let $f : \mathcal{M}_1 \to \mathcal{M}_2$ be a $p$-morphism, then
+  $\mathcal{M}_1, \langle a, b \rangle \Vdash A \Leftrightarrow \mathcal{M}_2, \langle f(a), f(b) \rangle \Vdash A$,
+  for all $a, b \in W_1$ and for all $A \in Fm$
+\end{lemma}
+
+\begin{proof}
+$ $
+
+  \begin{enumerate}
+    \item $\Rightarrow$
+      \begin{enumerate}
+        \item Basic case: follows from the definition.
+        \item Let $A \eqcirc B \bullet C$ and $\mathcal{M}_1, \langle a, b \rangle \Vdash B \bullet C$, then
+        there exists $c \in W_1$, such that $\mathcal{M}_1, \langle a, c \rangle \Vdash B$ and
+        $\mathcal{M}_1, \langle c, b \rangle \Vdash C$.
+
+        Then, $a R_1 c$ and $c R_1 b$, so $f(a) R_2 f(c)$ and $f(c) R_2 f(b)$.
+
+        Thus, by IH, $\mathcal{M}_2, \langle f(a), f(c) \rangle \Vdash B$ and
+        $\mathcal{M}_2, \langle f(c), f(b) \rangle \Vdash C$, so $\mathcal{M}_2, \langle f(a), f(b) \rangle \Vdash B \bullet C$.
+        \item Let $A \eqcirc B \backslash C$ and $\mathcal{M}_1, \langle a, b \rangle \Vdash B \backslash C$.
+        Let $c \in W_2$, such that $c R_2 f(a)$.
+
+        Then, by left lift property, there exist $d \in W_1$, such that $f(d) = c$ and $d R_1 a$.
+
+        Thus, $\mathcal{M}_1, \langle d, a \rangle \Vdash A$ implies
+        $\mathcal{M}_1, \langle d, b \rangle \Vdash B$.
+
+        By IH, $\mathcal{M}_2, \langle c, f(a) \rangle \Vdash A$ implies
+        $\mathcal{M}_2, \langle c, f(b) \rangle \Vdash B$, then $\mathcal{M}_2, \langle f(a), f(b) \rangle \Vdash A \backslash B$.
+
+        \item Similarly to (c), but via right lift property.
+      \end{enumerate}
+    \item $\Leftarrow$
+    \begin{enumerate}
+      \item Basic case: follows from the definition.
+
+      \item Let $A \eqcirc B \bullet C$.
+      Let $\mathcal{M}_2, \langle f(a), f(b) \rangle \Vdash B \bullet C$. Then
+      there exists $c \in W_2$, such that $\mathcal{M}_2, \langle f(a), c \rangle \Vdash B$ and
+      $\mathcal{M}_2, \langle c, f(b) \rangle \Vdash C$.
+
+      So far as $f$ is surjection, then there exists $d \in W_1$, such that
+      $c = f(d)$, then $\mathcal{M}_2, \langle f(a), f(d) \rangle \Vdash B$ and
+      $\mathcal{M}_2, \langle f(d), f(b) \rangle \Vdash C$, and, by IH,
+      $\mathcal{M}_1, \langle a, d \rangle \Vdash B$ and $\mathcal{M}_1, \langle d, b \rangle \Vdash C$,
+      then $\mathcal{M}_1, \langle a, b \rangle \Vdash B \bullet C$.
+
+      \item Let $A \eqcirc B \backslash C$ and $\mathcal{M}_2, \langle f(a), f(b) \rangle \Vdash B \backslash C$.
+
+      Let $c \in W_1$ and $c R_1 a$, then $f(c) R_1 f(a)$ by monotonicity,
+      so $\mathcal{M}_2, \langle f(c), f(a) \rangle \Vdash A$ implies
+      $\mathcal{M}_2, \langle f(c), f(b) \rangle \Vdash B$.
+
+      By IH, $\mathcal{M}_1, \langle c, a \rangle \Vdash A$ implies
+      $\mathcal{M}_1, \langle c, b \rangle \Vdash B$. Thus, $\mathcal{M}_1, \langle c, a \rangle \Vdash A \backslash B$.
+      \item Similarly to (c).
+    \end{enumerate}
+  \end{enumerate}
+\end{proof}
+
+\begin{lemma}
+$ $
+
+  \begin{enumerate}
+    \item Let $\mathcal{M}_1$ and $\mathcal{M}_2$ be $R$-models and $\mathcal{M}_1 \twoheadrightarrow \mathcal{M}_2$.
+
+    Then $\mathcal{M}_1 \models A$ iff $\mathcal{M}_2 \models A$.
+
+    \item Let $\mathcal{F}_1$ and $\mathcal{F}_2$ be $R$-frames and $\mathcal{F}_1 \twoheadrightarrow \mathcal{F}_2$,
+    then $\mathcal{F}_1 \models A$ implies $\mathcal{F}_2 \models A$.
+  \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+  Standardly.
+\end{proof}
+
+\end{document}
