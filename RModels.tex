@@ -48,6 +48,63 @@
 \begin{defin}
   $ $
 
+  \begin{prooftree}
+  \AxiomC{$ $}
+  \RightLabel{\scriptsize{ax}}
+  \UnaryInfC{$A \rightarrow A$}
+  \end{prooftree}
+
+\begin{minipage}{0.5\textwidth}
+  \begin{flushleft}
+        \begin{prooftree}
+      \AxiomC{$\Gamma \rightarrow A$}
+      \AxiomC{$\Delta, B, \Theta \rightarrow C$}
+      \RightLabel{$\backslash \rightarrow$}
+      \BinaryInfC{$\Delta, \Gamma, A \backslash B, \Theta \rightarrow C$}
+    \end{prooftree}
+
+    \begin{prooftree}
+      \AxiomC{$\Gamma \rightarrow A$}
+      \AxiomC{$\Delta, B, \Theta \rightarrow C$}
+      \RightLabel{$/ \rightarrow$}
+      \BinaryInfC{$\Delta, B / A, \Gamma, \Theta \rightarrow C$}
+    \end{prooftree}
+
+    \begin{prooftree}
+      \AxiomC{$\Gamma, A, B, \Delta \rightarrow C$}
+      \RightLabel{$\bullet \rightarrow$}
+      \UnaryInfC{$\Gamma, A \bullet B, \Delta \rightarrow C$}
+    \end{prooftree}
+\end{flushleft}
+\end{minipage}
+
+\begin{minipage}{0.5\textwidth}
+  \begin{flushright}
+       \begin{prooftree}
+      \AxiomC{$A, \Pi \rightarrow B$}
+      \RightLabel{$\rightarrow \backslash$}
+      \UnaryInfC{$\Pi \rightarrow A \backslash B$}
+    \end{prooftree}
+
+    \begin{prooftree}
+      \AxiomC{$\Pi, A \rightarrow B$}
+      \RightLabel{$\rightarrow /$}
+      \UnaryInfC{$\Pi \rightarrow B / A$}
+    \end{prooftree}
+
+    \begin{prooftree}
+      \AxiomC{$\Gamma \rightarrow A$}
+      \AxiomC{$\Delta \rightarrow B$}
+      \RightLabel{$\rightarrow \bullet$}
+      \BinaryInfC{$\Gamma, \Delta \rightarrow A \bullet B$}
+    \end{prooftree}
+\end{flushright}
+\end{minipage}
+\end{defin}
+
+\begin{defin}
+  $ $
+
   $R$-model is a pair $\mathcal{M} = \langle W, R, v \rangle$,
   where $R$ is a transitive relation on $W$ and $v : Tp \to 2^R$ is a valuation, such that:
 
