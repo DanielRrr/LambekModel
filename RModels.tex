@@ -77,7 +77,6 @@
     \end{prooftree}
 \end{flushleft}
 \end{minipage}
-
 \begin{minipage}{0.5\textwidth}
   \begin{flushright}
        \begin{prooftree}
@@ -130,7 +129,7 @@ such that $\mathcal{M}, \langle a, c_1 \rangle \Vdash A_1,
 \mathcal{M}, \langle c_{n-1}, b \rangle \Vdash A_n$ implies that $\mathcal{M}, \langle a, b \rangle \Vdash B$.
 
 \begin{theorem}
-  Let $\mathbb{F}$ is a $R$-frame, then $\mathbb{F} \models L$.
+  Let $\mathbb{F}$ be a $R$-frame, then $\mathbb{F} \models L$.
 \end{theorem}
 
 \begin{defin}
@@ -151,9 +150,10 @@ such that $\mathcal{M}, \langle a, c_1 \rangle \Vdash A_1,
 
   A map $f : \mathcal{F}_1 \to \mathcal{F}_2$ is $R$-model $p$-moprhism, iff:
 
-  \begin{itemize}
-    \item $\mathcal{M}_1, \langle a, b \rangle \Vdash p_i \Leftrightarrow \mathcal{M}_2, \langle f(a), f(b) \rangle \Vdash p_i$
-  \end{itemize}
+\begin{center}
+ $\mathcal{M}_1, \langle a, b \rangle \Vdash p_i \Leftrightarrow \mathcal{M}_2, \langle f(a), f(b) \rangle \Vdash p_i$
+\end{center}
+
 \end{defin}
 
 \begin{lemma}
@@ -189,17 +189,6 @@ $ $
         $\mathcal{M}_2, \langle c, f(b) \rangle \Vdash B$, then $\mathcal{M}_2, \langle f(a), f(b) \rangle \Vdash A \backslash B$.
 
         \item Similarly to (c), but via right lift property.
-        \item Let $\mathcal{M}_1, \langle a, b \rangle \Vdash A_1, \dots, A_n \rightarrow A$.
-
-        Thus, there exist $c_1, \dots, c_{n-1} \in W_1$, such that
-        $\mathcal{M}_1, \langle a, c_1 \rangle \Vdash A_1, \dots, \mathcal{M}_1, \langle c_{n-2}, c_{n-1} \rangle \Vdash A_n$
-        implies that $\mathcal{M}_1, \langle c_{n-1}, b \rangle \Vdash B$.
-
-        By IH, $\mathcal{M}_2, \langle f(a), f(c_1) \rangle \Vdash A_1, \dots, \mathcal{M}_1, \langle f(c_{n-1}), f(b) \rangle \Vdash A_n$.
-
-        So, $\mathcal{M}_2, \langle f(a), f(b) \rangle \Vdash A_1 \bullet \dots \bullet A_n$.
-
-        Thus, $\mathcal{M}_2, \langle f(a), f(b) \rangle \Vdash B$.
       \end{enumerate}
     \item $\Leftarrow$
     \begin{enumerate}
@@ -225,8 +214,6 @@ $ $
       By IH, $\mathcal{M}_1, \langle c, a \rangle \Vdash A$ implies
       $\mathcal{M}_1, \langle c, b \rangle \Vdash B$. Thus, $\mathcal{M}_1, \langle c, a \rangle \Vdash A \backslash B$.
       \item Similarly to (c).
-      \item Let $\mathcal{M}_2, \langle f(a), f(b) \rangle \Vdash \Gamma \rightarrow A$, so
-      by case (b) and IH, $\mathcal{M}_2, \langle a, b \rangle \Gamma$, so $\mathcal{M_1}, \langle a, b \rangle A$.
     \end{enumerate}
   \end{enumerate}
 \end{proof}
@@ -235,17 +222,39 @@ $ $
 $ $
 
   \begin{enumerate}
-    \item Let $\mathcal{M}_1$ and $\mathcal{M}_2$ be $R$-models and $\mathcal{M}_1 \twoheadrightarrow \mathcal{M}_2$. Then $\mathcal{M}_1 \models A$ iff $\mathcal{M}_2 \models A$.
+    \item Let $\mathcal{M}_1$ and $\mathcal{M}_2$ be $R$-models and $f : \mathcal{M}_1 \twoheadrightarrow \mathcal{M}_2$.
+    Then $\mathcal{M}_1 \models A$ iff $\mathcal{M}_2 \models A$.
 
-    \item Let $\mathcal{F}_1$ and $\mathcal{F}_2$ be $R$-frames and $\mathcal{F}_1 \twoheadrightarrow \mathcal{F}_2$,
+    \item Let $\mathcal{F}_1$ and $\mathcal{F}_2$ be $R$-frames and $f : \mathcal{F}_1 \twoheadrightarrow \mathcal{F}_2$,
     then $\mathcal{F}_1 \models A$ implies $\mathcal{F}_2 \models A$.
-
-    \item $\mathcal{F}_1 \cong \mathcal{F}_2$, then $Log(\mathcal{F}_1) = Log(\mathcal{F}_2)$.
   \end{enumerate}
 \end{lemma}
 
 \begin{proof}
-  Standardly.
+$ $
+
+\begin{enumerate}
+  \item
+  \begin{itemize}
+    \item Only if:
+
+    Let $\mathcal{M}_1 \models A$. Let $c, d \in W_2$. So far as $f$ is onto,
+    then there exists $a, b \in W_1$, such that $f(a) = c$ and $f(b) = d$.
+
+    Then $\mathcal{M}_1, \langle a, b \rangle \Vdash A$, thus $\mathcal{M}_2 \langle f(a), f(b) \rangle \Vdash A$.
+    That is, $\mathcal{M}_2 \langle c, d \rangle \Vdash A$
+
+    \item If:
+
+    Follows from the previous lemma.
+  \end{itemize}
+  \item Let $f : \mathcal{F}_1 \twoheadrightarrow \mathcal{F}_2$ and $\mathcal{F}_1 \models A$.
+
+  Let $\mathcal{M}_1 = \langle \mathcal{F}_1, v_1 \rangle$ and $\mathcal{M}_2 = \langle \mathcal{F}_2, v_2 \rangle$, such that
+  for all $p \in Tp$,
+  $\mathcal{M}_1, \langle a, b \rangle \Vdash p \Leftrightarrow_{def} \mathcal{M}_1, \langle f(a), f(b) \rangle \Vdash p$.
+  Thus, $\mathcal{M}_1 \twoheadrightarrow \mathcal{M}_2$ and $\mathcal{M}_1 \models A$. Thus, $\mathcal{M}_2 \models A$.
+\end{enumerate}
 \end{proof}
 
 \end{document}
