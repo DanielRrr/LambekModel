@@ -39,7 +39,7 @@
 \author[1,2]{Daniel Rogozin}
 \affil[1]{Lomonosov Moscow State University}
 \affil[2]{Serokell O\"{U}}
-\title{Models of Lambek calculus enriched with subexponentials}
+\title{Models of Lambek calculus with subexponentials}
 
 \begin{document}
 
@@ -62,7 +62,9 @@ $W, C, E$ are upwardly closed subsets of $I$ and $\mathcal{W} \cap \mathcal{C} \
 \begin{defin}
 $ $
 
-  $\mathcal{F}_{\Sigma} ::= Tp \: | \: (\mathcal{F}_{\Sigma} / \mathcal{F}_{\Sigma}) \: | \: (\mathcal{F}_{\Sigma} \backslash \mathcal{F}_{\Sigma}) \: | \: (\mathcal{F}_{\Sigma} \bullet \mathcal{F}_{\Sigma}) \: | \: (\mathcal{F}_{\Sigma} \lor \mathcal{F}_{\Sigma}) \: | (\mathcal{F}_{\Sigma} \land \mathcal{F}_{\Sigma}) \: | {!_s \mathcal{F}_{\Sigma}}_{s \in \mathcal{I}} $
+  $\mathcal{F}_{\Sigma} ::= Tp \: | \: (\mathcal{F}_{\Sigma} / \mathcal{F}_{\Sigma}) \: | \: (\mathcal{F}_{\Sigma} \backslash
+  \mathcal{F}_{\Sigma}) \: | \: (\mathcal{F}_{\Sigma} \bullet \mathcal{F}_{\Sigma}) \: | \: (\mathcal{F}_{\Sigma} \lor \mathcal{F}_{\Sigma}) \: | (\mathcal{F}_{\Sigma} \land \mathcal{F}_{\Sigma}) \: | ({!_s \mathcal{F}_{\Sigma}})_{s \in
+  \Sigma} $
 \end{defin}
 
 \begin{defin} Noncommutative linear logic with subexponentials ($SMALC_{\Sigma}$), where $\Sigma$ is a subexponential signature.
@@ -217,11 +219,6 @@ Structural rules:
 \end{minipage}
 \end{defin}
 
-\begin{defin}
-  By ${L^{*}_{\bf 1} \land \lor}_{\bf S4}$ we mean $SMALC_{\Sigma}$, where $\Sigma = \{ s \}$ and $C = W = E = \emptyset$.
-\end{defin}
-
-
 \begin{theorem}
 $ $
 
@@ -289,7 +286,8 @@ There occurs the following simple statement:
 \begin{prop}
   $ $
 
-Let $\mathcal{Q}_1$, $\mathcal{Q}_2$ be quantales and $\mathcal{S} \subseteq \mathcal{Q}_1$ is a subquantale of $\mathcal{Q}_2$.
+Let $\mathcal{Q}_1$, $\mathcal{Q}_2$ be quantales and $\mathcal{S} \subseteq \mathcal{Q}_1$ is a subquantale of
+$\mathcal{Q}_1$.
 
 Then, if $f : \mathcal{Q}_1 \to \mathcal{Q}_2$ is a quantale homomorphism, then $f(\mathcal{S}) \subseteq \mathcal{Q}_2$ is a subquantale of $\mathcal{Q}_2$.
 
@@ -297,10 +295,12 @@ In other words, a homomorphic image of subquantale is a subquantale.
 \end{prop}
 
 \begin{proof}
-  It is clearly that $f(\mathcal{S}) \subseteq \mathcal{Q}_2$ is a submonoid of $\mathcal{Q}_2$.
+$ $
 
-  Let $a_i \in S$ for each $i \in I$, so $\bigvee \limits_{i \in I} a_i \in S$, but $f(a_i) \in f(\mathcal{S})$ for any $i \in I$,
-  so $f(\bigvee \limits_{i \in I} a_i) = \bigvee \limits_{i \in I} (f (a)) \in f(\mathcal{S})$, so $f(\mathcal{S})$ is closed under joins, so $f(\mathcal{S})$ is a subquantale of $\mathcal{Q}_2$
+  It is clearly that $f(\mathcal{S}) \subseteq \mathcal{Q}_2$ is a submonoid of $\mathcal{Q}_2$. Let $a_i \in S$ for each $i
+  \in I$, so $\bigvee \limits_{i \in I} a_i \in S$, but $f(a_i) \in f(\mathcal{S})$ for any $i \in I$, so $f(\bigvee
+  \limits_{i \in I} a_i) = \bigvee \limits_{i \in I} (f (a)) \in f(\mathcal{S})$, so $f(\mathcal{S})$ is closed
+  under joins, so $f(\mathcal{S})$ is a subquantale of $\mathcal{Q}_2$
 \end{proof}
 
 \begin{defin}
@@ -334,7 +334,7 @@ $ $
 \end{defin}
 
 \begin{lemma}
-  $\Box_1 a_1 \cdot \Box_2 a_2 \leq \Box^{'} (\Box_1 a_1 \cdot \Box_2 a_2)$, where $\Box_i \leq \Box, i = 1,2$.
+  $\Box_1 a_1 \cdot \Box_2 a_2 \leq \Box (\Box_1 a_1 \cdot \Box_2 a_2)$, where $\Box_i \leq \Box, i = 1,2$.
 \end{lemma}
 
 \begin{proof}
@@ -352,7 +352,7 @@ $ $
 $ $
 \begin{enumerate}
   \item An open modality is called central, if for all
-  $a, b \in \mathcal{Q}, \Box(a) \cdot b = b \cdot \Box(a)$.
+  $a, b \in \mathcal{Q}, \Box a \cdot b = b \cdot \Box a$.
 
   \item An open modality is called weak square-increasing,
   if for all $a, b \in \mathcal{Q}, \Box a \cdot b \leq \Box a \cdot b \cdot \Box a$ and
@@ -385,7 +385,7 @@ $ $
   & \:\:\:\: \text{Unitality}& \\
   &e \cdot b \cdot \Box a \leq & \\
   & \:\:\:\: \text{Identity}& \\
-  &b \cdot \Box(a)&
+  &b \cdot \Box a&
   \end{array}$
 
 Hence, $b \cdot \Box a = \Box a \cdot b$, so for all $a \in \mathcal Q, \Box a \in \mathcal{Z}(\mathcal{Q})$.
@@ -396,11 +396,11 @@ Hence, $b \cdot \Box a = \Box a \cdot b$, so for all $a \in \mathcal Q, \Box a \
 $ $
 
   Let $\mathcal{Q}$ be a quantale and $S \subseteq \mathcal{Q}$ a subquantale,
-  then $\Box : \mathcal{Q} \to \mathcal{Q}$, such that $\Box(a) = \bigvee \{ s \in S \: | \: s \leq a \}$, is an open modality.
+  then $\Box : \mathcal{Q} \to \mathcal{Q}$, such that $\Box a = \bigvee \{ s \in S \: | \: s \leq a \}$, is an open modality.
 \end{prop}
 
 \begin{proof}
-  See
+  See Rosenthal.
 \end{proof}
 
 \begin{prop}
@@ -425,7 +425,7 @@ Let $\mathcal{Q}$ be a quantale and $\mathcal{S} \subseteq \mathcal{Q}$ a subqua
   \item $\Box_z (a) = \bigvee \{ s \in S \: | s \leq a, s \in \mathcal{Z}(\mathcal{Q}) \}$;
   \item $\Box_{\mathds{1}} (a) = \bigvee \{ s \in S \: | s \leq a, s \leq \mathds{1} \}$;
   \item $\Box_{idem} (a) = \bigvee \{ s \in S \: | s \leq a, \forall b \in Q, b \cdot s \vee s \cdot b \leq s \cdot b \cdot s\}$;
-  \item $\Box_{z, \mathds{1}}, I_{z, idem}, I_{\mathds{1}, idem}, I_{z, \mathds{1}, idem}$.
+  \item Operations with combinations of conditions above;
 \end{enumerate}
 \end{prop}
 
@@ -527,53 +527,25 @@ $ $
   then $\bigvee S = \bigcap \{ \mathcal{I} \subseteq \mathcal{F} \: | \: S \subseteq \mathcal{I} \}$
 \end{defin}
 
-\begin{prop}
-  $\bigvee S$ is an ideal.
-\end{prop}
+The following conditions hold similarly to \cite{Gurr}:
 
 \begin{lemma}
-  $A \subseteq Fm$, then $\{ B \: | \: B \rightarrow A \} = \bigvee \{ A \}$.
-\end{lemma}
-
-\begin{proof}
 $ $
 
-Let $A \in Fm$. Then $\{ B \: | \: B \rightarrow A', A' \in A \} \subseteq \bigvee \{ A \}$,
-so far as $\bigvee A$ is an ideal.
-
-On the other hand, $\{ B \: | \: B \rightarrow A \}$ is an ideal, it is easy to see that this set is closed under $\lor$.
-So, $\bigvee A \subseteq \{ B \: | \: B \rightarrow A \}$.
-\end{proof}
-
-\begin{lemma}
-  $\bigvee \{ A \} \subseteq \bigvee \{ B \}$ iff $A \rightarrow B$.
-\end{lemma}
-
-\begin{proof}
-  Let $\bigvee \{ A \} \subseteq \bigvee \{ B \}$,
-  then $\{ C | C \rightarrow A \} \subseteq \{ D \: | \: D \rightarrow B \}$.
-
-Thus, $A \in \{ C | C \rightarrow A \}$,
-then $A \in \{ D \: | \: D \rightarrow B \}$, hence $A \rightarrow B$.
-
-On the other hand, let $A \rightarrow B$ and $C \in \bigvee \{ A \}$.
-
-Thus, $C \rightarrow A$, then $C \rightarrow B$ by cut.
-
-\end{proof}
-
-\begin{lemma}
-  Let $\mathcal{Q} = \{ \bigvee S \: | \: S \subseteq Fm \}$ and $\bigvee \mathcal{A} \cdot \bigvee \mathcal{B} =
+  \begin{enumerate}
+  \item $\bigvee S$ is an ideal;
+  \item $A \subseteq Fm$, then $\{ B \: | \: B \rightarrow A \} = \bigvee \{ A \}$;
+  \item $\bigvee \{ A \} \subseteq \bigvee \{ B \}$ iff $A \rightarrow B$;
+  \item Let $\mathcal{Q} = \{ \bigvee S \: | \: S \subseteq Fm \}$ and $\bigvee \mathcal{A} \cdot \bigvee \mathcal{B} =
   \bigvee \{ A \bullet B \: | \: A \in \mathcal{A}, B \in \mathcal{B} \}$.
-  Then $\langle \mathcal{Q}, \subseteq, \cdot, \bigvee{{\bf 1}}\rangle$ is a quantale.
+  Then $\langle \mathcal{Q}, \subseteq, \cdot, \bigvee{{\bf 1}}\rangle$ is a unital quantale.
+  \end{enumerate}
 \end{lemma}
 
-\begin{proof}
-  See
-\end{proof}
+We extend this construction for polymodal case as follows:
 
 \begin{lemma}
-  Let $!_s \in I$ and $A \mathcal{F}_{\Sigma}$, then $\Box_s (\bigvee \{ A \}) = \bigvee \{ !_s B \: | \: !_s B \rightarrow A \}$
+Let $!_s \in I$ and $A \mathcal{F}_{\Sigma}$, then $\Box_s (\bigvee \{ A \}) = \bigvee \{ !_s B \: | \: !_s B \rightarrow A \}$
   is a quantic conucleus.
 \end{lemma}
 
@@ -624,15 +596,17 @@ For all $A \in \mathcal{F}_{\Sigma}$,
 \begin{proof}
 $ $
 
+\begin{enumerate}
   \item Follows from $!_s A \rightarrow {\bf 1}$, so $s \in W$;
   \item Follows from $!_s A \bullet B \leftrightarrow B \bullet !_s A$;
   \item Follows from $!_s A \bullet B \rightarrow !_s A \bullet B \bullet !_s A$ and similarly for $B \bullet !_s A$.
+\end{enumerate}
 \end{proof}
 
 \begin{defin}
 $ $
 
-Let $Q$ be a syntactic quantale as proposed above and
+Let $\mathcal{Q}$ be a syntactic quantale as proposed above and
 $\mathcal{I} = \langle I, \preceq, W, C, E \rangle$ be a subexponential signature.
 
 We define a map $\Box : \mathcal{I} \to Mod_{\mathcal{Q}}$ as follows:
@@ -650,7 +624,7 @@ $\Box(i)(\bigvee \{ A \} ) = \{ !_i B \: | !_i B \rightarrow A \}$.
 \begin{lemma}
 $ $
 
-  Let $Q$ be a quantale constructed above and $\Box_1, \dots, \Box_n$ be a family of quantic conuclei on $Q$.
+  Let $Q$ be a quantale constructed above and $(\Box_{s_i})_{s_i \in \Sigma}$ be a family of quantic conuclei on $Q$.
   Then there exist a model $\langle Q, [\![.]\!]\rangle$, such that $[\![A]\!] = \bigvee \{ A \}$, $A \in Fm$.
 \end{lemma}
 
@@ -847,11 +821,11 @@ $ $
 \begin{defin}
   $ $
 
-  Let $A$ be a set. Then relational quantale on $A$ is a tuple $\mathcal{Q} = \langle \mathcal{A}, \mathcal{I} \rangle$
-  where $\mathcal{A} \subseteq 2^{A \times A}$:
+  Let $A$ be a set. Then relational quantale on $A$ is a triple $\mathcal{Q} = \langle \mathcal{A}, \bigvee, \mathcal{I}
+  \rangle$ where $\mathcal{A} \subseteq 2^{A \times A}$:
 
   \begin{itemize}
-    \item $\langle \mathcal{A}, \subseteq \rangle$ is a complete semi-lattice;
+    \item $\langle \mathcal{A}, \bigvee, \subseteq \rangle$ is a complete semi-lattice;
     \item Multiplication is defined as
       $R \circ S = \{ \langle a, c \rangle \: | \: \exists b \in A, \langle a, b \rangle \in R \text{ and } \langle b, c \rangle \in S\}$
     \item $\langle \mathcal{A}, \circ, \mathcal{I} \rangle$ is a monoid;
@@ -905,12 +879,27 @@ So, $\hat{\Box} \theta(a) = \theta(\Box_{\mathcal{S}} a)$.
 
 \end{proof}
 
-\begin{theorem}
-  $\Gamma \models A$, then ${L^{*}_{\bf 1} \land \lor}_{\bf S4} \vdash \Gamma \rightarrow A$
-\end{theorem}
+\section{Syntactic concept lattices}
 
-\section{Syntactic concept lattices part}
+\begin{defin}
+  Let $\mathcal{L}$ be a finite alphabet and $L \subseteq \mathcal{L}^{*}$ be a language.
 
+  We define maps $[.]^{\triangleright} : \mathcal{P}(\mathcal{L}^{*}) \to \mathcal{P}(\mathcal{L}^{*} \times \mathcal{L}^{*})$
+  and $[.]^{\triangleleft} : \mathcal{P}(\mathcal{L}^{*} \times \mathcal{L}^{*}) \to \mathcal{P}(\mathcal{L}^{*})$ as follows:
+
+  \begin{enumerate}
+    \item $M \subseteq \mathcal{L}^{*}$, $M^{\triangleright} = \{ (x, y) \: | \: \forall w \in M, x w y \in L \}$;
+    \item $C \subseteq \mathcal{L}^{*} \times \mathcal{L}^{*}$, $C^{\triangleleft} = \{ w \: | \: \forall (x, y) \in C, x w y
+    \in L\}$
+  \end{enumerate}
+\end{defin}
+
+Note that compositions $[.]^{\triangleleft \triangleright}$ and $[.]^{\triangleright \triangleleft}$ form closure operators,
+by the way $[.]^{\triangleleft}$ and $[.]^{\triangleright}$ are connected via contravariant Galois connection.
+
+\begin{defin} A syntactic concept is a pair $\langle S, C \rangle$, where $S \subseteq \mathcal{L}^{*}$
+  and $C \subseteq \mathcal{L}^{*} \times \mathcal{L}^{*}$, such that $S^{\triangleright} = C$ and $C^{\triangleleft} = S$.
+\end{defin}
 
 
 \end{document}

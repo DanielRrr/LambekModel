@@ -129,7 +129,7 @@ such that $\mathcal{M}, \langle a, c_1 \rangle \Vdash A_1,
 \mathcal{M}, \langle c_{n-1}, b \rangle \Vdash A_n$ implies that $\mathcal{M}, \langle a, b \rangle \Vdash B$.
 
 \begin{theorem}
-  Let $\mathbb{F}$ be a $R$-frame, then $\mathbb{F} \models L$.
+  Let $\mathbb{F}$ be a $R$-frame, then $\mathbb{F} \Vdash L$.
 \end{theorem}
 
 \begin{defin}
@@ -223,10 +223,10 @@ $ $
 
   \begin{enumerate}
     \item Let $\mathcal{M}_1$ and $\mathcal{M}_2$ be $R$-models and $f : \mathcal{M}_1 \twoheadrightarrow \mathcal{M}_2$.
-    Then $\mathcal{M}_1 \models A$ iff $\mathcal{M}_2 \models A$.
+    Then $\mathcal{M}_1 \Vdash A$ iff $\mathcal{M}_2 \Vdash A$.
 
     \item Let $\mathcal{F}_1$ and $\mathcal{F}_2$ be $R$-frames and $f : \mathcal{F}_1 \twoheadrightarrow \mathcal{F}_2$,
-    then $\mathcal{F}_1 \models A$ implies $\mathcal{F}_2 \models A$.
+    then $\mathcal{F}_1 \Vdash A$ implies $\mathcal{F}_2 \Vdash A$.
   \end{enumerate}
 \end{lemma}
 
@@ -238,7 +238,7 @@ $ $
   \begin{itemize}
     \item Only if:
 
-    Let $\mathcal{M}_1 \models A$. Let $c, d \in W_2$. So far as $f$ is onto,
+    Let $\mathcal{M}_1 \Vdash A$. Let $c, d \in W_2$. So far as $f$ is onto,
     then there exists $a, b \in W_1$, such that $f(a) = c$ and $f(b) = d$.
 
     Then $\mathcal{M}_1, \langle a, b \rangle \Vdash A$, thus $\mathcal{M}_2 \langle f(a), f(b) \rangle \Vdash A$.
@@ -248,13 +248,16 @@ $ $
 
     Follows from the previous lemma.
   \end{itemize}
-  \item Let $f : \mathcal{F}_1 \twoheadrightarrow \mathcal{F}_2$ and $\mathcal{F}_1 \models A$.
+  \item Let $f : \mathcal{F}_1 \twoheadrightarrow \mathcal{F}_2$ and $\mathcal{F}_1 \Vdash A$.
 
   Let $\mathcal{M}_1 = \langle \mathcal{F}_1, v_1 \rangle$ and $\mathcal{M}_2 = \langle \mathcal{F}_2, v_2 \rangle$, such that
   for all $p \in Tp$,
   $\mathcal{M}_1, \langle a, b \rangle \Vdash p \Leftrightarrow_{def} \mathcal{M}_1, \langle f(a), f(b) \rangle \Vdash p$.
-  Thus, $\mathcal{M}_1 \twoheadrightarrow \mathcal{M}_2$ and $\mathcal{M}_1 \models A$. Thus, $\mathcal{M}_2 \models A$.
+  Thus, $\mathcal{M}_1 \twoheadrightarrow \mathcal{M}_2$ and $\mathcal{M}_1 \Vdash A$. Thus, $\mathcal{M}_2 \Vdash A$.
 \end{enumerate}
 \end{proof}
+
+\begin{defin}
+\end{defin}
 
 \end{document}
