@@ -307,7 +307,7 @@ $ $
 $ $
 
   Let $\mathcal{Q} = \langle A, \bigvee, \cdot \rangle$ be a quantale.
-  The center of a quantale is the subquantale $\mathcal{Z}(\mathcal{Q}) = \{ a \in A \: | \: \forall b \in A, a \cdot b = b \cdot a \}$
+  The centre of a quantale is the subquantale $\mathcal{Z}(\mathcal{Q}) = \{ a \in A \: | \: \forall b \in A, a \cdot b = b \cdot a \}$
 \end{defin}
 
 \begin{defin}
@@ -901,5 +901,38 @@ by the way $[.]^{\triangleleft}$ and $[.]^{\triangleright}$ are connected via co
   and $C \subseteq \mathcal{L}^{*} \times \mathcal{L}^{*}$, such that $S^{\triangleright} = C$ and $C^{\triangleleft} = S$.
 \end{defin}
 
+Following to Wurm, by the concept we mean a closed set of strings, that is, $A$ is a concept iff $A \triangleright
+\triangleleft = A$. Moreover, $\langle \mathcal{B}_{\mathcal{L}}, \bigvee, \bigwedge \rangle$, where
+$\mathcal{B}_{\mathcal{L}}$ is the set of $\triangleright \triangleleft$-closed subsets of $\mathcal{L}^{*}$.
+
+We define a product of concepts as $A \circ B = (A \cdot B)^{\triangleright \triangleleft} =
+\{ a b \: | \: a \in A, b \in B \}^{\triangleright \triangleleft}$.
+
+Residuals are defined explicitly as follows:
+
+\begin{center}
+  $A \backslash B = \{ (a B, b) \: | \: (a, b) \in A^{\triangleright} \}^{\triangleleft}$
+
+  $B / A = \{ (a, B b) \: | \: (a, b) \in A^{\triangleright} \}^{\triangleleft}$
+\end{center}
+
+It is easy to see, that the following condition hold for that residuals:
+
+\begin{center}
+  $A \backslash B = \{ C \: | \: A \circ C \leq B \}$
+
+  $B / A = \bigvee \{ C \: | \: C \circ A \leq B \}$
+\end{center}
+
+\begin{defin}
+  The syntax concept lattice of a language $L$ is a structure $\langle \mathcal{B}_{L}, \circ, \bigvee, \bigwedge, /,
+  \backslash \rangle$, where $\mathcal{B}_{L}$ is the set of $[.]^{\triangleright \triangleleft}$-closed subsets of
+  $\mathcal{L}^{*}$.
+\end{defin}
+
+\section{Thanks}
+
+Author would like to thank Lev Beklemishev, Stepan Kuznetsov, Fedor Pakhomov, Danyar Shamkanov, and Andre Scedrov
+for advice, critics, and comments.
 
 \end{document}
