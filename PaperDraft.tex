@@ -36,7 +36,7 @@
 \newtheorem{col}{Corollary}
 \usepackage{listings} 		% for source code
 \date{}
-\author[1,2]{Daniel Rogozin}
+\author[1,2]{Danya Rogozin}
 \affil[1]{Lomonosov Moscow State University}
 \affil[2]{Serokell O\"{U}}
 \title{Models of Lambek calculus with subexponentials}
@@ -875,8 +875,32 @@ $ $
   &\bigvee \{ \theta(s) \: | \: \theta(s) \in \theta(S), \theta(s) \subseteq \theta(a) \} = \hat{\Box} \theta(a)& \\
   \end{array}$
 
-So, $\hat{\Box} \theta(a) = \theta(\Box_{\mathcal{S}} a)$.
+Thus, $\hat{\Box} \theta(a) = \theta(\Box_{\mathcal{S}} a)$.
 
+\end{proof}
+
+\begin{theorem}
+  Let $\mathfrak{Q} = \langle \mathcal{Q}, I \rangle$ be a quantale with
+  quantic conucleus. Then $\mathfrak{Q}$ is isomorphic to relational quantale on $Q$ with some quantic conucleus.
+\end{theorem}
+
+\begin{proof}
+  Let $I$ be a quantic conucleus. Then $\mathcal{Q}_{I} = \{ a \in \mathcal{Q} \: | \: I(a) = a \}$ is a subquantale of $\mathcal{Q}$.
+
+  Let us define $I'(a) = \bigvee \{ s \in \mathcal{Q}_{I} \: | \: s \leq a \}$.
+
+  It is clear that $I'$ is a quantic conucleus. Let us show that for all
+  $a \in \mathcal{Q}$ $I(a) = I'(a)$.
+
+  $\begin{array}{lll}
+  & I'(a) = \bigvee \{ s \in \mathcal{Q}_{I} \: | \: s \leq a \} = & \\
+  & \bigvee \{ s \in \mathcal{Q}_{I} \: | \: I(s) \leq a \} = & \\
+  & \bigvee \{ s \in \mathcal{Q}_{I} \: | \: I(s) \leq I(a) \} \leq I(a)&
+  \end{array}$
+
+  It is clear that, $I(a) \leq a$. So $I(a) \leq \bigvee \{ s \in \mathcal{Q}_{I} \: | \: s \leq a \} = I'(a)$.
+
+  Thus, we showed that $I(a) = I'(a)$. One need to apply the previous theorem with $I'$.
 \end{proof}
 
 \section{Syntactic concept lattices}
@@ -919,7 +943,7 @@ Residuals are defined explicitly as follows:
 It is easy to see, that the following condition hold for that residuals:
 
 \begin{center}
-  $A \backslash B = \{ C \: | \: A \circ C \leq B \}$
+  $A \backslash B = \bigvee \{ C \: | \: A \circ C \leq B \}$
 
   $B / A = \bigvee \{ C \: | \: C \circ A \leq B \}$
 \end{center}
@@ -933,6 +957,6 @@ It is easy to see, that the following condition hold for that residuals:
 \section{Thanks}
 
 Author would like to thank Lev Beklemishev, Stepan Kuznetsov, Fedor Pakhomov, Danyar Shamkanov, and Andre Scedrov
-for advice, critics, and comments.
+for advice, critique, and comments.
 
 \end{document}
