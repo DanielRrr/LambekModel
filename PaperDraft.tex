@@ -48,16 +48,287 @@
 \begin{abstract}
 \end{abstract}
 
+\section{Introduction}
+
+Categorial grammars were initially introduced by Ajdukiewicz and Bar-Hillel \cite{Ajd} \cite{Bar}.
+In the 1950s, Lambek proposed the way of proof-theoretical consideration of such grammars \cite{Lambek}. In this approach, language is logic and parsing is derivation via inference rules. Let us consider a quite simple example. One needs to parse this quote from the poem by Oscar Wilde called "Impression du Matin" \cite{Wilde}:
+
+\begin{center}
+The Thames nocture of blue and gold \\
+Changed to Harmony in grey
+\end{center}
+
+The first is to assign the correpsonding syntactic caterogies to the words as follows:
+
+\vspace{\baselineskip}
+
+$ $ \:\:\:\: The \:\:\:\: Thames nocturne \:\:\:\:\:\: of \:\:\:\:\:\:\:\:\:\: blue \:\:\:\:\:\:\: and \:\:\:\:\:\:\:\: gold
+
+$(np / n) / np$ \:\:\:\:\: $np$ \:\:\:\:\:\:\:\:\: $n$ \:\:\:\:\:\: $np \backslash (np / ad)$ \: $ad$ \:\: $ad / (ad \backslash ad)$ \: $ad$
+
+\vspace{\baselineskip}
+
+$ $ \: Changed \:\:\:\: to \:\:\:\: Harmony \:\:\:\:\:\:\:\:\:\: in \:\:\:\:\:\:\:\:\:\:\: grey
+
+$ $ \: $np \backslash (s / p)$ \:\: $p / np$ \:\:\:\:\:\: $np$ \:\:\:\:\:\:\:\: $np \backslash (np / ad)$ \:\: $ad$ \:\:\:\:\:\: $\rightarrow s$
+
+\vspace{\baselineskip}
+
+Here the basic reduction rules are:
+
+\begin{itemize}
+  \item $A, A \backslash B \to B$
+  \item $B / A, A \to B$
+\end{itemize}
+
+Here we assign the special syntactic categories to the words of this sentence. $np$ denotes "noun phrase", $n$ -- noun, $ad$ -- adjective, $p$ -- phrase, $s$ -- sentence. This sequent denotes that this Oscar Wilde's quote is a well-formed sentence.
+The verb "changed" has type "$np$ under ($s$ over $p$)". In other words, one needs to apply some noun phrase ("The Thames
+nocturne of blue and gold") from the left, apply some phrase from the right ("Changed to Harmony in grey") and obtain
+sentence after that. The other syntactic categories might be considered similarly.
+
+The general case of such derivations in categorial grammars is axiomatised via Lambek calculus \cite{Lambek}, non-commutative
+linear logic.
+
+\begin{prooftree}
+\AxiomC{$ $}
+\RightLabel{\scriptsize{ax}}
+\UnaryInfC{$A \rightarrow A$}
+\end{prooftree}
+
+\begin{minipage}{0.5\textwidth}
+\begin{flushleft}
+      \begin{prooftree}
+    \AxiomC{$\Gamma \rightarrow A$}
+    \AxiomC{$\Delta, B, \Theta \rightarrow C$}
+    \RightLabel{$\backslash \rightarrow$}
+    \BinaryInfC{$\Delta, \Gamma, A \backslash B, \Theta \rightarrow C$}
+  \end{prooftree}
+
+  \begin{prooftree}
+    \AxiomC{$\Gamma \rightarrow A$}
+    \AxiomC{$\Delta, B, \Theta \rightarrow C$}
+    \RightLabel{$/ \rightarrow$}
+    \BinaryInfC{$\Delta, B / A, \Gamma, \Theta \rightarrow C$}
+  \end{prooftree}
+
+  \begin{prooftree}
+    \AxiomC{$\Gamma, A, B, \Delta \rightarrow C$}
+    \RightLabel{$\bullet \rightarrow$}
+    \UnaryInfC{$\Gamma, A \bullet B, \Delta \rightarrow C$}
+  \end{prooftree}
+\end{flushleft}
+\end{minipage}\hfill
+\begin{minipage}{0.5\textwidth}
+\begin{flushright}
+  \begin{prooftree}
+    \AxiomC{$A, \Pi \rightarrow B$}
+    \RightLabel{$\rightarrow \backslash, \Pi \text{ is non-empty}$}
+    \UnaryInfC{$\Pi \rightarrow A \backslash B$}
+  \end{prooftree}
+
+  \begin{prooftree}
+    \AxiomC{$\Pi, A \rightarrow B$}
+    \RightLabel{$\rightarrow /, \Pi \text{ is non-empty}$}
+    \UnaryInfC{$\Pi \rightarrow B / A$}
+  \end{prooftree}
+
+  \begin{prooftree}
+    \AxiomC{$\Gamma \rightarrow A$}
+    \AxiomC{$\Delta \rightarrow B$}
+    \RightLabel{$\rightarrow \bullet$}
+    \BinaryInfC{$\Gamma, \Delta \rightarrow A \bullet B$}
+  \end{prooftree}
+\end{flushright}
+\end{minipage}
+
+\begin{prooftree}
+  \AxiomC{$\Gamma \rightarrow A$}
+  \AxiomC{$\Pi, A, \Delta \rightarrow B$}
+  \RightLabel{${\bf cut}$}
+  \BinaryInfC{$\Gamma, \Pi, \Delta \rightarrow B$}
+\end{prooftree}
+
+Note that, non-commutativity is no coincidence. We cannot assume that a sentence remains well-formed regardless
+of the word order.
+
+As you could see, non-commutativity yields two implications: the left one (or, left division) and the right one (or, right division). Moreover, the right introduction rules for these divisions have the special restriction that claims non-emptiness
+of the sequence $\Pi$ in the antecedent. This restriction denotes that we have no empty word that makes no sense
+linguistically. On the other hand, we can avoid this restriction. This calculus is called $L^{*}$. Note that, the empty word
+might be introduced explicilty via the constant ${\bf 1}$. The logic $L_{\bf 1}$ is a conservative extension of $L^{*}$ with
+the following inference rules:
+
+\begin{minipage}{0.5\textwidth}
+\begin{flushleft}
+
+  \begin{prooftree}
+    \AxiomC{$\Gamma, \Delta \rightarrow A$}
+    \RightLabel{${\bf 1} \rightarrow$}
+    \UnaryInfC{$\Gamma, {\bf 1}, \Delta \rightarrow A$}
+  \end{prooftree}
+
+  \end{flushleft}
+\end{minipage}\hfill
+\begin{minipage}{0.5\textwidth}
+\begin{flushright}
+
+  \begin{prooftree}
+    \AxiomC{$ $}
+    \RightLabel{$\rightarrow {\bf 1}$}
+    \UnaryInfC{$\rightarrow {\bf 1}$}
+  \end{prooftree}
+
+
+\end{flushright}
+\end{minipage}
+
+
+Also, we have a multiplicative conjunction or non-commutative tensor. This connective plays the role of concatenation.
+
+One may extend Lambek calculus with so-called additive conjunction and disjunction. The inference rules for these connections
+are quite similar to inference rules for conjunction and disjunction in intuitionistic sequent calculus. In $L$-models,
+additive connections are intersection and union of languages:
+
+\begin{minipage}{0.5\textwidth}
+\begin{flushleft}
+    \begin{prooftree}
+      \AxiomC{$\Gamma, A_i, \Delta \rightarrow B$}
+      \RightLabel{$\land \rightarrow, i = 1,2$}
+      \UnaryInfC{$\Gamma, A_1 \land A_2, \Delta \rightarrow B$}
+    \end{prooftree}
+
+    \begin{prooftree}
+      \AxiomC{$\Gamma, A, \Delta \rightarrow C$}
+      \AxiomC{$\Gamma, B, \Delta \rightarrow C$}
+      \RightLabel{$\vee \rightarrow$}
+      \BinaryInfC{$\Gamma, A \vee B, \Delta \rightarrow C$}
+    \end{prooftree}
+  \end{flushleft}
+\end{minipage}\hfill
+\begin{minipage}{0.5\textwidth}
+\begin{flushright}
+  \begin{prooftree}
+    \AxiomC{$\Gamma \rightarrow A$}
+    \AxiomC{$\Gamma \rightarrow B$}
+    \RightLabel{$\rightarrow \land$}
+    \BinaryInfC{$\Gamma \rightarrow A \land B$}
+  \end{prooftree}
+
+  \begin{prooftree}
+    \AxiomC{$\Gamma \rightarrow A_i$}
+    \RightLabel{$\rightarrow \vee, i = 1,2$}
+    \UnaryInfC{$\Gamma \rightarrow A_1 \vee A_2$}
+  \end{prooftree}
+\end{flushright}
+\end{minipage}
+
 \section{The Lambek Calculus with subexponentials}
+
+Let us consider the following phrase as an example.
+
+\begin{center}
+  The young lady whom Childe Harold met before his pilgrimage
+\end{center}
+
+There is "the young lady" in the middle of this phrase. We are incapable of processing such cases in the core Lambek
+calculus. That is, there is no ability to extract from the middle. "Met" is a phrasal verb. Whom did Childe Halord meet? He
+met the young lady.
+
+  \vspace{\baselineskip}
+
+\begin{center}
+The young lady whom$_i$ Childe Harold met $e_i$ before his pilgrimage
+\end{center}
+
+  \vspace{\baselineskip}
+
+For this purpose, we introduce the exponential modality with exchange rule. The left one rule is a
+dereliction, which is similar to the left $\Box$ introduction in modal logic $T$.
+
+  \vspace{\baselineskip}
+
+\begin{minipage}{0.5\textwidth}
+\begin{flushleft}
+  \begin{prooftree}
+    \AxiomC{$\Gamma, A, \Delta \rightarrow B$}
+    \RightLabel{$(! \to)$}
+    \UnaryInfC{$\Gamma, ! A, \Delta \rightarrow B$}
+  \end{prooftree}
+\end{flushleft}
+\end{minipage}\hfill
+\begin{minipage}{0.5\textwidth}
+\begin{flushright}
+  \begin{prooftree}
+    \AxiomC{$\Gamma, ! A, \Delta, \Theta \rightarrow C$}
+    \RightLabel{${\bf ex}$}
+    \UnaryInfC{$\Gamma, \Delta, ! A, \Theta \rightarrow C$}
+  \end{prooftree}
+\end{flushright}
+\end{minipage}
+
+  \vspace{\baselineskip}
+
+The another one phrase is related to so-called parasitic extraction:
+
+\begin{center}
+The letter that Young Werther sent to Charlotte without reading
+\end{center}
+
+In addition to medial extraction, we used "the letter" twice in this phrase. Thus, one need to multiply our linguistical resources in a restricted way.
+
+\begin{center}
+The letter that$_i$ Young Werther sent $e_i$ to Charlotte without reading $e_i$
+\end{center}
+
+Subexponential modality with non-local contraction allows one to do such operations:
+
+  \vspace{\baselineskip}
+
+\begin{minipage}{0.5\textwidth}
+\begin{flushleft}
+  \begin{prooftree}
+    \AxiomC{$\Gamma, ! A, \Delta, ! A, \Theta \rightarrow B$}
+    \RightLabel{${\bf contr}$}
+    \UnaryInfC{$\Gamma, \Delta, ! A, \Theta \rightarrow B$}
+  \end{prooftree}
+\end{flushleft}
+\end{minipage}\hfill
+\begin{minipage}{0.5\textwidth}
+\begin{flushright}
+  \begin{prooftree}
+    \AxiomC{$\Gamma, ! A, \Delta, ! A, \Theta \rightarrow B$}
+    \RightLabel{${\bf contr}$}
+    \UnaryInfC{$\Gamma, ! A, \Delta, \Theta \rightarrow B$}
+  \end{prooftree}
+\end{flushright}
+\end{minipage}
+
+  \vspace{\baselineskip}
+
+Note that, the usual form of contraction yields the cut inadmissibility in contrast to non-local contraction, which generalises the contraction.
+
+  \vspace{\baselineskip}
+
+It is useful to have many modalities and distinguish them in accordance with their abilities. In other words, we are going to
+consider the polymodal case. Let us introduce a subexponential signature, which is a preorder with upwardly closed subsets,
+where $W$ denotes weakening, etc. Note that, a subexponential signature might have any cardinality you prefer: finite or
+infinite.
 
 \begin{defin} A subexponential signature is an ordered quintuple:
 
   $\Sigma = \langle \mathcal{I}, \preceq, \mathcal{W}, \mathcal{C}, \mathcal{E} \rangle$,
+where $\langle \mathcal{I}, \preceq \rangle$ is a preorder.
+$\mathcal{W}, \mathcal{C}, \mathcal{E}$ are upwardly closed subsets of $I$ and $\mathcal{W} \cap \mathcal{C} \subseteq \mathcal{E}$.
 \end{defin}
 
-where $I = \{ s_1, \dots, s_n\}$, $\mathcal{I}, \preceq \rangle$ is a preorder.
-$W, C, E$ are upwardly closed subsets of $I$ and $\mathcal{W} \cap \mathcal{C} \subseteq \mathcal{E}$.
+The last condition claims that if there are weakening and contraction, then one may also exchange as follows.
 
+\begin{prooftree}
+  \AxiomC{$\Gamma, ! A, \Delta, \Theta \rightarrow B$}
+  \RightLabel{${\bf weak}$}
+  \UnaryInfC{$\Gamma, ! A, \Delta, ! A, \Theta \rightarrow B$}
+  \RightLabel{${\bf ncontr}$}
+  \UnaryInfC{$\Gamma, \Delta, ! A, \Theta \rightarrow B$}
+\end{prooftree}
 
 \begin{defin}
 $ $
@@ -69,155 +340,70 @@ $ $
 
 \begin{defin} Noncommutative linear logic with subexponentials ($SMALC_{\Sigma}$), where $\Sigma$ is a subexponential signature.
 
-\begin{prooftree}
-\AxiomC{$ $}
-\RightLabel{\scriptsize{ax}}
-\UnaryInfC{$A \rightarrow A$}
-\end{prooftree}
+    \vspace{\baselineskip}
 
 \begin{minipage}{0.5\textwidth}
   \begin{flushleft}
-    \begin{prooftree}
-      \AxiomC{$\Gamma \rightarrow A$}
-      \AxiomC{$\Delta, B, \Theta \rightarrow C$}
-      \RightLabel{$\backslash \rightarrow$}
-      \BinaryInfC{$\Delta, \Gamma, A \backslash B, \Theta \rightarrow C$}
-    \end{prooftree}
-
-    \begin{prooftree}
-      \AxiomC{$\Gamma \rightarrow A$}
-      \AxiomC{$\Delta, B, \Theta \rightarrow C$}
-      \RightLabel{$/ \rightarrow$}
-      \BinaryInfC{$\Delta, B / A, \Gamma, \Theta \rightarrow C$}
-    \end{prooftree}
-
-    \begin{prooftree}
-      \AxiomC{$\Gamma, A, B, \Delta \rightarrow C$}
-      \RightLabel{$\bullet \rightarrow$}
-      \UnaryInfC{$\Gamma, A \bullet B, \Delta \rightarrow C$}
-    \end{prooftree}
-
-    \begin{prooftree}
-      \AxiomC{$\Gamma, A_i, \Delta \rightarrow B$}
-      \RightLabel{$\&, i = 1,2 \rightarrow$}
-      \UnaryInfC{$\Gamma, A_1 \& A_2, \Delta \rightarrow B$}
-    \end{prooftree}
-
-    \begin{prooftree}
-      \AxiomC{$\Gamma, A, \Delta \rightarrow C$}
-      \AxiomC{$\Gamma, B, \Delta \rightarrow C$}
-      \RightLabel{$\vee \rightarrow$}
-      \BinaryInfC{$\Gamma, A \vee B, \Delta \rightarrow C$}
-    \end{prooftree}
-
-    \begin{prooftree}
-      \AxiomC{$\Gamma, \Delta \rightarrow A$}
-      \RightLabel{${\bf 1} \rightarrow$}
-      \UnaryInfC{$\Gamma, {\bf 1}, \Delta \rightarrow A$}
-    \end{prooftree}
-
     \begin{prooftree}
     \AxiomC{$\Gamma, A, \Delta \rightarrow C$}
     \RightLabel{$! \rightarrow$}
     \UnaryInfC{$\Gamma, !^{s} A, \Delta \rightarrow C$}
     \end{prooftree}
+
+    \begin{prooftree}
+    \AxiomC{$\Gamma, !^{s} A, \Delta, !^{s} A, \Theta \rightarrow B$}
+    \RightLabel{${\bf ncontr}_1, s \in C$}
+    \UnaryInfC{$\Gamma, !^{s} A, \Delta, \Theta \rightarrow B$}
+    \end{prooftree}
+
+    \begin{prooftree}
+    \AxiomC{$\Gamma, \Delta, !^{s} A, \Theta \rightarrow B$}
+    \RightLabel{${\bf ex}_1, s \in E$}
+    \UnaryInfC{$\Gamma, !^{s} A, \Delta, \Theta \rightarrow A$}
+    \end{prooftree}
+
   \end{flushleft}
 \end{minipage}
 \begin{minipage}{0.5\textwidth}
   \begin{flushright}
-    \begin{prooftree}
-      \AxiomC{$A, \Pi \rightarrow B$}
-      \RightLabel{$\rightarrow \backslash$}
-      \UnaryInfC{$\Pi \rightarrow A \backslash B$}
-    \end{prooftree}
-
-    \begin{prooftree}
-      \AxiomC{$\Pi, A \rightarrow B$}
-      \RightLabel{$\rightarrow /$}
-      \UnaryInfC{$\Pi \rightarrow B / A$}
-    \end{prooftree}
-
-    \begin{prooftree}
-      \AxiomC{$\Gamma \rightarrow A$}
-      \AxiomC{$\Delta \rightarrow B$}
-      \RightLabel{$\rightarrow \bullet$}
-      \BinaryInfC{$\Gamma, \Delta \rightarrow A \bullet B$}
-    \end{prooftree}
-
-    \begin{prooftree}
-      \AxiomC{$\Gamma \rightarrow A$}
-      \AxiomC{$\Gamma \rightarrow B$}
-      \RightLabel{$\rightarrow \&$}
-      \BinaryInfC{$\Gamma \rightarrow A \& B$}
-    \end{prooftree}
-
-    \begin{prooftree}
-      \AxiomC{$\Gamma \rightarrow A_i$}
-      \RightLabel{$\rightarrow \vee, i = 1,2$}
-      \UnaryInfC{$\Gamma \rightarrow A_1 \vee A_2$}
-    \end{prooftree}
-
-    \begin{prooftree}
-      \AxiomC{$ $}
-      \RightLabel{$\rightarrow {\bf 1}$}
-      \UnaryInfC{$\rightarrow {\bf 1}$}
-    \end{prooftree}
-
     \begin{prooftree}
     \AxiomC{$!^{s_1} A_1, \dots, !^{s_n} A_n \rightarrow A$}
     \RightLabel{$\rightarrow !, \forall j, s_j \succeq s$}
     \UnaryInfC{$!^{s_1} A_1, \dots, !^{s_n} A_n \rightarrow !^{s} A$}
     \end{prooftree}
-  \end{flushright}
-\end{minipage}
-Structural rules:
-
-\begin{minipage}{0.5\textwidth}
-  \begin{flushleft}
-        \begin{prooftree}
-        \AxiomC{$\Gamma, !^{s} A, \Delta, !^{s} A, \Theta \rightarrow B$}
-        \RightLabel{${\bf ncontr}_1, s \in C$}
-        \UnaryInfC{$\Gamma, !^{s} A, \Delta, \Theta \rightarrow B$}
-        \end{prooftree}
-
-        \begin{prooftree}
-        \AxiomC{$\Gamma, \Delta, !^{s} A, \Theta \rightarrow B$}
-        \RightLabel{${\bf ex}_1, s \in E$}
-        \UnaryInfC{$\Gamma, !^{s} A, \Delta, \Theta \rightarrow A$}
-        \end{prooftree}
 
     \begin{prooftree}
-      \AxiomC{$\Gamma, \Delta \rightarrow B$}
-      \RightLabel{${\bf weak}_!, s \in C$}
-      \UnaryInfC{$\Gamma, !^{s} A, \Delta \rightarrow B$}
+      \AxiomC{$\Gamma, !^{s} A, \Delta, !^{s} A, \Theta \rightarrow B$}
+      \RightLabel{${\bf ncontr}_2, s \in C$}
+      \UnaryInfC{$\Gamma, \Delta, !^{s} A, \Theta \rightarrow B$}
     \end{prooftree}
 
-  \end{flushleft}
-\end{minipage}
-\begin{minipage}{0.5\textwidth}
-  \begin{flushright}
-
-      \begin{prooftree}
-        \AxiomC{$\Gamma, !^{s} A, \Delta, !^{s} A, \Theta \rightarrow B$}
-        \RightLabel{${\bf ncontr}_2, s \in C$}
-        \UnaryInfC{$\Gamma, \Delta, !^{s} A, \Theta \rightarrow B$}
-      \end{prooftree}
-
-      \begin{prooftree}
-        \AxiomC{$\Gamma, !^{s} A, \Delta, \Theta \rightarrow B$}
-        \RightLabel{${\bf ex}_2, s \in E$}
-        \UnaryInfC{$\Gamma, \Delta, !^{s} A, \Theta \rightarrow A$}
-      \end{prooftree}
-
-  \begin{prooftree}
-    \AxiomC{$\Gamma \rightarrow A$}
-    \AxiomC{$\Pi, A, \Delta \rightarrow B$}
-    \RightLabel{${\bf cut}$}
-    \BinaryInfC{$\Gamma, \Pi, \Delta \rightarrow B$}
-  \end{prooftree}
+    \begin{prooftree}
+      \AxiomC{$\Gamma, !^{s} A, \Delta, \Theta \rightarrow B$}
+      \RightLabel{${\bf ex}_2, s \in E$}
+      \UnaryInfC{$\Gamma, \Delta, !^{s} A, \Theta \rightarrow A$}
+    \end{prooftree}
   \end{flushright}
 \end{minipage}
+
+\begin{prooftree}
+\AxiomC{$\Gamma, \Delta \rightarrow B$}
+\RightLabel{${\bf weak}_!, s \in C$}
+\UnaryInfC{$\Gamma, !^{s} A, \Delta \rightarrow B$}
+\end{prooftree}
+
 \end{defin}
+
+After that, we introduce inference polymodal inference rules for non-commutative subexponentials. One can apply substructural
+rules only if there is the relevant index on the current modality. Also, the right introduction rule is a sort of the
+generalised right $\Box$-introduction a la $K4$. Modality $!_s$ might be introduced on the right only if its index is less than any other subexponential index from the antecedent. That is, if we have already used stronger modality, then we may
+apply the weaker one.
+
+  \vspace{\baselineskip}
+
+Let us consider the current proof-theoretical and algorithmic results on Lambek calculus with additives and subexponentials.
+The first of all, the cut rule is admissible. Generally, this calculus is undecidable, but the fragment without non-local
+contraction is PSPACE-complete. These results were obtained by Kanovich, Kuznetsov, Nigam, and Scedrov.
 
 \begin{theorem}
 $ $
@@ -229,13 +415,16 @@ $ $
   \end{enumerate}
 \end{theorem}
 
-\section{Semantics}
+\section{Quantale background}
+
+Now we introduce a reader to quantales quite briefly. For more details, one may take a look at these books \cite{Quantale18}
+\cite{Rosenthal}. The initial idea of considering quantales in linear logic belongs to Yetter \cite{Yetter}.
 
 \begin{defin} Quantale
 $ $
 
-  A quantale is a triple $\mathcal{Q} = \langle A, \bigvee, \cdot \rangle$, such that $\langle A, \bigvee \rangle$
-is a complete lattice and $\langle A, \cdot \rangle$ is a semigroup, such that for all indexing set $I$:
+  A quantale is a triple $\mathcal{Q} = \langle A, \bigvee, \cdot \rangle$, where $\langle A, \bigvee \rangle$
+is a complete join semilattice and $\langle A, \cdot \rangle$ is a semigroup such that for each indexing set $I$:
 
 \begin{enumerate}
   \item $a \cdot \bigvee \limits_{i \in I} b_i = \bigvee \limits_{i \in I} (a \cdot b_i)$;
@@ -244,8 +433,6 @@ is a complete lattice and $\langle A, \cdot \rangle$ is a semigroup, such that f
 
 A quanlate is called unital, if $\langle A, \cdot \rangle$ is a monoid.
 \end{defin}
-
-Some example of quantales:
 
 \begin{itemize}
 \item Let $A$ be a semigroup (monoid), then $\langle \mathcal{P}(A), \cdot, \subseteq \rangle$
@@ -262,6 +449,12 @@ It is easy to see, that any (unital) quantale is a residual (monoid) semigroup. 
 \item $b / a = \bigvee \{ c \: | \: c \cdot a \leq b \}$
 \end{enumerate}
 
+Residuality property for those divisions holds straightforwardly:
+
+\begin{center}
+  $b \leq a \backslash c \Leftrightarrow a \cdot b \leq c \Leftrightarrow a \leq b / c$
+\end{center}
+
 \begin{defin}
 
   Let $\mathcal{Q}_1$, $\mathcal{Q}_2$ be quantales. A quantale homomorphism is a map $f : \mathcal{Q}_1 \to \mathcal{Q}_2$, such that:
@@ -271,14 +464,13 @@ It is easy to see, that any (unital) quantale is a residual (monoid) semigroup. 
     \item for all indexing set $I$, $f(\bigvee \limits_{i \in I} a_i) = \bigvee \limits_{i \in I} f(a_i)$.
   \end{enumerate}
 
-  If $\mathcal{Q}_1$, $\mathcal{Q}_2$ are unital quantales, then a unital homomorphism if a quantale homomorphism, such that $f(\varepsilon) = \varepsilon$.
+  If $\mathcal{Q}_1$, $\mathcal{Q}_2$ are unital quantales, then a unital homomorphism if a quantale homomorphism such that $f(\varepsilon) = \varepsilon$.
 \end{defin}
 
 \begin{defin}
 $ $
 
-  Let $\mathcal{Q} = \langle A, \bigvee, \cdot \rangle$ be a quantale. $\mathcal{S} \subseteq \mathcal{Q}$ is said to be a subquantale, if
-  $\mathcal{S}$ is closed under multiplication and sups.
+  Let $\mathcal{Q} = \langle A, \bigvee, \cdot \rangle$ be a quantale. $\mathcal{S} \subseteq \mathcal{Q}$ is said to be a subquantale, if $\mathcal{S}$ is closed under multiplication and joins.
 \end{defin}
 
 There occurs the following simple statement:
@@ -290,17 +482,12 @@ Let $\mathcal{Q}_1$, $\mathcal{Q}_2$ be quantales and $\mathcal{S} \subseteq \ma
 $\mathcal{Q}_1$.
 
 Then, if $f : \mathcal{Q}_1 \to \mathcal{Q}_2$ is a quantale homomorphism, then $f(\mathcal{S}) \subseteq \mathcal{Q}_2$ is a subquantale of $\mathcal{Q}_2$.
-
-In other words, a homomorphic image of subquantale is a subquantale.
 \end{prop}
 
 \begin{proof}
 $ $
 
-  It is clearly that $f(\mathcal{S}) \subseteq \mathcal{Q}_2$ is a submonoid of $\mathcal{Q}_2$. Let $a_i \in S$ for each $i
-  \in I$, so $\bigvee \limits_{i \in I} a_i \in S$, but $f(a_i) \in f(\mathcal{S})$ for any $i \in I$, so $f(\bigvee
-  \limits_{i \in I} a_i) = \bigvee \limits_{i \in I} (f (a)) \in f(\mathcal{S})$, so $f(\mathcal{S})$ is closed
-  under joins, so $f(\mathcal{S})$ is a subquantale of $\mathcal{Q}_2$
+  Follows from the same statements for semigroup and semilattice homomorphisms.
 \end{proof}
 
 \begin{defin}
@@ -310,85 +497,89 @@ $ $
   The centre of a quantale is the subquantale $\mathcal{Z}(\mathcal{Q}) = \{ a \in A \: | \: \forall b \in A, a \cdot b = b \cdot a \}$
 \end{defin}
 
+We introduce the notion of quantic conucleus, an interior operation on quantale, which is a lax homomorphism with respect to semigroup multiplication. For unital quantales, this conucleus preserves a neutral.
+
 \begin{defin}
 $ $
 
-  An open modality (or quantic conucleus) on quantale $\mathcal{Q}$ is a map $\Box : \mathcal{Q} \to \mathcal{Q}$, such that
+  An open modality (or quantic conucleus) on quantale $\mathcal{Q}$ is a map $I : \mathcal{Q} \to \mathcal{Q}$, such that
 
 \begin{enumerate}
-  \item $\Box x \leq x$;
-  \item $\Box x = \Box \Box x$;
-  \item $x \leq y \Rightarrow \Box x \leq \Box y$;
-  \item $\Box x \cdot \Box y = \Box (\Box x \cdot \Box y)$.
+  \item $I x \leq x$;
+  \item $I x = I^2 x$;
+  \item $x \leq y \Rightarrow I x \leq I y$;
+  \item $I x \cdot I y = I (I x \cdot I y)$.
 \end{enumerate}
 
-For unital quantale, we require that $\Box e = e$.
+For unital quantale, we require that $I e = e$.
 \end{defin}
 
-Note that, we may replace the last condition on equivalent condition $\Box (x) \cdot \Box (y) \leq \Box (x \cdot y)$.
+Here and below, $I^2 x$ denotes $I (I x)$.
+
+Note that, one may replace the last condition on the one $I x \cdot I y \leq I (x \cdot y)$. Thus, a quantic conuleus is the special case of lax monoidal monad from a category-theoretic point of view.
 
 \begin{defin}
 $ $
 
-  We define a partial order on open modalities on $\mathcal{Q}$ as $\Box_1 \leq \Box_2 \Leftrightarrow \forall a \in Q, \Box_1 (a) \leq \Box_2 (a)$.
+  We define a partial order on quantic conuclei on $\mathcal{Q}$ as
+  $I_1 \leq I_2 \Leftrightarrow \forall a \in \mathcal{Q}, I_1 a \leq I_2 a$.
 \end{defin}
 
 \begin{lemma}
-  $\Box_1 a_1 \cdot \Box_2 a_2 \leq \Box (\Box_1 a_1 \cdot \Box_2 a_2)$, where $\Box_i \leq \Box, i = 1,2$.
+  $I_1 a_1 \cdot I_2 a_2 \leq I (I_1 a_1 \cdot I_2 a_2)$, where $I_i \leq I, i = 1,2$.
 \end{lemma}
 
 \begin{proof}
 $ $
 
-  $\begin{array}{lll}
-  &\Box_1 a_1 \cdot \Box_2 a_2 \leq & \\
-  &\Box_1 (\Box_1 a_1) \cdot \Box_2 (\Box_2 a_2) \leq & \\
-  &\Box (\Box_1 a_1) \cdot \Box (\Box_2 a_2) \leq & \\
-  &\Box (\Box_1 (a_1) \cdot \Box_2 (a_2))&
-  \end{array}$
+  $I_1 a_1 \cdot I_2 a_2 \leq I_1 (I_1 a_1) \cdot I_2 (I_2 a_2) \leq I (I_1 a_1) \cdot I (I_2 a_2) \leq I (I_1 a_1 \cdot I_2 a_2)$
 \end{proof}
+
+Let us define the special cases of quantic conuclei that it would be useful for our purpose:
 
 \begin{defin}
 $ $
 \begin{enumerate}
-  \item An open modality is called central, if for all
+  \item A quantic conucleus is called central, if for all
   $a, b \in \mathcal{Q}, \Box a \cdot b = b \cdot \Box a$.
 
-  \item An open modality is called weak square-increasing,
+  \item A quantic conucleus is called strong square-increasing,
   if for all $a, b \in \mathcal{Q}, \Box a \cdot b \leq \Box a \cdot b \cdot \Box a$ and
   $b \cdot \Box a \leq \Box a \cdot b \cdot \Box a$.
 
-  \item An open modality is called unital, if $\forall a \in Q, \Box a \leq e$.
+  \item A quantic conucleus is called unital, if $\forall a \in Q, \Box a \leq e$.
 \end{enumerate}
 \end{defin}
+
+Note that centrality and strong square-increasing yield centrality.
 
 \begin{lemma}
 $ $
 
-  Let $\Box$ be an open modality on some unital quantale $\mathcal{Q} = \langle A, \bigvee, \cdot, e \rangle$.
-  Then, if $\Box$ is unital and weak idempotent, then $\Box$ is central.
+  Let $I$ be an open modality on some unital quantale $\mathcal{Q} = \langle A, \bigvee, \cdot, e \rangle$.
+  Then, if $I$ is unital and weak idempotent, then $I$ is central.
 \end{lemma}
 
 \begin{proof}
 $ $
 
   $\begin{array}{lll}
-  & b \cdot \Box a \leq & \\
-  & \:\:\:\: \text{Right weak square-increase}& \\
-  &\Box a \cdot b \cdot \Box a \leq & \\
-  & \:\:\:\: \text{Unitality}& \\
-  & \Box a \cdot b \cdot e \leq & \\
-  & \:\:\:\: \text{Identity}& \\
-  &\Box a \cdot b \leq & \\
-  & \:\:\:\: \text{Left weak square-increase}& \\
-  &\Box a \cdot b \cdot \Box a \leq & \\
-  & \:\:\:\: \text{Unitality}& \\
-  &e \cdot b \cdot \Box a \leq & \\
-  & \:\:\:\: \text{Identity}& \\
-  &b \cdot \Box a&
+  & b \cdot I a \leq & \\
+  & \:\:\:\:\:\: \text{Right strong square-increase}& \\
+  &I a \cdot b \cdot I a \leq & \\
+  & \:\:\:\:\:\: \text{Unitality}& \\
+  & I a \cdot b \cdot e \leq & \\
+  & \:\:\:\:\:\: \text{Identity}& \\
+  &I a \cdot b \leq & \\
+  & \:\:\:\:\:\: \text{Left strong square-increase}& \\
+  &I a \cdot b \cdot I a \leq & \\
+  & \:\:\:\:\:\: \text{Unitality}& \\
+  &e \cdot b \cdot I a \leq & \\
+  & \:\:\:\:\:\: \text{Identity}& \\
+  &b \cdot I a&
   \end{array}$
 
-Hence, $b \cdot \Box a = \Box a \cdot b$, so for all $a \in \mathcal Q, \Box a \in \mathcal{Z}(\mathcal{Q})$.
+Hence, $b \cdot I a = I a \cdot b$, so for all $a \in \mathcal{Q}, I a \in \mathcal{Z}(\mathcal{Q})$.
 
 \end{proof}
 
@@ -396,7 +587,7 @@ Hence, $b \cdot \Box a = \Box a \cdot b$, so for all $a \in \mathcal Q, \Box a \
 $ $
 
   Let $\mathcal{Q}$ be a quantale and $S \subseteq \mathcal{Q}$ a subquantale,
-  then $\Box : \mathcal{Q} \to \mathcal{Q}$, such that $\Box a = \bigvee \{ s \in S \: | \: s \leq a \}$, is an open modality.
+  then $I : \mathcal{Q} \to \mathcal{Q}$, such that $\Box a = \bigvee \{ s \in S \: | \: s \leq a \}$, is an open modality.
 \end{prop}
 
 \begin{proof}
@@ -447,20 +638,28 @@ $ $
   Follows from Lemma 3.
 \end{proof}
 
+We define a subexponential interpretation in a quite sophisticated manner. Suppose we have a contravariant map from signature
+to the set of subquantales. Here, contravariance denotes that the stronger subexponential index (in sense of preorder) maps
+to the weaker subquantale. The second one function maps a subquantale to its quantic conucleus according to the previous
+proposition. We match the index pursuant to its subset. In other words, if $s \in W$, then the result of subexponential
+interpretation is an unital quantic conucleus, etc. More formally:
+
 \begin{defin} Interpretation of subexponential signature
 
-  Let $\Sigma = \langle I, \preceq, W, C, E \rangle$ be a subexponential signature, where $|I| = n$ and
-  $\Box_{\mathcal{Q}}$ is a category of open modalities on a quantale $\mathcal{Q}$.
-  Subexponential interpretation is a contravariant functor $\sigma : I \to \Box_{\mathcal{Q}}$ defined as follows:
+Let $\mathcal{Q}$ be a quantale and $\Sigma = \langle \mathcal{I}, \preceq, \mathcal{W}, \mathcal{C}, \mathcal{E} \rangle$ be
+a subexponential signature. Suppose, we have $S : \Sigma \to Sub(\mathcal{Q})$, a contravariant map from this subexponential
+signature to the set of subquantales of $\mathcal{Q}$, and map $M : \mathcal{P}(\mathcal{Q}) \to \Box_{\mathcal{Q}}$, where
+$\Box_{\mathcal{Q}}$ is the set of quantic conuclei on $\mathcal{Q}$. Thus, a subexponential interpretation is the map
+$\sigma = M \circ S$ such that:
 
   $\sigma(s_i) = \begin{cases}
-  \Box_i : \mathcal{Q} \to \mathcal{Q} \text{, s.t.} \forall a \in Q, \Box_i(a) = \{ s \in S_i \: | \: s \leq a\},
+  I_i : \mathcal{Q} \to \mathcal{Q} \text{ s.t. } \forall a \in Q, \Box_i(a) = \{ s \in S_i \: | \: s \leq a\},
   \\ \:\:\:\: \text{if $s_i \notin W \cap C \cap E$} \\
-  \Box_i : \mathcal{Q} \to \mathcal{Q} \text{, s.t.} \forall a \in Q, \Box_i(a) = \{ s \in S_i \: | \: s \leq a, s \leq \mathds{1}\},
+  I_i : \mathcal{Q} \to \mathcal{Q} \text{ s.t. } \forall a \in Q, \Box_i(a) = \{ s \in S_i \: | \: s \leq a, s \leq \mathds{1}\},
   \\ \:\:\:\: \text{if $s_i \in W$} \\
-  \Box_i : \mathcal{Q} \to \mathcal{Q} \text{, s.t.} \forall a \in Q, \Box_i(a) = \{ s \in S_i \: | \: s \leq a, s \in \mathcal{Z}(\mathcal{Q}) \},
+  I_i : \mathcal{Q} \to \mathcal{Q} \text{ s.t. } \forall a \in Q, \Box_i(a) = \{ s \in S_i \: | \: s \leq a, s \in \mathcal{Z}(\mathcal{Q}) \},
   \\ \:\:\:\: \text{if $s_i \in E$} \\
-  \Box_i : \mathcal{Q} \to \mathcal{Q} \text{, s.t.} \forall a \in Q, \Box_i(a) = \{ s \in S_i \: | \: s \leq a, \forall b, b \cdot s \vee s \cdot b \leq s \cdot b \cdot s \},
+  I_i : \mathcal{Q} \to \mathcal{Q} \text{ s.t. } \forall a \in Q, \Box_i(a) = \{ s \in S_i \: | \: s \leq a, \forall b, b \cdot s \vee s \cdot b \leq s \cdot b \cdot s \},
   \\ \:\:\:\: \text{if $s_i \in E$} \\
   \text{otherwise, if $s_i$ belongs to some intersection of subsets, then we combine the relevant conditions } \\
   \end{cases}$
@@ -487,27 +686,27 @@ $\begin{array}{lll}
   $\Gamma \models A \Leftrightarrow \forall f, \forall \sigma, [\![\Gamma]\!] \leq [\![A]\!]$
 \end{defin}
 
+An interpretation and an entailment relation are defined standardly via valuation map and subexponential interpretation. There occur soundness and completeness theorems:
+
 \begin{theorem}
   $\Gamma \rightarrow A \Rightarrow [\![\Gamma]\!] \leq [\![A]\!]$
 \end{theorem}
 
 \begin{proof}
+  $ $
+
 We consider the promotion case, the rest modal cases are immediatly shown.
 
-Let $!_{s_1} A_1, \dots, !_{s_n} A_n \rightarrow A$ and $\forall i, s \preceq s_i$.
+Let $!_{s_1} A_1, \dots, !_{s_n} A_n \rightarrow A$ and $\forall i, s \preceq s_i$. Then $\forall a \in Q, \sigma(s_i)(a) \leq \sigma(s)(a)$.
 
-Then $\forall a \in Q, \sigma(s_i)(a) \leq \sigma(s)(a)$.
+By IH, $\sigma(s_1)[\![A_1]\!] \cdot \dots \cdot \sigma(s_n) [\![A_n]\!] \leq [\![A]\!]$. Thus, $\sigma(s)(\sigma(s_1)[\![A_1]\!] \cdot \dots \cdot \sigma(s_n) [\![A_n]\!]) \leq \sigma(s)([\![A]\!])$.
 
-By IH, $\sigma(s_1)[\![A_1]\!] \cdot \dots \cdot \sigma(s_n) [\![A_n]\!] \leq [\![A]\!]$.
-
-Thus, $\sigma(s)(\sigma(s_1)[\![A_1]\!] \cdot \dots \cdot \sigma(s_n) [\![A_n]\!]) \leq \sigma(s)([\![A]\!])$.
-
-By Lemma 5, $\sigma(s_1)[\![A_1]\!] \cdot \dots \cdot \sigma(s_n) [\![A_n]\!] \leq \sigma(s)(\sigma(s_1)[\![A_1]\!] \cdot \dots \cdot \sigma(s_n) [\![A_n]\!])$.
+By Lemma, $\sigma(s_1)[\![A_1]\!] \cdot \dots \cdot \sigma(s_n) [\![A_n]\!] \leq \sigma(s)(\sigma(s_1)[\![A_1]\!] \cdot \dots \cdot \sigma(s_n) [\![A_n]\!])$.
 
 So, $\sigma(s_1)[\![A_1]\!] \cdot \dots \cdot \sigma(s_n) [\![A_n]\!] \leq \sigma(s)([\![A]\!])$.
 \end{proof}
 
-\section{Quantale completeness}
+Now we prove completeness a la MacNeille completetion. As a matter of fact, we generalised the technique provided by Brown and Gurr for the polymodal case.
 
 \begin{defin}
 $ $
@@ -545,41 +744,30 @@ $ $
 We extend this construction for polymodal case as follows:
 
 \begin{lemma}
-Let $!_s \in I$ and $A \mathcal{F}_{\Sigma}$, then $\Box_s (\bigvee \{ A \}) = \bigvee \{ !_s B \: | \: !_s B \rightarrow A \}$
-  is a quantic conucleus.
+  $ $
+
+\begin{enumerate}
+\item Let $!_s \in I$ and $A \mathcal{F}_{\Sigma}$, then $\Box_s (\bigvee \{ A \}) = \bigvee \{ !_s B \: | \: !_s B \rightarrow A \}$ is a quantic conucleus
+\item Let $A \in \mathcal{F}_{\Sigma}$, then $\Box_s \bigvee \{ A \} = \bigvee \{ !_s A \}$, for each $s \in \mathcal{I}$
+\item  Let $i, j \in I$ and $i \preceq j$, then for all $A \in \mathcal{F}_{\Sigma}$, $\Box_j (\bigvee \{ A \}) \subseteq \Box_i (\bigvee \{ A \})$.
+\end{enumerate}
+
 \end{lemma}
 
 \begin{proof}
 $ $
 
-See Yetter.
-\end{proof}
+\begin{enumerate}
+\item Similarly to [Yetter].
+\item Let $A \in Fm$ and $s \in \mathcal{I}$.
 
-\begin{lemma}
-  Let $A \in \mathcal{F}_{\Sigma}$, then $\Box_s \bigvee \{ A \} = \bigvee \{ !_s A \}$, for each $s \in \mathcal{I}$.
-\end{lemma}
+Let $!_s B \in \Box_s \bigvee \{ A \}$, then $!_s B \rightarrow A$, then $!_s B \rightarrow !_s A$
+by promotion. So, $!_s B \in \bigvee \{ !_s A \}$.
 
-\begin{proof}
-  Let $A \in Fm$ and $s \in \mathcal{I}$.
-
-  Let $!_s B \in \Box_s \bigvee \{ A \}$, then $!_s B \rightarrow A$, then $!_s B \rightarrow !_s A$
-  by promotion. So, $!_s B \in \bigvee \{ !_s A \}$.
-
-  Let $C \in \bigvee \{ !_s A \}$, then $C \rightarrow !_s A$, so $!_s C \rightarrow !_s A$ by dereliction, but $!_s A \rightarrow A$, hence
-  $!_s C \rightarrow A$ by cut. So, $!_s C \in \Box_s \bigvee \{ A \}$.
-\end{proof}
-
-\begin{lemma}
-$ $
-
-  Let $i, j \in I$ and $i \preceq j$, then for all $A \in \mathcal{F}_{\Sigma}$, $\Box_j (\bigvee \{ A \}) \subseteq \Box_i (\bigvee \{ A \})$.
-\end{lemma}
-
-\begin{proof}
-$ $
-
-  Let $i, j \in I$ and $i \preceq j$, then forall $A \in \mathcal{F}_{\Sigma}$, $!_j A \rightarrow !_i A$ by promotion.
+Let $C \in \bigvee \{ !_s A \}$, then $C \rightarrow !_s A$, so $!_s C \rightarrow !_s A$ by dereliction, but $!_s A \rightarrow A$, hence $!_s C \rightarrow A$ by cut. So, $!_s C \in \Box_s \bigvee \{ A \}$.
+\item   Let $i, j \in I$ and $i \preceq j$, then forall $A \in \mathcal{F}_{\Sigma}$, $!_j A \rightarrow !_i A$ by promotion.
   Then $\bigvee \{ !_j A \} \subseteq \bigvee \{ !_i A \}$, so $\Box_j (\bigvee \{ A \}) \subseteq \Box_i (\bigvee \{ A \})$.
+\end{enumerate}
 \end{proof}
 
 \begin{lemma}
@@ -606,8 +794,8 @@ $ $
 \begin{defin}
 $ $
 
-Let $\mathcal{Q}$ be a syntactic quantale as proposed above and
-$\mathcal{I} = \langle I, \preceq, W, C, E \rangle$ be a subexponential signature.
+Let $\mathcal{Q}$ be a syntactic quantale defined above and $\mathcal{I} = \langle \mathcal{I}, \preceq,
+\mathcal{W}, \mathcal{C}, \mathcal{E} \rangle$ be a subexponential signature.
 
 We define a map $\Box : \mathcal{I} \to Mod_{\mathcal{Q}}$ as follows:
 
@@ -654,6 +842,8 @@ $ $
 \end{proof}
 
 \begin{comment}
+
+\section{Categorical part}
 
 \begin{defin} Monoidal comonad
   $ $
@@ -834,14 +1024,14 @@ $ $
   \end{itemize}
 \end{defin}
 
-\begin{theorem}
+\begin{lemma}
   $ $
 
   Let $\mathcal{Q} = \langle A, \leq, \cdot, \bigvee \rangle$ be a unital quantale and $\mathcal{S}$ is a subquantale of $\mathcal{Q}$.
 
-  Then $\langle \mathcal{Q}, \Box_{\mathcal{S}} \rangle$ is isomorphic to some relational quantale of $A$
-  wit some quantic conucleus $\hat{\Box}$.
-\end{theorem}
+  Then $\langle \mathcal{Q}, I_{\mathcal{S}} \rangle$ is isomorphic to some relational quantale of $A$
+  with some quantic conucleus $\hat{I}$, where $I_{\mathcal{S}}$ is a quantic conclues on $\mathcal{S}$.
+\end{lemma}
 
 \begin{proof}
 $ $
@@ -881,7 +1071,7 @@ Thus, $\hat{\Box} \theta(a) = \theta(\Box_{\mathcal{S}} a)$.
 
 \begin{theorem}
   Let $\mathfrak{Q} = \langle \mathcal{Q}, I \rangle$ be a quantale with
-  quantic conucleus. Then $\mathfrak{Q}$ is isomorphic to relational quantale on $Q$ with some quantic conucleus.
+  quantic conucleus. Then $\mathfrak{Q}$ is isomorphic to relational quantale on $Q$ with some conucleus.
 \end{theorem}
 
 \begin{proof}
@@ -898,9 +1088,9 @@ Thus, $\hat{\Box} \theta(a) = \theta(\Box_{\mathcal{S}} a)$.
   & \bigvee \{ s \in \mathcal{Q}_{I} \: | \: I(s) \leq I(a) \} \leq I(a)&
   \end{array}$
 
-  It is clear that, $I(a) \leq a$. So $I(a) \leq \bigvee \{ s \in \mathcal{Q}_{I} \: | \: s \leq a \} = I'(a)$.
+  On the other hand, $I(a) \leq a$. So $I(a) \leq \bigvee \{ s \in \mathcal{Q}_{I} \: | \: s \leq a \} = I'(a)$.
 
-  Thus, we showed that $I(a) = I'(a)$. One need to apply the previous theorem with $I'$.
+  Thus, we showed that $I(a) = I'(a)$. One need to apply the previous statement with conucleus $I'$.
 \end{proof}
 
 \section{Syntactic concept lattices}
@@ -912,7 +1102,7 @@ Thus, $\hat{\Box} \theta(a) = \theta(\Box_{\mathcal{S}} a)$.
   and $[.]^{\triangleleft} : \mathcal{P}(\mathcal{L}^{*} \times \mathcal{L}^{*}) \to \mathcal{P}(\mathcal{L}^{*})$ as follows:
 
   \begin{enumerate}
-    \item $M \subseteq \mathcal{L}^{*}$, $M^{\triangleright} = \{ (x, y) \: | \: \forall w \in M, x w y \in L \}$;
+    \item $M \subseteq \mathcal{L}^{*}$, $M^{\triangleright} = \{ (x, y) \: | \: \forall w \in M, x w y \in L \}$
     \item $C \subseteq \mathcal{L}^{*} \times \mathcal{L}^{*}$, $C^{\triangleleft} = \{ w \: | \: \forall (x, y) \in C, x w y
     \in L\}$
   \end{enumerate}
@@ -929,8 +1119,7 @@ Following to Wurm, by the concept we mean a closed set of strings, that is, $A$ 
 \triangleleft = A$. Moreover, $\langle \mathcal{B}_{\mathcal{L}}, \bigvee, \bigwedge \rangle$, where
 $\mathcal{B}_{\mathcal{L}}$ is the set of $\triangleright \triangleleft$-closed subsets of $\mathcal{L}^{*}$.
 
-We define a product of concepts as $A \circ B = (A \cdot B)^{\triangleright \triangleleft} =
-\{ a b \: | \: a \in A, b \in B \}^{\triangleright \triangleleft}$.
+We define a product of concepts as $A \circ B = (A \cdot B)^{\triangleright \triangleleft} = \{ a b \: | \: a \in A, b \in B \}^{\triangleright \triangleleft}$.
 
 Residuals are defined explicitly as follows:
 
@@ -940,7 +1129,7 @@ Residuals are defined explicitly as follows:
   $B / A = \{ (a, B b) \: | \: (a, b) \in A^{\triangleright} \}^{\triangleleft}$
 \end{center}
 
-It is easy to see, that the following condition hold for that residuals:
+It is easy to see that the following condition hold for that residuals:
 
 \begin{center}
   $A \backslash B = \bigvee \{ C \: | \: A \circ C \leq B \}$
@@ -949,14 +1138,26 @@ It is easy to see, that the following condition hold for that residuals:
 \end{center}
 
 \begin{defin}
-  The syntax concept lattice of a language $L$ is a structure $\langle \mathcal{B}_{L}, \circ, \bigvee, \bigwedge, /,
-  \backslash \rangle$, where $\mathcal{B}_{L}$ is the set of $[.]^{\triangleright \triangleleft}$-closed subsets of
-  $\mathcal{L}^{*}$.
+  The syntax concept lattice of a language $L$ is a structure $\langle \mathcal{B}_{L}, \circ, \bigvee, \bigwedge, /, \backslash \rangle$,
+  where $\mathcal{B}_{L}$  is the set of $[.]^{\triangleright \triangleleft}$-closed subsets of $\mathcal{L}^{*}$.
 \end{defin}
 
 \section{Thanks}
 
 Author would like to thank Lev Beklemishev, Stepan Kuznetsov, Fedor Pakhomov, Danyar Shamkanov, and Andre Scedrov
 for advice, critique, and comments.
+
+\addcontentsline{toc}{section}{Список использованной литературы}
+
+\begin{thebibliography}{}
+
+  \bibitem{Ajdukiewicz} Ajdukiewicz
+
+  \bibitem{Bar} Bar-Hillel
+
+  \bibitem{Lambek} Lambek
+
+  \bibitem{Wilde} Wilde
+\end{thebibliography}
 
 \end{document}
