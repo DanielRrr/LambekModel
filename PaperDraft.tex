@@ -157,6 +157,8 @@ linguistically. On the other hand, we can avoid this restriction. This calculus 
 might be introduced explicilty via the constant ${\bf 1}$. The logic $L_{\bf 1}$ is a conservative extension of $L^{*}$ with
 the following inference rules:
 
+\vspace{\baselineskip}
+
 \begin{minipage}{0.5\textwidth}
 \begin{flushleft}
 
@@ -181,12 +183,13 @@ the following inference rules:
 \end{flushright}
 \end{minipage}
 
-
-Also, we have a multiplicative conjunction or non-commutative tensor. This connective plays the role of concatenation.
+\vspace{\baselineskip}
 
 One may extend Lambek calculus with so-called additive conjunction and disjunction. The inference rules for these connections
 are quite similar to inference rules for conjunction and disjunction in intuitionistic sequent calculus. In $L$-models,
 additive connections are intersection and union of languages:
+
+\vspace{\baselineskip}
 
 \begin{minipage}{0.5\textwidth}
 \begin{flushleft}
@@ -220,6 +223,8 @@ additive connections are intersection and union of languages:
   \end{prooftree}
 \end{flushright}
 \end{minipage}
+
+\vspace{\baselineskip}
 
 \section{The Lambek Calculus with subexponentials}
 
@@ -338,6 +343,11 @@ $ $
   \Sigma} $
 \end{defin}
 
+Let us introduce inference polymodal inference rules for non-commutative subexponentials. One can apply substructural
+rules only if there is the relevant index on the current modality. Also, the right introduction rule is a sort of the
+generalised right $\Box$-introduction a la $K4$. Modality $!_s$ might be introduced on the right only if its index is less than any other subexponential index from the antecedent. That is, if we have already used stronger modality, then we may
+apply the weaker one.
+
 \begin{defin} Noncommutative linear logic with subexponentials ($SMALC_{\Sigma}$), where $\Sigma$ is a subexponential signature.
 
     \vspace{\baselineskip}
@@ -394,16 +404,11 @@ $ $
 
 \end{defin}
 
-After that, we introduce inference polymodal inference rules for non-commutative subexponentials. One can apply substructural
-rules only if there is the relevant index on the current modality. Also, the right introduction rule is a sort of the
-generalised right $\Box$-introduction a la $K4$. Modality $!_s$ might be introduced on the right only if its index is less than any other subexponential index from the antecedent. That is, if we have already used stronger modality, then we may
-apply the weaker one.
-
   \vspace{\baselineskip}
 
 Let us consider the current proof-theoretical and algorithmic results on Lambek calculus with additives and subexponentials.
 The first of all, the cut rule is admissible. Generally, this calculus is undecidable, but the fragment without non-local
-contraction is PSPACE-complete. These results were obtained by Kanovich, Kuznetsov, Nigam, and Scedrov.
+contraction is PSPACE-complete. These results were obtained by Kanovich, Kuznetsov, Nigam, and Scedrov \cite{Sc}.
 
 \begin{theorem}
 $ $
@@ -518,23 +523,6 @@ Here and below, $I^2 x$ denotes $I (I x)$.
 
 Note that, one may replace the last condition on the one $I x \cdot I y \leq I (x \cdot y)$. Thus, a quantic conuleus is the special case of lax monoidal monad from a category-theoretic point of view.
 
-\begin{defin}
-$ $
-
-  We define a partial order on quantic conuclei on $\mathcal{Q}$ as
-  $I_1 \leq I_2 \Leftrightarrow \forall a \in \mathcal{Q}, I_1 a \leq I_2 a$.
-\end{defin}
-
-\begin{lemma}
-  $I_1 a_1 \cdot I_2 a_2 \leq I (I_1 a_1 \cdot I_2 a_2)$, where $I_i \leq I, i = 1,2$.
-\end{lemma}
-
-\begin{proof}
-$ $
-
-  $I_1 a_1 \cdot I_2 a_2 \leq I_1 (I_1 a_1) \cdot I_2 (I_2 a_2) \leq I (I_1 a_1) \cdot I (I_2 a_2) \leq I (I_1 a_1 \cdot I_2 a_2)$
-\end{proof}
-
 Let us define the special cases of quantic conuclei that it would be useful for our purpose:
 
 \begin{defin}
@@ -551,60 +539,53 @@ $ $
 \end{enumerate}
 \end{defin}
 
-Note that centrality and strong square-increasing yield centrality.
-
-\begin{lemma}
+\begin{defin}
 $ $
 
-  Let $I$ be an open modality on some unital quantale $\mathcal{Q} = \langle A, \bigvee, \cdot, e \rangle$.
-  Then, if $I$ is unital and weak idempotent, then $I$ is central.
+  We define a partial order on quantic conuclei on $\mathcal{Q}$ as
+  $I_1 \leq I_2 \Leftrightarrow \forall a \in \mathcal{Q}, I_1 a \leq I_2 a$.
+\end{defin}
+
+Here we formulate and prove some techincal lemmas on quantic conuclei that we apply in the proof of soundness and completeness theorems:
+
+\begin{lemma}
+  $ $
+  Let $\mathcal{Q}$ be a quantale. Let $I$, $I_1$, and $I_2$ be quantic conuclei. Thus, the following properties hold:
+  \begin{enumerate}
+  \item $I_1 a_1 \cdot I_2 a_2 \leq I (I_1 a_1 \cdot I_2 a_2)$, where $I_i \leq I, i = 1,2$.
+  \item If $I$ is unital and weak idempotent, then $I$ is central.
+  \item Let $S \subseteq \mathcal{Q}$ be a subquantale, then $I : \mathcal{Q} \to \mathcal{Q}$, such that $\Box a = \bigvee \{ s \in S \: | \: s \leq a \}$, is an open modality.
+  \item Let $S_1$ and $S_2$ are subquantales such that $mathcal{S}_1 \subseteq \mathcal{S}_2 \subseteq \mathcal{Q}$. Then $\Box_{\mathcal{S}_1} (a) \leq \Box_{\mathcal{S}_1} (a)$.
+  \end{enumerate}
 \end{lemma}
 
 \begin{proof}
 $ $
 
-  $\begin{array}{lll}
-  & b \cdot I a \leq & \\
-  & \:\:\:\:\:\: \text{Right strong square-increase}& \\
-  &I a \cdot b \cdot I a \leq & \\
-  & \:\:\:\:\:\: \text{Unitality}& \\
-  & I a \cdot b \cdot e \leq & \\
-  & \:\:\:\:\:\: \text{Identity}& \\
-  &I a \cdot b \leq & \\
-  & \:\:\:\:\:\: \text{Left strong square-increase}& \\
-  &I a \cdot b \cdot I a \leq & \\
-  & \:\:\:\:\:\: \text{Unitality}& \\
-  &e \cdot b \cdot I a \leq & \\
-  & \:\:\:\:\:\: \text{Identity}& \\
-  &b \cdot I a&
-  \end{array}$
+\begin{enumerate}
+  \item $I_1 a_1 \cdot I_2 a_2 \leq I_1 (I_1 a_1) \cdot I_2 (I_2 a_2) \leq I (I_1 a_1) \cdot I (I_2 a_2) \leq I (I_1 a_1 \cdot I_2 a_2)$
+  \item $ $
 
-Hence, $b \cdot I a = I a \cdot b$, so for all $a \in \mathcal{Q}, I a \in \mathcal{Z}(\mathcal{Q})$.
+    $\begin{array}{lll}
+    & b \cdot I a \leq & \\
+    & \:\:\:\:\:\: \text{Right strong square-increase}& \\
+    &I a \cdot b \cdot I a \leq & \\
+    & \:\:\:\:\:\: \text{Unitality}& \\
+    & I a \cdot b \cdot e \leq & \\
+    & \:\:\:\:\:\: \text{Identity}& \\
+    &I a \cdot b \leq & \\
+    & \:\:\:\:\:\: \text{Left strong square-increase}& \\
+    &I a \cdot b \cdot I a \leq & \\
+    & \:\:\:\:\:\: \text{Unitality}& \\
+    &e \cdot b \cdot I a \leq & \\
+    & \:\:\:\:\:\: \text{Identity}& \\
+    &b \cdot I a&
+    \end{array}$
 
-\end{proof}
-
-\begin{prop}
-$ $
-
-  Let $\mathcal{Q}$ be a quantale and $S \subseteq \mathcal{Q}$ a subquantale,
-  then $I : \mathcal{Q} \to \mathcal{Q}$, such that $\Box a = \bigvee \{ s \in S \: | \: s \leq a \}$, is an open modality.
-\end{prop}
-
-\begin{proof}
-  See Rosenthal.
-\end{proof}
-
-\begin{prop}
-$ $
-
-  Let $\mathcal{Q}$ be a quantale and $\mathcal{S}_1 \subseteq \mathcal{S}_2 \subseteq \mathcal{Q}$.
-
-  Then $\Box_{\mathcal{S}_1} (a) \leq \Box_{\mathcal{S}_1} (a)$.
-\end{prop}
-
-\begin{proof}
-
-Immediatly.
+  Hence, $b \cdot I a = I a \cdot b$, so for all $a \in \mathcal{Q}, I a \in \mathcal{Z}(\mathcal{Q})$.
+  \item See Rosental.
+  \item Immediately.
+\end{enumerate}
 \end{proof}
 
 \begin{prop}
@@ -613,44 +594,47 @@ $ $
 Let $\mathcal{Q}$ be a quantale and $\mathcal{S} \subseteq \mathcal{Q}$ a subquantale, then the following operations are open modalities:
 
 \begin{enumerate}
-  \item $\Box_z (a) = \bigvee \{ s \in S \: | s \leq a, s \in \mathcal{Z}(\mathcal{Q}) \}$;
-  \item $\Box_{\mathds{1}} (a) = \bigvee \{ s \in S \: | s \leq a, s \leq \mathds{1} \}$;
-  \item $\Box_{idem} (a) = \bigvee \{ s \in S \: | s \leq a, \forall b \in Q, b \cdot s \vee s \cdot b \leq s \cdot b \cdot s\}$;
-  \item Operations with combinations of conditions above;
+  \item $I a = \bigvee \{ s \in S \: | \: s \leq a, s \in \mathcal{Z}(\mathcal{Q}) \}$ is a central quantic conucleus
+  \item $I a = \bigvee \{ s \in S \: | \: s \leq a, s \leq \mathds{1} \}$ is an unital conucleus
+  \item $I a = \bigvee \{ s \in S \: | \: s \leq a, \forall b \in Q, b \cdot s \vee s \cdot b \leq s \cdot b \cdot s\}$ is a generalised square-increasing quantic conucleus
+  \item Operations with combinations of conditions above
 \end{enumerate}
 \end{prop}
 
 \begin{proof}
-  Immediatly.
+  Immediately
 \end{proof}
 
 \begin{prop}
 $ $
-
+Let $\mathcal{Q}$ be a quantale, then:
 \begin{enumerate}
-  \item $\forall a \in \mathcal{Q}, \Box_{\mathds{1}, idem}(a) \leq \Box_z (a)$.
-  \item $\forall a \in \mathcal{Q}, \Box_{z, \mathds{1}, idem} = \Box_{\mathds{1}, idem}(a)$
+  \item Let $I_1$ be a unital and generalised square-increasing and $I_2$ a central, then $\forall a \in \mathcal{Q}, I_1 a \leq I_2 a$
+  \item If $I_1$ is GSI, unital, and central, $I_2$ is GSI and unital, then $\forall a \in \mathcal{Q}, I_1 a = I_2 a$
 \end{enumerate}
 
 \end{prop}
 
 \begin{proof}
-  Follows from Lemma 3.
+$ $
+
+  \begin{enumerate}
+    \item Follows from Lemma 1.2.
+    \item The right inequation follows from the first of this lemma. The left inequation is obvious.
+  \end{enumerate}
 \end{proof}
 
-We define a subexponential interpretation in a quite sophisticated manner. Suppose we have a contravariant map from signature
-to the set of subquantales. Here, contravariance denotes that the stronger subexponential index (in sense of preorder) maps
-to the weaker subquantale. The second one function maps a subquantale to its quantic conucleus according to the previous
-proposition. We match the index pursuant to its subset. In other words, if $s \in W$, then the result of subexponential
-interpretation is an unital quantic conucleus, etc. More formally:
+We define a subexponential interpretation in quite sophisticatedly. Suppose we have a contravariant map from a given signature to the set of subquantales. Here, contravariance denotes that the stronger subexponential index (in sense of
+preorder) maps to the weaker subquantale. The second one function maps a subquantale to its quantic conucleus according to
+the previous proposition. We match the index pursuant to its subset. In other words, if $s \in W$, then the result of s
+subexponential interpretation is an unital quantic conucleus, etc. More formally:
 
 \begin{defin} Interpretation of subexponential signature
 
-Let $\mathcal{Q}$ be a quantale and $\Sigma = \langle \mathcal{I}, \preceq, \mathcal{W}, \mathcal{C}, \mathcal{E} \rangle$ be
-a subexponential signature. Suppose, we have $S : \Sigma \to Sub(\mathcal{Q})$, a contravariant map from this subexponential
-signature to the set of subquantales of $\mathcal{Q}$, and map $M : \mathcal{P}(\mathcal{Q}) \to \Box_{\mathcal{Q}}$, where
-$\Box_{\mathcal{Q}}$ is the set of quantic conuclei on $\mathcal{Q}$. Thus, a subexponential interpretation is the map
-$\sigma = M \circ S$ such that:
+Let $\mathcal{Q}$ be a quantale and $\Sigma = \langle \mathcal{I}, \preceq, \mathcal{W}, \mathcal{C}, \mathcal{E} \rangle$
+a subexponential signature. Let $S : \Sigma \to Sub(\mathcal{Q})$ be a contravariant map from this subexponential
+signature to the set of subquantales of $\mathcal{Q}$ Thus, a subexponential interpretation is the map
+$\sigma : \Sigma \to CN(\mathcal{Q})$, where $CN(\mathcal{Q})$ is the set of quantic conuclei on $\mathcal{Q}$, such that:
 
   $\sigma(s_i) = \begin{cases}
   I_i : \mathcal{Q} \to \mathcal{Q} \text{ s.t. } \forall a \in Q, \Box_i(a) = \{ s \in S_i \: | \: s \leq a\},
@@ -686,23 +670,56 @@ $\begin{array}{lll}
   $\Gamma \models A \Leftrightarrow \forall f, \forall \sigma, [\![\Gamma]\!] \leq [\![A]\!]$
 \end{defin}
 
-An interpretation and an entailment relation are defined standardly via valuation map and subexponential interpretation. There occur soundness and completeness theorems:
+An interpretation and an entailment relation are defined standardly via valuation map and subexponential interpretation.
+The first of all, let us make sure that any subexponential interpretation is sound w.r.t the set of quantic conuclei $CN(\mathcal{Q})$ of the quantale $\mathcal{Q}$.
+
+
+\begin{lemma}
+  $ $
+
+  Let $\Sigma$ be a subexponential signature and $\sigma : \Sigma \to CN(\mathcal{Q})$ for a contravariant map
+  $S : \Sigma \to Sub(\mathcal{Q})$, then:
+  \begin{enumerate}
+  \item For all $s_1, s_2 \in \Sigma$, if $s_1 \preceq s_2$, then $\sigma(s_2) \leq \sigma(s_1)$.
+  In other words, $\sigma$ is a contravariant functor from $\Sigma$ to $Sub(\mathcal{Q})$.
+  \item $\sigma(A) = \{ \sigma(s) \: | \: s \in A \}$ is downwardly closed, where $A = \{ \mathcal{W}, \mathcal{C}, \mathcal{E} \}$.
+  \item If $s \in \mathcal{W} \cap \mathcal{C}$, then $\sigma(s)$ is a central quantic conucleus.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+  $ $
+
+  \begin{enumerate}
+  \item Let $s_1, s_2 \in \Sigma$ and $s_1 \leq s_2$. Then $S(s_2) \subseteq S(s_1)$.
+  So, $\forall a \in \mathcal{Q}, \bigvee \{ s \in S(s_2) \: | \: s \leq a \} \leq \bigvee \{ s \in S(s_1) \: | \: s \leq a \}$. Thus, $\sigma(s_2) \leq \sigma(s_1)$.
+  \item Let $s_1 \in A$ and $s_1 \preceq s_2$. By the previous part, $\sigma(s_2) \leq \sigma(s_1)$. Suppose $\sigma(s_2) \notin \sigma(A)$, then $s_2 \notin A$. But $s_2 \in A$ so far as $A$ is upwardly closed. Contradiction.
+  \item Let $s \in \mathcal{W} \cap \mathcal{C}$ and $a \in \mathcal{Q}$,
+  then $\sigma(s)(a) = \bigvee \{ x \in S(s) \: | \: x \leq a, x \in \mathcal{Z}(\mathcal{Q}), \text{ and } \forall b \in \mathcal{Q}, (x \cdot b) \vee (b \cdot x) \leq x \cdot b \cdot x \}$. Thus, by Lemma, $\sigma(s)(a) \in \mathcal{Z}(\mathcal{Q})$.
+
+\end{enumerate}
+\end{proof}
+
+There occur soundness and completeness theorems.
 
 \begin{theorem}
-  $\Gamma \rightarrow A \Rightarrow [\![\Gamma]\!] \leq [\![A]\!]$
+$ $
+
+  Let $\Sigma$ be a subexponential signature, then
+  $SMALC_{\Sigma} \vdash \Gamma \rightarrow A \Rightarrow [\![\Gamma]\!] \leq [\![A]\!]$ for some valuation map $f$ and subexponential interpretation $\sigma : \Sigma \to CN(\mathcal{Q})$.
 \end{theorem}
 
 \begin{proof}
   $ $
 
-We consider the promotion case, the rest modal cases are immediatly shown.
+By the previous lemma, $\sigma$ is well-defined. Let us consider the case of polymodal promotion.
 
 Let $!_{s_1} A_1, \dots, !_{s_n} A_n \rightarrow A$ and $\forall i, s \preceq s_i$. Then $\forall a \in Q, \sigma(s_i)(a) \leq \sigma(s)(a)$.
 
-By IH, $\sigma(s_1)[\![A_1]\!] \cdot \dots \cdot \sigma(s_n) [\![A_n]\!] \leq [\![A]\!]$. Thus, $\sigma(s)(\sigma(s_1)[\![A_1]\!] \cdot \dots \cdot \sigma(s_n) [\![A_n]\!]) \leq \sigma(s)([\![A]\!])$.
-
-By Lemma, $\sigma(s_1)[\![A_1]\!] \cdot \dots \cdot \sigma(s_n) [\![A_n]\!] \leq \sigma(s)(\sigma(s_1)[\![A_1]\!] \cdot \dots \cdot \sigma(s_n) [\![A_n]\!])$.
-
+By IH, $\sigma(s_1)[\![A_1]\!] \cdot \dots \cdot \sigma(s_n) [\![A_n]\!] \leq [\![A]\!]$. Thus,
+$\sigma(s)(\sigma(s_1)[\![A_1]\!] \cdot \dots \cdot \sigma(s_n) [\![A_n]\!]) \leq \sigma(s)([\![A]\!])$. By Lemma,
+$\sigma(s_1)[\![A_1]\!] \cdot \dots \cdot \sigma(s_n) [\![A_n]\!] \leq \sigma(s)(\sigma(s_1)[\![A_1]\!] \cdot \dots \cdot
+\sigma(s_n) [\![A_n]\!])$. \\
 So, $\sigma(s_1)[\![A_1]\!] \cdot \dots \cdot \sigma(s_n) [\![A_n]\!] \leq \sigma(s)([\![A]\!])$.
 \end{proof}
 
@@ -1088,7 +1105,7 @@ Thus, $\hat{\Box} \theta(a) = \theta(\Box_{\mathcal{S}} a)$.
   & \bigvee \{ s \in \mathcal{Q}_{I} \: | \: I(s) \leq I(a) \} \leq I(a)&
   \end{array}$
 
-  On the other hand, $I(a) \leq a$. So $I(a) \leq \bigvee \{ s \in \mathcal{Q}_{I} \: | \: s \leq a \} = I'(a)$.
+  On the other hand, $I(a) \leq a$. So $I(a) \leq \bigvee \{ s \in \mathcal{Q}_{I} \: | \: s \leq a \} = I'(a)$, so far as $I(a) \in \{ s \in \mathcal{Q}_{I} \: | \: s \leq a \}$.
 
   Thus, we showed that $I(a) = I'(a)$. One need to apply the previous statement with conucleus $I'$.
 \end{proof}
@@ -1144,10 +1161,9 @@ It is easy to see that the following condition hold for that residuals:
 
 \section{Thanks}
 
-Author would like to thank Lev Beklemishev, Stepan Kuznetsov, Fedor Pakhomov, Danyar Shamkanov, and Andre Scedrov
-for advice, critique, and comments.
+Author would like to thank Lev Beklemishev, Giuseppe Greco, Stepan Kuznetsov, Jean-Francois Mascari, Fedor Pakhomov, Danyar Shamkanov, and Andre Scedrov for advice, critique, and comments.
 
-\addcontentsline{toc}{section}{Список использованной литературы}
+\addcontentsline{toc}{section}{References}
 
 \begin{thebibliography}{}
 
