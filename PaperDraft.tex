@@ -559,8 +559,6 @@ $ $
   Immediately
 \end{proof}
 
-\newpage
-
 \begin{lemma} Let $I$ be a quantic conucleus, then for all $a \in \mathcal{Q}$, $I a = \bigvee \{ q \in Q_{I} \: | \: s \leq a \}$, where $Q_{I} = \{ a \in \mathcal{Q} \: | \: I a = a \}$.
 \end{lemma}
 
@@ -624,7 +622,27 @@ then $I_1$ is a unital (central, strong weak increasing).
   $a \cdot b \leq b \cdot a \cdot b$ and $b \cdot a \leq b \cdot a \cdot b$.
 
   Let $c \in Q_{I_1}$. Similarly to the previous part, $c = I_1 c \leq I_2 c \leq c$, then $c \in Q_{I_2}$ and
-  $I_1$ is a strong square increasing.
+  $I_1$ is a strong square increasing:
+
+  $\begin{array}{lll}
+  &I_1 a \cdot b = \bigvee \{ q \in Q_{I_1} \: | \: q \leq a \} \cdot b = & \\
+  & \:\:\:\:\:\:\:\: \text{By quantale axiom}& \\
+  & \bigvee \{ q \cdot b \: | \: q \in Q_{I_1}, q \leq a \} = & \\
+  & \:\:\:\:\:\:\:\: \text{As we proved above}& \\
+  & \bigvee \{ I_2 q \cdot b \: | \: q \in Q_{I_1}, q \leq a \} \leq & \\
+  & \:\:\:\:\:\:\:\: \text{By condition}& \\
+  & \bigvee \{ I_2 q \cdot b \cdot I_2 q \: | \: q \in Q_{I_1}, q \leq a \} = & \\
+  & \:\:\:\:\:\:\:\: \text{So far as $q$ is a fixpoint of $I_2$} & \\
+  & \bigvee \{ q \cdot b \cdot q \: | \: q \in Q_{I_1}, q \leq a \} = & \\
+  & \:\:\:\:\:\:\:\: \text{By quantale axiom} = & \\
+  & \bigvee \{ q \cdot b \: | \: q \in Q_{I_1}, q \leq a \} \cdot \bigvee \{ q \in Q_{I_1} \: | \: q \leq a \} = & \\
+  & \:\:\:\:\:\:\:\: \text{By quantale axiom} = & \\
+  & \bigvee \{ q \in Q_{I_1} \: | \: q \leq a \} \cdot b \cdot \bigvee \{ q \in Q_{I_1} \: | \: q \leq a \} = & \\
+  & \:\:\:\:\:\:\:\: \text{By Lemma } = & \\
+  &I_1 a \cdot b \cdot I_1&
+  \end{array}$
+
+  The second inequation might be proved similarly.
 \end{enumerate}
 \end{proof}
 
