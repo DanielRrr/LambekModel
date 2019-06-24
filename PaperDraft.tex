@@ -528,12 +528,12 @@ Let us define the special cases of quantic conuclei that it would be useful for 
 \begin{defin}
 $ $
 \begin{enumerate}
-  \item A quantic conucleus is called central, if for all
-  $a, b \in \mathcal{Q}, \Box a \cdot b = b \cdot \Box a$.
+  \item A quantic conucleus $I$ is called central, if for all
+  $a, b \in \mathcal{Q}, I a \cdot b = b \cdot I a$.
 
   \item A quantic conucleus is called strong square-increasing,
-  if for all $a, b \in \mathcal{Q}, \Box a \cdot b \leq \Box a \cdot b \cdot \Box a$ and
-  $b \cdot \Box a \leq \Box a \cdot b \cdot \Box a$.
+  if for all $a, b \in \mathcal{Q}, I a \cdot b \leq I a \cdot b \cdot I a$ and
+  $b \cdot I a \leq I a \cdot b \cdot I a$.
 
   \item A quantic conucleus is called unital, if $\forall a \in Q, \Box a \leq e$.
 \end{enumerate}
@@ -546,6 +546,88 @@ $ $
   $I_1 \leq I_2 \Leftrightarrow \forall a \in \mathcal{Q}, I_1 a \leq I_2 a$.
 \end{defin}
 
+\begin{lemma}
+$ $
+
+  \begin{enumerate}
+    \item Let $S \subseteq \mathcal{Q}$ be a subquantale, then $I : \mathcal{Q} \to \mathcal{Q}$, such that $\Box a = \bigvee \{ s \in S \: | \: s \leq a \}$, is an open modality.
+    \item Let $S_1$ and $S_2$ are subquantales such that $\mathcal{S}_1 \subseteq \mathcal{S}_2 \subseteq \mathcal{Q}$. Then $I_{\mathcal{S}_1} (a) \leq I_{\mathcal{S}_1} (a)$, where $I_{\mathcal{S}_i}, i = 1,2$ are quantic conucleis defined according to the previous part.
+  \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+  Immediately
+\end{proof}
+
+\newpage
+
+\begin{lemma} Let $I$ be a quantic conucleus, then for all $a \in \mathcal{Q}$, $I a = \bigvee \{ q \in Q_{I} \: | \: s \leq a \}$, where $Q_{I} = \{ a \in \mathcal{Q} \: | \: I a = a \}$.
+\end{lemma}
+
+\begin{proof}
+$ $
+
+So far as $Q_{I} = \{ a \in \mathcal{Q} \: | \: I a = a \}$ is a subquantale, then $I' a = \bigvee \{ q \in Q_{I} \: | \: s \leq a \}$ is a quantic conucleus. Let us show that these operations are equavalent.
+
+From the one hand,
+
+$\begin{array}{lll}
+&\bigvee \{ q \in Q_{I} \: | \: s \leq a \} = & \\
+& \:\:\:\:\:\:\:\: \text{$s \in Q_{I}$, so s is a fixpoint of $I$} & \\
+&\bigvee \{ q \in Q_{I} \: | \: I s \leq a \} = & \\
+& \:\:\:\:\:\:\:\: \text{By equivalence}& \\
+&\bigvee \{ q \in Q_{I} \: | \: I s \leq I a \} = & \\
+& \:\:\:\:\:\:\:\: \text{By fixpoint} & \\
+&\bigvee \{ q \in Q_{I} \: | \: s \leq I a \} \leq I a& \\
+\end{array}$
+
+On the other hand, $I a \leq a$, then $I a \in \{ q \in Q_{I} \: | \: q \leq a \}$, so far as $I a \in Q_{I}$ (by idempotence). Thus, $I a \leq \bigvee \{ q \in Q_{I} \: | \: q \leq a \}$.
+
+\end{proof}
+
+\begin{lemma}
+$ $
+
+Let $I_1$ be a quantic conucleus $I_2$ a unital (central, strong weak increasing) quantic conucleus such that $I_1 \leq I_2$,
+then $I_1$ is a unital (central, strong weak increasing).
+
+\end{lemma}
+
+\begin{proof}
+  $ $
+
+\begin{enumerate}
+  \item Let $a \in \mathcal{Q}$ (here $\mathcal{Q}$ is supposed to be a unital).
+  Then $I_2 a \leq \varepsilon$, but $I_1 \leq I_2$, so $I_1 a \leq I_2 a$. By transitivity, $I_1 a \leq \varepsilon$.
+  \item Let $a \in \mathcal{Q}$ and $I_2$ is a central quantic conucleus. Let $I_1$ be a quantic conucleus and $I_1 \leq I_2$.
+
+
+  Thus, $I_2 a \in \mathcal{Z}(\mathcal{Q})$ and, obviously, $Q_{I_2} \subseteq \mathcal{Z}(\mathcal{Q})$.
+
+  Let $b \in Q_{I_1}$, then $b = I_1 b \leq I_2 b \leq b$. Thus, $b = I_2 b$ and $b \in Q_{I_2}$. So, $Q_{I_1} \subseteq \mathcal{Z}(\mathcal{Q})$.
+
+  Let us check that $I_1$ commutes with each other element $d \in \mathcal{Q}$
+
+  $\begin{array}{lll}
+  & I_1 a \cdot d = \bigvee \{ q \in Q_{I_1} \: | \: q \leq a \} \cdot d = & \\
+  & \:\:\:\:\:\:\:\: \text{By quantale axiom}& \\
+  & \bigvee \{ q \cdot d \: | \: q \in Q_{I_1} \: \& \: q \leq a \} = & \\
+  & \:\:\:\:\:\:\:\: \text{As we proved, $q \in \mathcal{Z}(\mathcal{Q})$} & \\
+  & \bigvee \{ d \cdot q \: | \: q \in Q_{I_1} \: \& \: q \leq a \} = & \\
+  & \:\:\:\:\:\:\:\: \text{By quantale axiom}& \\
+  & d \cdot \bigvee \{ q \in Q_{I_1} \: | \: q \leq a \} = & \\
+  & \:\:\:\:\:\:\:\: \text{By Lemma \# n}& \\
+  & d \cdot I_1 a &
+  \end{array}$
+
+  \item Let $I_2$ be a strong square increasing. Then, for all $a \in \mathcal{Q}$ and $b \in Q_{I_2}$,
+  $a \cdot b \leq b \cdot a \cdot b$ and $b \cdot a \leq b \cdot a \cdot b$.
+
+  Let $c \in Q_{I_1}$. Similarly to the previous part, $c = I_1 c \leq I_2 c \leq c$, then $c \in Q_{I_2}$ and
+  $I_1$ is a strong square increasing.
+\end{enumerate}
+\end{proof}
+
 Here we formulate and prove some techincal lemmas on quantic conuclei that we apply in the proof of soundness and completeness theorems:
 
 \begin{lemma}
@@ -554,8 +636,6 @@ Here we formulate and prove some techincal lemmas on quantic conuclei that we ap
   \begin{enumerate}
   \item $I_1 a_1 \cdot I_2 a_2 \leq I (I_1 a_1 \cdot I_2 a_2)$, where $I_i \leq I, i = 1,2$.
   \item If $I$ is unital and weak idempotent, then $I$ is central.
-  \item Let $S \subseteq \mathcal{Q}$ be a subquantale, then $I : \mathcal{Q} \to \mathcal{Q}$, such that $\Box a = \bigvee \{ s \in S \: | \: s \leq a \}$, is an open modality.
-  \item Let $S_1$ and $S_2$ are subquantales such that $mathcal{S}_1 \subseteq \mathcal{S}_2 \subseteq \mathcal{Q}$. Then $\Box_{\mathcal{S}_1} (a) \leq \Box_{\mathcal{S}_1} (a)$.
   \end{enumerate}
 \end{lemma}
 
@@ -583,8 +663,6 @@ $ $
     \end{array}$
 
   Hence, $b \cdot I a = I a \cdot b$, so for all $a \in \mathcal{Q}, I a \in \mathcal{Z}(\mathcal{Q})$.
-  \item See Rosental.
-  \item Immediately.
 \end{enumerate}
 \end{proof}
 
@@ -673,6 +751,27 @@ $\begin{array}{lll}
 An interpretation and an entailment relation are defined standardly via valuation map and subexponential interpretation.
 The first of all, let us make sure that any subexponential interpretation is sound w.r.t the set of quantic conuclei $CN(\mathcal{Q})$ of the quantale $\mathcal{Q}$.
 
+\begin{lemma}
+  $ $
+
+  \begin{enumerate}
+    \item $s \in \mathcal{W}$, then $\sigma(s)$ is a unital modality.
+    \item $s \in \mathcal{E}$, then $\sigma(s)$ is a central modality.
+    \item $s \in \mathcal{C}$, then $\sigma(s)$ is GSI modality.
+  \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+  By construction.
+\end{proof}
+
+\begin{lemma}
+  Let $s_1 \in \mathcal{W}$ and $s_1 \preceq s_2$, then $\sigma(s_2)$ is a central modality.
+\end{lemma}
+
+\begin{proof}
+\end{proof}
+
 
 \begin{lemma}
   $ $
@@ -682,7 +781,7 @@ The first of all, let us make sure that any subexponential interpretation is sou
   \begin{enumerate}
   \item For all $s_1, s_2 \in \Sigma$, if $s_1 \preceq s_2$, then $\sigma(s_2) \leq \sigma(s_1)$.
   In other words, $\sigma$ is a contravariant functor from $\Sigma$ to $Sub(\mathcal{Q})$.
-  \item $\sigma(A) = \{ \sigma(s) \: | \: s \in A \}$ is downwardly closed, where $A = \{ \mathcal{W}, \mathcal{C}, \mathcal{E} \}$.
+  $\sigma(A) = \{ \sigma(s) \: | \: s \in A \}$ is downwardly closed, where $A = \{ \mathcal{W}, \mathcal{C}, \mathcal{E} \}$.
   \item If $s \in \mathcal{W} \cap \mathcal{C}$, then $\sigma(s)$ is a central quantic conucleus.
 \end{enumerate}
 \end{lemma}
@@ -693,9 +792,10 @@ The first of all, let us make sure that any subexponential interpretation is sou
   \begin{enumerate}
   \item Let $s_1, s_2 \in \Sigma$ and $s_1 \leq s_2$. Then $S(s_2) \subseteq S(s_1)$.
   So, $\forall a \in \mathcal{Q}, \bigvee \{ s \in S(s_2) \: | \: s \leq a \} \leq \bigvee \{ s \in S(s_1) \: | \: s \leq a \}$. Thus, $\sigma(s_2) \leq \sigma(s_1)$.
+  \item
   \item Let $s_1 \in A$ and $s_1 \preceq s_2$. By the previous part, $\sigma(s_2) \leq \sigma(s_1)$. Suppose $\sigma(s_2) \notin \sigma(A)$, then $s_2 \notin A$. But $s_2 \in A$ so far as $A$ is upwardly closed. Contradiction.
   \item Let $s \in \mathcal{W} \cap \mathcal{C}$ and $a \in \mathcal{Q}$,
-  then $\sigma(s)(a) = \bigvee \{ x \in S(s) \: | \: x \leq a, x \in \mathcal{Z}(\mathcal{Q}), \text{ and } \forall b \in \mathcal{Q}, (x \cdot b) \vee (b \cdot x) \leq x \cdot b \cdot x \}$. Thus, by Lemma, $\sigma(s)(a) \in \mathcal{Z}(\mathcal{Q})$.
+  then $\sigma(s)(a) = \bigvee \{ x \in S(s) \: | \: x \leq a, x \leq \varepsilon, \text{ and } \forall b \in \mathcal{Q}, (x \cdot b) \vee (b \cdot x) \leq x \cdot b \cdot x \}$. Thus, by Lemma, $\sigma(s)(a) \in \mathcal{Z}(\mathcal{Q})$.
 
 \end{enumerate}
 \end{proof}
