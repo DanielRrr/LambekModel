@@ -261,7 +261,7 @@ $ $
 \end{enumerate}
 \end{defin}
 
-As usual, if $V = \{ x \}$ is a singleton, then $\mathcal{F} \restriction x = \langle W \restriction x, R \cap x \rangle$ is a rooted frame (model).  
+As usual, if $V = \{ x \}$ is a singleton, then $\mathcal{F} \restriction x = \langle W \restriction x, R \cap x \rangle$ is a rooted frame (model).
 
 \begin{lemma}
   Let $\mathcal{M} = \langle W, R, \theta$ and $V$ is $R$-closed subset of $W$, then:
@@ -296,6 +296,109 @@ As usual, if $V = \{ x \}$ is a singleton, then $\mathcal{F} \restriction x = \l
   \end{enumerate}
 \end{proof}
 
+\begin{defin}
+  $ $
+
+  By $L^{*}_{\bf S4}$ ($L_{\bf S4}$) we mean the calculus $L^{*}$ ($L$) extended with the following inference rules:
+
+  \begin{minipage}{0.5\textwidth}
+  \begin{flushleft}
+    \begin{prooftree}
+    \AxiomC{$\Gamma, A, \Delta \rightarrow B$}
+    \RightLabel{$! \to$}
+    \UnaryInfC{$\Gamma, !A, \Delta \rightarrow B$}
+    \end{prooftree}
+  \end{flushleft}
+  \end{minipage}\hfill
+  \begin{minipage}{0.5\textwidth}
+  \begin{flushright}
+    \begin{prooftree}
+    \AxiomC{$! \Gamma \rightarrow A$}
+    \RightLabel{$\to !$}
+    \UnaryInfC{$! \Gamma \rightarrow ! A$}
+    \end{prooftree}
+  \end{flushright}
+  \end{minipage}
+\end{defin}
+
+\begin{prop}
+$ $
+
+$L_{\bf S4}$ ($L^{*}_{\bf S4}$) might be equivalently defined as $L_{\bf S4}^{'} (L^{*}_{\bf S4}) = L (L^{*}) \: \oplus \: ! A \to A \: \oplus \: ! A \to !! A$ closed under monotonicity $!$-rule
+
+\end{prop}
+
+\begin{proof}
+  \item It is clear that $L_{\bf S4} \subseteq L_{\bf S4}^{'}$. The converse inclusion is proved straightforwardly as follows:
+
+\begin{minipage}{0.5\textwidth}
+\begin{flushleft}
+  \begin{prooftree}
+    \AxiomC{$! A \to A$}
+    \AxiomC{$\Gamma, A, \Delta \to A$}
+    \RightLabel{{\bf cut}}
+    \BinaryInfC{$\Gamma, ! A, \Delta \rightarrow B$}
+  \end{prooftree}
+\end{flushleft}
+\end{minipage}\hfill
+\begin{minipage}{0.5\textwidth}
+\begin{flushright}
+  \begin{prooftree}
+    \AxiomC{$ \{ ! A_i \to ! ! A_i \}_{i = 1, \dots, n} $}
+    \AxiomC{$! A_1, ! A_2, \dots, ! A_n \rightarrow B$}
+    \RightLabel{{\bf mon}}
+    \UnaryInfC{$!! A_1, !! A_2, \dots, !! A_n \rightarrow ! B$}
+    \RightLabel{{\bf cut}}
+    \BinaryInfC{$! A_1, ! A_2, \dots, ! A_n \rightarrow ! B$}
+  \end{prooftree}
+\end{flushright}
+\end{minipage}
+\end{proof}
+
+\begin{defin}
+
+  $ $
+
+  A modal $R$-model $\mathfrak{M}$ is a $R$-model with additional truth condition:
+
+  $\mathfrak{M}, \langle a, b \rangle \models ! A \Leftrightarrow \exists {R_1}_{\langle a, b \rangle} \subseteq R \text{ such that } \forall w \in R_1 \: \mathfrak{M}, w \models A$
+\end{defin}
+
+\begin{theorem}
+  Let $R \subseteq W \times W$ be a (reflexive) transitive relation and $\mathcal{F} = \langle W, R \rangle$ a modal $R$-model, then $L_{\bf S4} \subseteq Log(F)$.
+\end{theorem}
+
+  We prove this theorem modulo the previous proposition for simplicity.
+
+\begin{proof}
+
+  \begin{enumerate}
+    \item Let $\mathcal{F} \models \: ! A$, then for all $\langle a, b \rangle \in R$ and for each valuation $v$,
+    $\langle \mathcal{F}, v \rangle, \langle a, b \rangle \models ! A$. Thus, $\langle \mathcal{F}, v \rangle, \langle a, b \rangle \models A$.
+    \item Let $\mathcal{F} \models \: ! A$, then for all $\langle a, b \rangle \in R$, $\langle \mathcal{F}, v \rangle, \langle a, b \rangle \models ! A$,
+    where $v$ is a valuation. It means that there exists $U_{\langle a, b \rangle} \subseteq R$ such that for each $u \in U$,
+    $\langle \mathcal{F}, v \rangle, u \models A$.
+  \end{enumerate}
+\end{proof}
+
+\begin{lemma}
+  Let $\mathcal{F}_1 = \langle W_1, R_1 \rangle$ and $\mathcal{F}_2 = \langle W_2, R_2 \rangle$ be $R$-frames and $f : \mathcal{F}_1 \twoheadrightarrow \mathcal{F}_2$ a $p$-morphism. Then $p$-morphism properties also hold
+\end{lemma}
+
+\begin{proof}
+  $ $
+
+  Let us show that $\langle \mathcal{F}_1, v_1 \rangle, \langle a, b \rangle \models ! A \Leftrightarrow \langle \mathcal{F}_2, v_2 \rangle, \langle f(a), f(b) \rangle \models ! A$
+
+    $(\Rightarrow)$ Let $\langle \mathcal{F}_1, v_1 \rangle, \langle a, b \rangle \models ! A$. Then there exists a subrelation $R_1$ such that $\langle a, b \rangle$ and
+    for each $p \in R_1, \langle \mathcal{F}_1, v_1 \rangle, p \models A$.
+    Let us define $R_1^{'} = \{ \langle f(x), f(y) \rangle \: | \: \langle x, y \rangle \in R_1 \} \subseteq R_2$. By IH, for each $p^{'} \in R_1^{'}$,
+    $\langle \mathcal{F}_1, v_1 \rangle, p \models A$. Thus, there exists a subrelation that contains $\langle f(a), f(b) \rangle$ in each pair of which $A$ is true. So, $\langle \mathcal{F}_2, v_2 \rangle, \langle f(a), f(b) \rangle \models ! A$.
+
+    $(\Leftarrow)$ Let $\langle \mathcal{F}_2, v_2 \rangle, \langle f(a), f(b) \rangle \models ! A$. Then there exists $R_2^{'} \subseteq R_2$ such that $\langle f(a), f(b) \rangle \in R_2^{'}$ and for each $\langle c, d \rangle$, $\langle \mathcal{F}_2, v_2 \rangle, \langle c, d \rangle \models A$.
+
+    
+\end{proof}
 
 Let $\mathbb{Z}^{*}$ be the set of all finite sequences of integers. Let us define the following relation $R$.
 
